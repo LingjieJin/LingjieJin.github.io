@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Build Blog with Hexo+Github | Hexo</title>
+  <title>Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Build Blog with Hexo+Github | Hexo">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Linux账户管理账户管理 增加用户Linux 中通常会使用 useradd，而 Ubuntu 中通常使用 adduser。useradd 选项 用户名参数说明：选项:-c comment 指定一段注释性描述。-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。-g 用户组 指定用户所属的用户组。-G 用户组，用户组 指定用户所属的附加组。-s Shell文件 指定用">
 <meta property="og:type" content="article">
@@ -386,9 +386,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Build-Blog-with-Hexo-Github" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">Build Blog with Hexo+Github</h1>
+        <article id="post-linux账户管理" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
@@ -398,7 +396,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-01-24 11:05:07'>2022-01-22 17:34</time>
+            Created At : <time class="date" title='Updated At: 2022-02-09 18:46:03'>2022-02-09 18:05</time>
         
     </div>
     <div class="article-meta">
@@ -420,7 +418,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BABlog"><span class="toc-text">创建Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">更多的设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%88%AB%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">特别的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E4%B8%8B%E6%8F%90%E7%A4%BA%E2%80%9C%E5%9C%A8%E6%AD%A4%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC%E2%80%9D%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">windows下提示“在此系统上禁止运行脚本”的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0Spawn-failed%E9%97%AE%E9%A2%98"><span class="toc-text">Hexo部署过程中碰到Spawn failed问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0ERROR-Deployer-not-found-git%E9%97%AE%E9%A2%98"><span class="toc-text">Hexo部署过程中碰到ERROR Deployer not found: git问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux账户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">账户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">增加用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-text">删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">修改用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86"><span class="toc-text">密码管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">用户组管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86-1"><span class="toc-text">用户组管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8"><span class="toc-text">查看用户列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0sudo-root%E6%9D%83%E9%99%90"><span class="toc-text">增加sudo root权限</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -436,49 +434,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文章的写作参考了以下：<br>参考[zhihu GitHub+Hexo 搭建个人网站详细教程]：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">https://zhuanlan.zhihu.com/p/26625249</a></p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
-<li>创建一个github账号，并在github上创建一个resp</li>
-<li>下载Git</li>
-<li>设置ssh key，绑定本机和github</li>
-<li>下载node.js</li>
-</ol>
-<h1 id="创建Blog"><a href="#创建Blog" class="headerlink" title="创建Blog"></a>创建Blog</h1><p>当你完成以上的准备工作后，就可以直接创建一个Blog并上传到github上。<br>以下的操作过程仅在windows 10环境下完成，仅供参考。</p>
-<ol>
-<li>创建一个空文件夹，比如Blog，打开文件夹，打开shell。</li>
-<li>初始化hexo<pre><code class="bash">hexo init
-</code></pre>
-</li>
-<li>创建一个新博客,并在本地测试预览效果<pre><code class="bash"># 生成博客
-hexo new first_blog
-# 生成文件
-hexo g
-# 打开本地预览
-hexo s
-# 打开浏览器，输入localhost:4000就能看到本地预览效果
-</code></pre>
-</li>
-<li>将本地博客推送到github端推送本地博客文件需要修改一些配置。在Blog目录下的_config.yml文件是站点配置文件</li>
-</ol>
-<h1 id="更多的设置"><a href="#更多的设置" class="headerlink" title="更多的设置"></a>更多的设置</h1><h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>使用个人的个性化域名访问自己的博客。</p>
-<p>首先打开你的域名管理（笔者使用的是阿里云），进入域名解析并选择增加记录。选择记录类型是CNAME，主要是设置CNAME的记录值为：github用户名.github.io，这个就是你之前的resp名字。</p>
-<p>然后在github的resp中选择setting page选项，将custom domain改成你配置的解析值</p>
-<p>这时候使用域名就能访问自己的博客了。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="特别的问题"><a href="#特别的问题" class="headerlink" title="特别的问题"></a>特别的问题</h1><h2 id="windows下提示“在此系统上禁止运行脚本”的问题"><a href="#windows下提示“在此系统上禁止运行脚本”的问题" class="headerlink" title="windows下提示“在此系统上禁止运行脚本”的问题"></a>windows下提示“在此系统上禁止运行脚本”的问题</h2><p>原因是启动 Windows PowerShell 时，执行策略很可能是 Restricted（默认设置）。需要修改这个设置。</p>
-<pre><code>Restricted 执行策略不允许任何脚本运行。
-
-AllSigned 和 RemoteSigned 执行策略可防止 Windows PowerShell 运行没有数字签名的脚本。
-
-本主题说明如何运行所选未签名脚本（即使在执行策略为 RemoteSigned 的情况下），还说明如何对脚本进行签名以便您自己使用。
-
-有关 Windows PowerShell 执行策略的详细信息，请参阅 about_Execution_Policy。
-</code></pre>
-<p>想了解 计算机上的现用执行策略，打开PowerShell 然后输入 get-executionpolicy<br>以管理员身份打开PowerShell 输入 set-executionpolicy remotesigned<br>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4eaad2163567">https://www.jianshu.com/p/4eaad2163567</a></p>
+        <h1 id="Linux账户管理"><a href="#Linux账户管理" class="headerlink" title="Linux账户管理"></a>Linux账户管理</h1><h2 id="账户管理"><a href="#账户管理" class="headerlink" title="账户管理"></a>账户管理</h2><hr>
+<h3 id="增加用户"><a href="#增加用户" class="headerlink" title="增加用户"></a>增加用户</h3><p>Linux 中通常会使用 useradd，而 Ubuntu 中通常使用 adduser。<br>useradd 选项 用户名<br>参数说明：<br>选项:<br>-c comment 指定一段注释性描述。<br>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。<br>-g 用户组 指定用户所属的用户组。<br>-G 用户组，用户组 指定用户所属的附加组。<br>-s Shell文件 指定用户的登录Shell。<br>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</p>
+<p>只有 root 才能将用户或组添加到系统， 默认为 root。<br>[sudo] adduser newuser<br>adduser 可以不带任何参数使用，自动添加用户 newuser 到新组 newuser 、创建主目录 /home/newuser、 提示设置密码和用户信息。</p>
+<p>[sudo] useradd newuser<br>[sudo] passwd newuser<br>[sudo] useradd -d /home/newuser newuser<br>useradd 创建用户分三步：用户名，密码和主目录。</p>
 <hr>
-<h2 id="Hexo部署过程中碰到Spawn-failed问题"><a href="#Hexo部署过程中碰到Spawn-failed问题" class="headerlink" title="Hexo部署过程中碰到Spawn failed问题"></a>Hexo部署过程中碰到Spawn failed问题</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c60ad2a33a1e">https://www.jianshu.com/p/c60ad2a33a1e</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.zhheo.com/p/128998ac.html">https://blog.zhheo.com/p/128998ac.html</a></p>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>删除一个已有的用户账号使用userdel命令，其格式如下：<br>userdel 选项 用户名<br>常用的选项是 -r，它的作用是把用户的主目录一起删除。</p>
+<p>删除<br>userdel username</p>
+<p>id username 查看是否删除</p>
 <hr>
-<h2 id="Hexo部署过程中碰到ERROR-Deployer-not-found-git问题"><a href="#Hexo部署过程中碰到ERROR-Deployer-not-found-git问题" class="headerlink" title="Hexo部署过程中碰到ERROR Deployer not found: git问题"></a>Hexo部署过程中碰到ERROR Deployer not found: git问题</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Java_Mike/article/details/96456318">https://blog.csdn.net/Java_Mike/article/details/96456318</a></p>
+<h3 id="修改用户信息"><a href="#修改用户信息" class="headerlink" title="修改用户信息"></a>修改用户信息</h3><p>修改用户账号就是根据实际情况更改用户的有关属性，如用户号、主目录、用户组、登录Shell等。</p>
+<p>修改已有用户的信息使用usermod命令，其格式如下：</p>
+<p>usermod 选项 用户名<br>常用的选项包括-c, -d, -m, -g, -G, -s, -u以及-o等，这些选项的意义与useradd命令中的选项一样，可以为用户指定新的资源值。</p>
+<p>另外，有些系统可以使用选项：-l 新用户名</p>
+<h3 id="密码管理"><a href="#密码管理" class="headerlink" title="密码管理"></a>密码管理</h3><p>passwd 选项 用户名<br>可使用的选项：</p>
+<p>-l 锁定口令，即禁用账号。<br>-u 口令解锁。<br>-d 使账号无口令。<br>-f 强迫用户下次登录时修改口令。</p>
 <hr>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><h3 id="用户组管理-1"><a href="#用户组管理-1" class="headerlink" title="用户组管理"></a>用户组管理</h3><p>groupadd 选项 用户组<br>可以使用的选项有：</p>
+<p>-g GID 指定新用户组的组标识号（GID）。<br>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</p>
+<hr>
+<h2 id="查看用户列表"><a href="#查看用户列表" class="headerlink" title="查看用户列表"></a>查看用户列表</h2><p>cat /etc/passwd</p>
+<hr>
+<h2 id="增加sudo-root权限"><a href="#增加sudo-root权限" class="headerlink" title="增加sudo root权限"></a>增加sudo root权限</h2><p>为用户添加 sudo 权限，可以使用修改 sudoers 和 adduser 两种方法：<br>etc/sudoers 文件就是与 sudo 组有关的文件，在里面添加一行<br>newuser ALL=(ALL) ALL</p>
+<p>第二种是使用 adduser 命令，添加用户的同时赋予 root 权限：<br>[sudo] adduser newuser sudo</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
