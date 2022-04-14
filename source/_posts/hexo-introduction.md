@@ -1,7 +1,7 @@
 ---
 title: hexo introduction
 date: 2022-01-22 17:27:34
-tags:
+tags: hexo
 ---
 
 # Hexo 框架的使用方法 #

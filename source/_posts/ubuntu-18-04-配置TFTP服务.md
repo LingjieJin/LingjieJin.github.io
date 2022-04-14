@@ -1,3 +1,9 @@
+---
+title: ubuntu 18.04 TFFP 服务器安装
+date: 2022-04-14 17:27:44
+tags: ubuntu18.04 TFTP
+---
+
 # TFFP 服务器安装
 
 TFTP是TCP/IP协议族中的一个用来在客户机与服务器之间进行简单文件传输的协议，以下讲解如何在ubuntu下安装配置tftp：

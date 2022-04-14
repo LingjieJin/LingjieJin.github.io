@@ -1,3 +1,9 @@
+---
+title: ubuntu 18.04 开启nfs服务
+date: 2022-04-14 17:27:44
+tags: ubuntu18.04 nfs
+---
+
 # Ubuntu 18 开启nfs服务
 
 ## 参考文章
