@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ubuntu 18.04 开启nfs服务 | Hexo</title>
+  <meta name="keywords" content=" ubuntu18.04 nfs ">
+  <meta name="description" content="ubuntu 18.04 开启nfs服务 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://example.com/2022/04/15/hello-world/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-15T13:36:12.617Z">
+<meta property="article:modified_time" content="2022-04-15T13:36:12.617Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(10)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="10">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04 netplan</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04 nfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04 system rc-local</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04 TFTP</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/2022/04/15/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2022-04-15 21:36:12">2022/04/15</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/15/Git%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GIT 操作总结">GIT 操作总结</span>
+            <span class="post-date" title="2022-04-15 21:36:12">2022/04/15</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-14 17:27:44">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1/"
+           data-tag="ubuntu18.04 system rc-local"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 设置rc-local服务">ubuntu 18.04 设置rc-local服务</span>
+            <span class="post-date" title="2022-04-14 17:27:44">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/ubuntu%E5%BC%80%E5%90%AFnfs%E6%9C%8D%E5%8A%A1/"
+           data-tag="ubuntu18.04 nfs"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 开启nfs服务">ubuntu 18.04 开启nfs服务</span>
+            <span class="post-date" title="2022-04-14 17:27:44">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="ubuntu18.04 TFTP"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
+            <span class="post-date" title="2022-04-14 17:27:44">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/ubuntu-18-04-%E4%BD%BF%E7%94%A8netplan%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C/"
+           data-tag="ubuntu18.04 netplan"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 使用netplan设置网络">ubuntu 18.04 使用netplan设置网络</span>
+            <span class="post-date" title="2022-04-14 11:28:47">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/14/linux%E8%B4%A6%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="Linux"
+           data-author="" >
+            <span class="post-title" title="Linux账户管理">Linux账户管理</span>
+            <span class="post-date" title="2022-04-14 00:00:00">2022/04/14</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/22/Build-Blog-with-Hexo-Github/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Build Blog with Hexo+Github">Build Blog with Hexo+Github</span>
+            <span class="post-date" title="2022-01-22 17:34:00">2022/01/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/22/hexo-introduction/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo introduction">hexo introduction</span>
+            <span class="post-date" title="2022-01-22 17:27:34">2022/01/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-ubuntu开启nfs服务" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">ubuntu 18.04 开启nfs服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">ubuntu18.04 nfs</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-15 21:36:12'>2022-04-14 17:27</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-%E5%BC%80%E5%90%AFnfs%E6%9C%8D%E5%8A%A1"><span class="toc-text">Ubuntu 18 开启nfs服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">nfs客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-text">nfs常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E7%9A%84%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD"><span class="toc-text">NFS的常用目录及常用命</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E9%85%8D%E7%BD%AE"><span class="toc-text">NFS配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%82%E6%95%B0"><span class="toc-text">客户端参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E7%83%AD%E9%87%8D%E5%90%AF"><span class="toc-text">NFS热重启</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ubuntu-18-开启nfs服务"><a href="#Ubuntu-18-开启nfs服务" class="headerlink" title="Ubuntu 18 开启nfs服务"></a>Ubuntu 18 开启nfs服务</h1><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30463341/article/details/96314065?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3">参考1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mrld/articles/14149708.html">ubuntu18.04上安装和配置NFS服务器</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.howtoing.com/how-to-set-up-an-nfs-mount-on-ubuntu-18-04">如何在Ubuntu 18.04上设置NFS挂载</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.lockey.xyz/2020/11/12/ubuntu18-04-nfs-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Ubuntu18.04 NFS 安装使用</a></p>
+<p><a target="_blank" rel="noopener" href="https://cn.joecomp.com/how-install-configure-an-nfs-server-ubuntu-18">如何在Ubuntu 18.04上安装和配置NFS服务器</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>sudo apt-get install nfs-kernel-server -y
+</code></pre>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>nfs的配置文件 /etc/exports<br>里面有example</p>
+<pre><code>增加策略，每个策略一行
+设定格式如下：
+        共享目录 主机名称或者IP(参数1, 参数2)
+
+/nfs *(rw,sync,no_root_squash)
+ 
+-------------------------------------------------------
+/nfs                             ：要共享的路径
+*                                  ：*通配，表示所有网段都可以访问
+sync                            ：同步写入硬盘
+no_root_squash     ：nfs客户端共享目录使用者权限
+</code></pre>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre><code>启动
+service nfs-kernel-server restart
+
+停止
+service nfs-kernel-server stop
+
+查看
+service nfs-kernel-server status
+或者
+netstat -a | grep nfs
+或者
+nfsstat 
+</code></pre>
+<h2 id="nfs客户端"><a href="#nfs客户端" class="headerlink" title="nfs客户端"></a>nfs客户端</h2><h2 id="nfs常用参数"><a href="#nfs常用参数" class="headerlink" title="nfs常用参数"></a>nfs常用参数</h2><h3 id="NFS的常用目录及常用命"><a href="#NFS的常用目录及常用命" class="headerlink" title="NFS的常用目录及常用命"></a>NFS的常用目录及常用命</h3><pre><code>/etc/exports NFS服务的主要配置文件
+/usr/sbin/exportfs NFS服务的管理命令
+/usr/sbin/showmount 客户端的查看命令
+/var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值
+/var/lib/nfs/xtab 记录曾经登录过的客户端信息
+</code></pre>
+<h3 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h3><p>NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。</p>
+<pre><code>/etc/exports文件内容格式：
+&lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）] 
+这里的参数有两部分－－－服务端参数、客户端参数。
+a. 输出目录：
+输出目录是指NFS系统中需要共享给客户机使用的目录；
+b. 客户端：
+客户端是指网络中可以访问这个NFS输出目录的计算机
+客户端常用的指定方式
+指定ip地址的主机：192.168.0.200
+指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0
+指定域名的主机：david.bsmart.cn
+指定域中的所有主机：*.bsmart.cn
+所有主机：*
+c. 选项：
+选项用来设置输出目录的访问权限、用户映射等。
+NFS主要有3类选项：
+访问权限选项
+设置输出目录只读：ro
+设置输出目录读写：rw
+用户映射选项
+all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
+no_all_squash：与all_squash取反（默认设置）；
+root_squash：将root用户及所属组都映射为匿名用户或用户组（默认设置）；
+no_root_squash：与rootsquash取反；
+anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；
+anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；
+其它选项
+secure：限制客户端只能从小于1024的tcp/ip端口连接nfs服务器（默认设置）；
+insecure：允许客户端从大于1024的tcp/ip端口连接服务器；
+sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；
+async：将数据先保存在内存缓冲区中，必要时才写入磁盘；
+wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；
+no_wdelay：若有写操作则立即执行，应与sync配合使用；
+subtree：若输出目录是一个子目录，则nfs服务器将检查其父目录的权限(默认设置)；
+no_subtree：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率；
+</code></pre>
+<h3 id="客户端参数"><a href="#客户端参数" class="headerlink" title="客户端参数"></a>客户端参数</h3><pre><code>先来看服务端在/etc/exports 括号中可以指定的参数：
+选项
+描述
+rw
+允许读写权限
+ro
+只读权限
+sync
+同步模式(Default)，所有数据在写入后可以请求
+async
+异步模式，数据在写入过程中可以写入
+secure
+NFS通过1024以下的安全TCP/IP端口发送(Default)
+insecure
+NFS可以通过所有端口发送
+wdelay
+如果多个用户要写入NFS目录，则归组写入 (Default)
+no_wdelay
+如果多个用户要写入NFS目录，则立即写入，当使用async时，无需此设置。
+subtree_check
+如果共享/usr/bin之类的子目录时，强制NFS检查父目录的权限 (Default)
+no_subtree_check
+与subtree_check对应
+root_squash
+Map requests from uid/gid 0 to the anonymous uid/gid.
+no_root_squash
+root用户具有根目录的完全管理访问权限。
+all_squash
+Map all uids and gids to the anonymous user. 对公共目录访问时较有用。
+no_all_squash
+保留共享文件的UID和GID (Default)
+anonuid=UID
+指定匿名用户访问时映射机的用户uid
+anongid=GID
+指定匿名用户访问时映射机的用户gid
+</code></pre>
+<h3 id="NFS热重启"><a href="#NFS热重启" class="headerlink" title="NFS热重启"></a>NFS热重启</h3><pre><code>如果我们在启动了NFS之后又修改了/etc/exports，是不是还要重新启动nfs呢？这个时候我们就可以用exportfs命令来使改动立刻生效，该命令格式如下：
+exportfs [-aruv]
+-a ：全部mount或者unmount /etc/exports中的内容
+-r ：重新mount /etc/exports中分享出来的目录
+-u ：umount 目录
+-v ：在 export 的时候，将详细的信息输出到屏幕上。
+具体例子：
+[root @test root]# exportfs -rv  （全部重新export一次！）
+exporting 192.168.0.100:/home/test
+exporting 192.168.0.*:/home/public
+exporting *.the9.com:/home/linux
+exporting *:/home/public
+exporting *:/tmp
+reexporting 192.168.0.100:/home/test to kernel
+具体例子：
+[root @test root]#exportfs -au （全部都卸载了）
+[root @test root]# vi /etc/exports
+ 
+/home/soft 192.168.2.11(rw)
+[root@localhost init.d]# nfs start
+-bash: nfs: command not found
+[root@localhost init.d]# ./nfs start
+Starting NFS services: [ OK ]
+Starting NFS quotas: [ OK ]
+Starting NFS daemon: [ OK ]
+Starting NFS mountd: [ OK ]
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
