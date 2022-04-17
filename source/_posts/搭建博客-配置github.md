@@ -1,7 +1,7 @@
 ---
 title: Build Blog with Hexo+Github
-date: 2022-01-22 17:34:00
-tags:
+date: 2022-01
+tags: [blog, hexo]
 ---
 
 本文章的写作参考了以下：

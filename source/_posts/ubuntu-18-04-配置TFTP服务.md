@@ -1,7 +1,7 @@
 ---
 title: ubuntu 18.04 TFFP 服务器安装
-date: 2022-04-14 17:27:44
-tags: ubuntu18.04 TFTP
+date: 2022-04
+tags: [linux, ubuntu18.04, TFTP]
 ---
 
 # TFFP 服务器安装

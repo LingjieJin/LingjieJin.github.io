@@ -1,7 +1,7 @@
 ---
 title: ubuntu 18.04 使用netplan设置网络
-date: 2022-04-14 11:28:47
-tags: ubuntu18.04 netplan  
+date: 2022-04
+tags: [linux, ubuntu18.04, network, netplan]
 ---
 
 # ubuntu 18.04 netpan 设置

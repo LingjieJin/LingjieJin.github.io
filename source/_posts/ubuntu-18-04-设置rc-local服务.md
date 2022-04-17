@@ -1,7 +1,7 @@
 ---
 title: ubuntu 18.04 设置rc-local服务
-date: 2022-04-14 17:27:44
-tags: ubuntu18.04 system rc-local
+date: 2022-04
+tags: [linux, ubuntu18.04,system,rc-local]
 ---
 
 # ubuntu 18.04 设置rc-local服务

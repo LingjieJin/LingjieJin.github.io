@@ -1,7 +1,7 @@
 ---
-title: 搭建node hexo环境
+title: 搭建博客-node hexo环境配置
 date: 2022-04
-tags: node, hexo
+tags: [blog, node, hexo]
 ---
 
 # 搭建node hexo环境
