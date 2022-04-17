@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>ubuntu 18.04 配置nfs服务 | Hexo</title>
+  <meta name="keywords" content=" linux , ubuntu18.04 , nfs ">
+  <meta name="description" content="ubuntu 18.04 配置nfs服务 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,54 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-ubuntu-18-04-配置nfs服务" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">ubuntu 18.04 配置nfs服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color2">ubuntu18.04</a>
+            
+            <a class="color4">nfs</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 02:15:18'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-%E5%BC%80%E5%90%AFnfs%E6%9C%8D%E5%8A%A1"><span class="toc-text">Ubuntu 18 开启nfs服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2"><span class="toc-text">停止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-text">查看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">nfs客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nfs%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-text">nfs常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E7%9A%84%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD"><span class="toc-text">NFS的常用目录及常用命</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E9%85%8D%E7%BD%AE"><span class="toc-text">NFS配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nfs%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%82%E6%95%B0"><span class="toc-text">nfs客户端参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFS%E7%83%AD%E9%87%8D%E5%90%AF"><span class="toc-text">NFS热重启</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +664,201 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ubuntu-18-开启nfs服务"><a href="#Ubuntu-18-开启nfs服务" class="headerlink" title="Ubuntu 18 开启nfs服务"></a>Ubuntu 18 开启nfs服务</h1><h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30463341/article/details/96314065?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_default&spm=1001.2101.3001.4242.1&utm_relevant_index=3">参考1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mrld/articles/14149708.html">ubuntu18.04上安装和配置NFS服务器</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.howtoing.com/how-to-set-up-an-nfs-mount-on-ubuntu-18-04">如何在Ubuntu 18.04上设置NFS挂载</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.lockey.xyz/2020/11/12/ubuntu18-04-nfs-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Ubuntu18.04 NFS 安装使用</a></p>
+<p><a target="_blank" rel="noopener" href="https://cn.joecomp.com/how-install-configure-an-nfs-server-ubuntu-18">如何在Ubuntu 18.04上安装和配置NFS服务器</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>    sudo apt-get install nfs-kernel-server -y
+</code></pre>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>nfs的配置文件 /etc/exports, 里面有example.</p>
+<p>增加策略，每个策略一行<br>设定格式如下：</p>
+<pre><code>    共享目录 主机名称或者IP(参数1, 参数2)
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+    /nfs *(rw,sync,no_root_squash)
+    nfs     ：要共享的路径
+    *       ：*通配，表示所有网段都可以访问
+    sync    ：同步写入硬盘
+    no_root_squash  ：nfs客户端共享目录使用者权限
+</code></pre>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code>    service nfs-kernel-server restart
+</code></pre>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><pre><code>    service nfs-kernel-server stop
+</code></pre>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><pre><code>    service nfs-kernel-server status
+    或者
+    netstat -a | grep nfs
+    或者
+    nfsstat 
+</code></pre>
+<h2 id="nfs客户端"><a href="#nfs客户端" class="headerlink" title="nfs客户端"></a>nfs客户端</h2><h2 id="nfs常用参数"><a href="#nfs常用参数" class="headerlink" title="nfs常用参数"></a>nfs常用参数</h2><h3 id="NFS的常用目录及常用命"><a href="#NFS的常用目录及常用命" class="headerlink" title="NFS的常用目录及常用命"></a>NFS的常用目录及常用命</h3><p>/etc/exports NFS服务的主要配置文件<br>/usr/sbin/exportfs NFS服务的管理命令<br>/usr/sbin/showmount 客户端的查看命令<br>/var/lib/nfs/etab 记录NFS分享出来的目录的完整权限设定值<br>/var/lib/nfs/xtab 记录曾经登录过的客户端信息</p>
+<h3 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h3><p>NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。</p>
+<p>/etc/exports文件内容格式：</p>
+<pre><code>    &lt;输出目录&gt; [客户端1 选项（访问权限,用户映射,其他）] [客户端2 选项（访问权限,用户映射,其他）] 
+    
+    这里的参数有两部分－－－服务端参数、客户端参数。
+
+    a. 输出目录：
+    输出目录是指NFS系统中需要共享给客户机使用的目录；
+
+    b. 客户端：
+    客户端是指网络中可以访问这个NFS输出目录的计算机
+
+    客户端常用的指定方式
+    指定ip地址的主机：192.168.0.200
+    指定子网中的所有主机：192.168.0.0/24 192.168.0.0/255.255.255.0
+    指定域名的主机：david.bsmart.cn
+    指定域中的所有主机：*.bsmart.cn
+    所有主机：*
+
+    c. 选项：
+    选项用来设置输出目录的访问权限、用户映射等。
+    NFS主要有3类选项：
+    访问权限选项
+    1. 设置输出目录只读：ro
+    2. 设置输出目录读写：rw
+    3. 用户映射选项
+    all_squash：将远程访问的所有普通用户及所属组都映射为匿名用户或用户组（nfsnobody）；
+    no_all_squash：与all_squash取反（默认设置）；
+    root_squash：将root用户及所属组都映射为匿名用户或用户组（默认设置）；
+    no_root_squash：与rootsquash取反；
+    anonuid=xxx：将远程访问的所有用户都映射为匿名用户，并指定该用户为本地用户（UID=xxx）；
+    anongid=xxx：将远程访问的所有用户组都映射为匿名用户组账户，并指定该匿名用户组账户为本地用户组账户（GID=xxx）；
+    其它选项
+    secure：限制客户端只能从小于1024的tcp/ip端口连接nfs服务器（默认设置）；
+    insecure：允许客户端从大于1024的tcp/ip端口连接服务器；
+    sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性；
+    async：将数据先保存在内存缓冲区中，必要时才写入磁盘；
+    wdelay：检查是否有相关的写操作，如果有则将这些写操作一起执行，这样可以提高效率（默认设置）；
+    no_wdelay：若有写操作则立即执行，应与sync配合使用；
+    subtree：若输出目录是一个子目录，则nfs服务器将检查其父目录的权限(默认设置)；
+    no_subtree：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率；
+</code></pre>
+<h3 id="nfs客户端参数"><a href="#nfs客户端参数" class="headerlink" title="nfs客户端参数"></a>nfs客户端参数</h3><p>先来看服务端在/etc/exports 括号中可以指定的参数：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rw</td>
+<td>允许读写权限</td>
+</tr>
+<tr>
+<td>ro</td>
+<td>只读权限</td>
+</tr>
+<tr>
+<td>sync</td>
+<td>同步模式(Default)，所有数据在写入后可以请求</td>
+</tr>
+<tr>
+<td>async</td>
+<td>异步模式，数据在写入过程中可以写入</td>
+</tr>
+<tr>
+<td>secure</td>
+<td>NFS通过1024以下的安全TCP/IP端口发送(Default)</td>
+</tr>
+<tr>
+<td>insecure</td>
+<td>NFS可以通过所有端口发送</td>
+</tr>
+<tr>
+<td>wdelay</td>
+<td>如果多个用户要写入NFS目录，则归组写入 (Default)</td>
+</tr>
+<tr>
+<td>no_wdelay</td>
+<td>如果多个用户要写入NFS目录，则立即写入，当使用async时，无需此设置。</td>
+</tr>
+<tr>
+<td>subtree_check</td>
+<td>如果共享/usr/bin之类的子目录时，强制NFS检查父目录的权限 (Default)</td>
+</tr>
+<tr>
+<td>no_subtree_check</td>
+<td>与subtree_check对应</td>
+</tr>
+<tr>
+<td>root_squash</td>
+<td>Map requests from uid/gid 0 to the anonymous uid/gid.</td>
+</tr>
+<tr>
+<td>no_root_squash</td>
+<td>root用户具有根目录的完全管理访问权限。</td>
+</tr>
+<tr>
+<td>all_squash</td>
+<td>Map all uids and gids to the anonymous user. 对公共目录访问时较有用</td>
+</tr>
+<tr>
+<td>no_all_squash</td>
+<td>保留共享文件的UID和GID (Default)</td>
+</tr>
+<tr>
+<td>anonuid=UID</td>
+<td>指定匿名用户访问时映射机的用户uid</td>
+</tr>
+<tr>
+<td>anongid=GID</td>
+<td>指定匿名用户访问时映射机的用户gid</td>
+</tr>
+</tbody></table>
+<h3 id="NFS热重启"><a href="#NFS热重启" class="headerlink" title="NFS热重启"></a>NFS热重启</h3><p>如果我们在启动了NFS之后又修改了/etc/exports，是不是还要重新启动nfs呢？这个时候我们就可以用exportfs命令来使改动立刻生效，该命令格式如下：</p>
+<pre><code>    exportfs [-aruv]
+    -a ：全部mount或者unmount /etc/exports中的内容
+    -r ：重新mount /etc/exports中分享出来的目录
+    -u ：umount 目录
+    -v ：在 export 的时候，将详细的信息输出到屏幕上。
+</code></pre>
+<p>具体例子：</p>
+<pre><code>    [root @test root]# exportfs -rv  （全部重新export一次！）
+    exporting 192.168.0.100:/home/test
+    exporting 192.168.0.*:/home/public
+    exporting *.the9.com:/home/linux
+    exporting *:/home/public
+    exporting *:/tmp
+    reexporting 192.168.0.100:/home/test to kernel
+</code></pre>
+<p>具体例子：</p>
+<pre><code>    [root @test root]#exportfs -au （全部都卸载了）
+
+    [root @test root]# vi /etc/exports 
+    /home/soft 192.168.2.11(rw)
+
+    [root@localhost init.d]# ./nfs start
+    Starting NFS services: [ OK ]
+    Starting NFS quotas: [ OK ]
+    Starting NFS daemon: [ OK ]
+    Starting NFS mountd: [ OK ]
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +867,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

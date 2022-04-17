@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>Linux ip 指令 | Hexo</title>
+  <meta name="keywords" content=" linux , network , 指令 , ip ">
+  <meta name="description" content="Linux ip 指令 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,56 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Linux ip指令" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">Linux ip 指令</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color3">network</a>
+            
+            <a class="color3">指令</a>
+            
+            <a class="color3">ip</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 15:48:53'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ip-%E5%91%BD%E4%BB%A4"><span class="toc-text">ip 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E2%80%9Cip-link%E2%80%9D%EF%BC%8C%E5%8F%AF%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">配置网络设备“ip link”，可查看数据链路层的信息</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +666,126 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ip-命令"><a href="#ip-命令" class="headerlink" title="ip 命令"></a>ip 命令</h1><p>ip命令是很强大的网络工具，已经快要替换老牌的ifconfig，并且它能实现ifconfig很多没有的功能，所以这个命令很重要，这里只是列出ip命令常用的一&gt;些命令，具体可以查看man帮助或help。</p>
+<p>格式：</p>
+<pre><code>ip [ 选项 ] 目标 &#123; [子命令：link | addr | route]  help(子命令帮助) &#125;
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+“[]”表示可选项，可写可不写；“&#123;&#125;”是必须项，跟着命令写的。
+</code></pre>
+<h3 id="配置网络设备“ip-link”，可查看数据链路层的信息"><a href="#配置网络设备“ip-link”，可查看数据链路层的信息" class="headerlink" title="配置网络设备“ip link”，可查看数据链路层的信息"></a>配置网络设备“ip link”，可查看数据链路层的信息</h3><ol>
+<li><p>激活或禁用指定接口“up或down”</p>
+<pre><code> ip link set ethXX up    \\激活ethXX
+ ip link set ethXX down  \\禁用ethXX
+</code></pre>
+</li>
+<li><p>激活或禁用指定接口““ifup或ifdown”</p>
+<pre><code> ifup ethXX              \\激活ethXX
+ ifdown ethXX            \\禁用ethXX
+ 
+</code></pre>
+<p> 说明：</p>
+<ul>
+<li>ifup与ifdown两个程序其实是script(脚本)而已，它会直接到 /etc/ sysconfig/network-scripts目录下搜索对应的配置文件，例如ifup eth0，它会找出ifcfg-eth0这个文件的内容，然后加以设置</li>
+<li>这两个程序主要是搜索设置文件（ifcfg-ethx）来进行启动与关闭的，所以在使用前请确定ifcfg-ethx是否真的存在于正确的目录内，否则会启动失败。</li>
+<li>如果以ifconfig eth0来设置或者是修改了网络接口后，就无法再以ifdown eth0的方式来关闭了。因为ifdown会分析比较目前的网络参数与ifcfg-eth0是否相符，不符的话，就会放弃这次操作。因此，使用ifconfig修改完毕后，应该要以ifconfig eth0 down才能够关闭该接口。</li>
+</ul>
+</li>
+<li><p>查看接口状态</p>
+<pre><code> show ethXX      \\查看接口状态
+ show up ethXX   \\查看激活状态的接口
+</code></pre>
+</li>
+<li><p>查看数据链路层信息“ip link”</p>
+<pre><code> 如果电脑哪天网络不通，可使用“ip link”查看网卡是哪种状态。
+ “UP”状态：网线没问题
+ “DOWN”状态：网线有问题
+</code></pre>
+</li>
+<li><p>配置网络设备“ip addr”，可查看或设置网络层地址</p>
+<ul>
+<li>添加或删除  ip addr { add | del } IFADDR dev STRING<ul>
+<li>给网卡添加IP地址时指明网卡别名[label LABEL]<br>ip addr { add | del } IFADDR dev STRING label 网卡别名<br>示例：ip addr add 172.16.100.100/16 dev eth0 label eth0:0<br>  使用命令的方式设置别名，重启服务就没了，若要永久生效，需要写配置文件vi /etc/sysconfig/network-scripts/ifcfg-eth0:0。<br>注意设置别名时必须是静态ip，不能是自动获取。<br>如果不想要这个别名，直接删除该文件，然后重启“network”服务即可</li>
+<li>指明作用域：[scope {global|link|host}]<br>global: 全局可用，即两个接口进来的数据我都可以响应。是默认状态。<br>link: 仅链接可用，进来的数据只有直接相连的那个接口能够响应<br>host: 本机可用，即只能自己访问</li>
+<li>指明广播地址:[broadcast ADDRESS]</li>
+</ul>
+</li>
+<li>ip address show - look at protocol addresses<br>  [dev DEVICE]<br>  [label PATTERN]<br>  [primary and secondary]</li>
+<li>ip addr flush 使用格式同show<br>  ip addr add 172.16.100.100/16 dev eth0 label eth0:0<br>  ip addr del 172.16.100.100/16 dev eth0 label eth0:0<br>  ip addr flush dev eth0 label eth0:0</li>
+</ul>
+</li>
+<li><p>配置网络设备“ip route”（路由表管理）</p>
+<ul>
+<li><p>添加路由：ip route add<br>  ip route add TARGET via GW dev IFACE src SOURCE_IP</p>
+<p>  TARGET:</p>
+<ul>
+<li>主机路由：IP</li>
+<li>网络路由：NETWORK/MASK</li>
+</ul>
+<p>  示例1：ip route add 192.168.0.0/24 via 172.16.0.1</p>
+<p>  示例2：ip route add 192.168.1.13 via 172.16.0.1</p>
+</li>
+<li><p>添加网关：ip route add default via GW dev IFACE</p>
+<pre><code>  ip route add default via 172.16.0.1
+</code></pre>
+</li>
+<li><p>删除路由：</p>
+<pre><code>  ip route del TARGET
+</code></pre>
+</li>
+<li><p>显示路由：</p>
+<pre><code>  ip route show|list
+</code></pre>
+</li>
+<li><p>清空路由表</p>
+<pre><code>  ip route flush [dev IFACE] [via PREFIX]
+  ip route flush dev eth0
+  ip route flush(全清空)
+</code></pre>
+</li>
+</ul>
+<pre><code>说明：
+使用命令的方式增加或者删除路由记录，都是临时的，如果重启network服务，那么操作就失效了。想要永久生效可以编辑配置文件/etc/sysconfig/network-scripts/route-eth*，步骤如下：
+1、 vim etc/sysconfig/network-scripts/route-eth0
+    文件内容有两种写法：
+        1）单行
+            netid/mask via gw  比如2.2.2.2/16 via 10.0.0.0
+        2）多行
+            ADDRESS#=目标网络
+            NETMASK#=子网掩码
+            GATEWAY#=网关
+注意：
+同一路由记录的#数字必须一样，因为可能会添加多条路由，数字一样的为同一组。
+同一个文件里，两种格式不能混合着写。
+      2、重启服务
+             Centos6:  service network restart
+             Centos7:  systemctl restart network 
+</code></pre>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +794,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

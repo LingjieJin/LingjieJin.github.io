@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>Linux 用户管理 | Hexo</title>
+  <meta name="keywords" content=" linux , user ">
+  <meta name="description" content="Linux 用户管理 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,52 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Linux 用户管理" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">Linux 用户管理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color5">user</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 01:26:44'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">增加用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-text">删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">修改用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7"><span class="toc-text">修改属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%8B%A5%E6%9C%89%E8%80%85-%E7%94%A8%E6%88%B7-%E4%BF%AE%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-text">将文件或目录的拥有者(用户)修改为指定的用户名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%89%80%E5%B1%9E%E7%BB%84%E4%BF%AE%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E7%9A%84%E7%BB%84"><span class="toc-text">将文件或目录的所属组修改为指定的组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E4%B8%A4%E7%A7%8D%EF%BC%9A"><span class="toc-text">修改权限的方式有两种：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86"><span class="toc-text">密码管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E6%9C%89%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-text">查看用户有关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0sudo-root%E6%9D%83%E9%99%90"><span class="toc-text">增加sudo root权限</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +662,196 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-用户管理"><a href="#Linux-用户管理" class="headerlink" title="Linux 用户管理"></a>Linux 用户管理</h1><hr>
+<h3 id="增加用户"><a href="#增加用户" class="headerlink" title="增加用户"></a>增加用户</h3><p>Linux 中通常会使用 useradd，而 Ubuntu 中通常使用 adduser。</p>
+<pre><code>useradd 选项 用户名
+参数说明：
+-c&lt;备注&gt; 　加上备注文字。备注文字会保存在passwd的备注栏位中。
+-d&lt;登入目录&gt; 　指定用户登入时的起始目录。
+-D 　变更预设值．
+-e&lt;有效期限&gt; 　指定帐号的有效期限。
+-f&lt;缓冲天数&gt; 　指定在密码过期后多少天即关闭该帐号。
+-g&lt;群组&gt; 　指定用户所属的群组。
+-G&lt;群组&gt; 　指定用户所属的附加群组。
+-m 　自动建立用户的登入目录。
+-M 　不要自动建立用户的登入目录。
+-n 　取消建立以用户名称为名的群组．
+-r 　建立系统帐号。
+-s&lt;shell&gt;　 　指定用户登入后所使用的shell。
+-u&lt;uid&gt; 　指定用户ID。
+</code></pre>
+<p>只有 root 才能将用户或组添加到系统， 默认为 root。</p>
+<pre><code>[sudo] adduser newuser
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+adduser 可以不带任何参数使用，自动添加用户 newuser 到新组 newuser 、创建主目录 /home/newuser、 提示设置密码和用户信息。
+
+[sudo] useradd newuser
+[sudo] passwd newuser
+[sudo] useradd -d /home/newuser newuser
+
+useradd 创建用户分三步：用户名，密码和主目录。
+</code></pre>
+<p>举例：</p>
+<ol>
+<li>添加一个不能登录的用户 useradd -d /usr/local/apache -g apache -s /bin/false apache 要拒绝系统用户登录，可以将其 shell 设置为 /usr/sbin/nologin 或者 /bin/false。</li>
+</ol>
+<hr>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>删除一个已有的用户账号使用userdel命令，其格式如下：</p>
+<pre><code>userdel 选项 用户名
+常用的选项是 -r，它的作用是把用户的主目录一起删除。
+要刪除已登入的使用者賬戶或與之相關的正在執行的程序，我們可以使用 userdel 命令中的 -f 或 --force 選項。
+
+id username 查看是否删除
+</code></pre>
+<hr>
+<h3 id="修改用户信息"><a href="#修改用户信息" class="headerlink" title="修改用户信息"></a>修改用户信息</h3><p>修改用户账号就是根据实际情况更改用户的有关属性，如用户号、主目录、用户组、登录Shell等。</p>
+<p>修改已有用户的信息使用usermod命令，其格式如下：</p>
+<pre><code>usermod 选项 用户名
+选项包括-c, -d, -m, -g, -G, -s, -u以及-o等，这些选项的意义与useradd命令中的选项一样，可以为用户指定新的资源值。
+参数：
+
+-a&lt;追加&gt; 必须与-G选项一起使用，把用户追加到某些组中。
+-c&lt;备注&gt; 修改用户帐号的备注文字。
+-d&lt;登入目录&gt; 修改用户登入时的目录。
+-e&lt;有效期限&gt; 修改帐号的有效期限。
+-f&lt;缓冲天数&gt; 修改在密码过期后多少天即关闭该帐号。
+-g&lt;群组&gt; 修改用户所属的群组。
+-G&lt;群组&gt; 修改用户所属的附加群组。
+-l&lt;帐号名称&gt; 修改用户帐号名称。
+-L 锁定用户密码，使密码无效。
+-s&lt;shell&gt; 修改用户登入后所使用的shell。
+-u&lt;uid&gt; 修改用户ID。
+-U 解除密码锁定。
+
+另外，有些系统可以使用选项：-l 新用户名
+</code></pre>
+<p>举例：</p>
+<ol>
+<li><p>usermod最典型的用例是将用户添加到组中。要将现有用户添加到辅助组，请使用-a和-G选项，然后输入组的名称和用户名。</p>
+<pre><code> usermod -a -G GROUP USER
+     
+ 如果要一次将用户添加到多个组，请在-G选项后指定由逗号,分隔的组，中间不留空格。例如，要将用户myfreax添加到games组，您可以运行以下命令：
+     
+ sudo usermod -a -G games myfreax
+</code></pre>
+</li>
+<li><p>这是清空用户testUser1所有的追加组，执行该命令以后testUser1只属于testUser1这个默认组，不管testUser1以前有多少个附加组。</p>
+<pre><code> usermod -G &quot;&quot; testUser1
+</code></pre>
+</li>
+<li><p>让用户testUser1的附加组变成testUser1,testGroup1,testGroup4，这个命令有点类似usermod -G “” testUser1，只不过usermod -G “” testUser1是清空，而usermod -G  testGroup2,testGroup3 testUser1 则是把 testGroup2,testGroup3以外的组清空，而保留testGroup2,testGroup3。因为gpasswd -d  一次只能删除一个，所以用这种方法可以一步直达。</p>
+<pre><code> usermod -G  testGroup2,testGroup3 testUser1
+</code></pre>
+</li>
+<li><p>删除用户testUser1的testGroup2所属组，即把用户testUser1从testGroup2 组中剔除，执行以后用户testUser1属于testUser1,testGroup1,testGroup3,testGroup4组，注 意，gpasswd -d只能一个组一个组操作，如果要删除多个组则只能操作多次</p>
+<pre><code> gpasswd -d  testUser1 testGroup2
+</code></pre>
+</li>
+<li><p>假设系统已经存在testGroup1,testGroup2两个用户组和一个用户testUser1，现在要把testUser1加到testGroup1,testGroup2两个用户组中</p>
+<pre><code> usermod -a -G  testGroup1,testGroup2  testUser1
+
+ 或者
+
+ usermod -a -G  testGroup1 testUser1
+
+ usermod -a -G  testGroup2 testUser1
+</code></pre>
+</li>
+<li><p>假设系统已经存在testGroup1,testGroup2两个用户组，现在要新增一个用户testUser1，同时让testUser1属于testGroup1,testGroup2两个用户组</p>
+<pre><code> useradd -G  testGroup1,testGroup2  testUser1
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="修改属性"><a href="#修改属性" class="headerlink" title="修改属性"></a>修改属性</h3><h4 id="将文件或目录的拥有者-用户-修改为指定的用户名"><a href="#将文件或目录的拥有者-用户-修改为指定的用户名" class="headerlink" title="将文件或目录的拥有者(用户)修改为指定的用户名"></a>将文件或目录的拥有者(用户)修改为指定的用户名</h4><pre><code>chown [选项] 用户名 文件名|目录　　　 
+</code></pre>
+<h4 id="将文件或目录的所属组修改为指定的组"><a href="#将文件或目录的所属组修改为指定的组" class="headerlink" title="将文件或目录的所属组修改为指定的组"></a>将文件或目录的所属组修改为指定的组</h4><pre><code>chgrp [选项] 组名 文件名|目录 　　　 
+</code></pre>
+<h4 id="修改权限的方式有两种："><a href="#修改权限的方式有两种：" class="headerlink" title="修改权限的方式有两种："></a>修改权限的方式有两种：</h4><pre><code>chmod [选项] .. &#123;对象-操作-权限&#125; 文件名|目录
+选项：-R 表示当为目录的时候递归修改。即把该目录下的所有文件和目录一并修改
+对象：a 表示所有人；u 表示拥有者；g 表示所属组 ； o 表示其他人
+操作：+ 表示增加权限 ； - 表示减少权限
+权限 ： r 读； w 写 ； x 执行用三个数字分别是拥有者、组、其他人的权限。
+777 表示 u=rwx,g=rwx,o=rwx
+755 表示 u=rwx,g=rx,o=rx
+644 表示 u=rw,g=r,o=r
+</code></pre>
+<p>举例：</p>
+<ol>
+<li><p>对所有对象减少目录a的写权限</p>
+<pre><code> sudo chmod a-w 目录a 
+</code></pre>
+</li>
+<li><p>对目录a的权限设置是拥有者rwx，组rx，其他人rx</p>
+<pre><code> sudo chmod -R 755 目录a 
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="密码管理"><a href="#密码管理" class="headerlink" title="密码管理"></a>密码管理</h3><pre><code>passwd 选项 用户名
+可使用的选项：
+-l 锁定口令，即禁用账号。
+-u 口令解锁。
+-d 使账号无口令。
+-f 强迫用户下次登录时修改口令。
+</code></pre>
+<hr>
+<h2 id="查看用户有关信息"><a href="#查看用户有关信息" class="headerlink" title="查看用户有关信息"></a>查看用户有关信息</h2><pre><code>#查看用户列表
+cat /etc/passwd
+
+#查看群组消息
+cat /etc/group
+
+#查看用户的UID(用户id) 和 GID(组id) 和附件组等， 用户不写，默认当前用户
+id [选项]….[用户]..　　　 
+
+#查看目前所有登录的用户和用户IP地址和时间,未登录用户不能显示
+who [选项]… 　　　 
+
+#查看我是哪个用户
+whoami [选项] …..　　　 
+
+#查看系统负载与用户
+w 　　　 
+
+tty1～tty6:本地控制台终端；tty7表示图形终端；pts/0~255表示虚拟终端
+</code></pre>
+<hr>
+<h2 id="增加sudo-root权限"><a href="#增加sudo-root权限" class="headerlink" title="增加sudo root权限"></a>增加sudo root权限</h2><p>为用户添加 sudo 权限，可以使用修改 sudoers 和 adduser 两种方法：</p>
+<ol>
+<li><p>etc/sudoers 文件就是与 sudo 组有关的文件，在里面添加一行</p>
+<pre><code> newuser ALL=(ALL) ALL
+</code></pre>
+</li>
+<li><p>第二种是使用 adduser 命令，添加用户的同时赋予 root 权限：</p>
+<pre><code> [sudo] adduser newuser sudo
+</code></pre>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +860,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

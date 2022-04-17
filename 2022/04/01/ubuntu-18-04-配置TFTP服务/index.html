@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>ubuntu 18.04 TFFP 服务器安装 | Hexo</title>
+  <meta name="keywords" content=" linux , ubuntu18.04 , TFTP ">
+  <meta name="description" content="ubuntu 18.04 TFFP 服务器安装 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,54 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-ubuntu-18-04-配置TFTP服务" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">ubuntu 18.04 TFFP 服务器安装</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color2">ubuntu18.04</a>
+            
+            <a class="color5">TFTP</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 01:51:07'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TFFP-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85"><span class="toc-text">TFFP 服务器安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">配置服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95tftp%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">测试tftp获取文件</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +664,78 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TFFP-服务器安装"><a href="#TFFP-服务器安装" class="headerlink" title="TFFP 服务器安装"></a>TFFP 服务器安装</h1><p>TFTP是TCP/IP协议族中的一个用来在客户机与服务器之间进行简单文件传输的协议，以下讲解如何在ubuntu下安装配置tftp：</p>
+<pre><code>$ sudo apt-get install tftp-hpa tftpd-hpa
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+$ mkdir ~/tftpboot
+
+$ chmod 777 ~/tftpboot/
+
+$ sudo gedit /etc/default/tftpd-hpa
+
+/etc/default/tftpd-hpa 参数
+
+TFTP_USERNAME=&quot;tftp&quot;
+TFTP_DIRECTORY=&quot;/home/zifeng/tftpboot&quot;    //tftpboot绝对路径
+TFTP_ADDRESS=&quot;:69&quot;
+TFTP_OPTIONS=&quot;--secure  -l -c -s&quot;
+
+$ service tftpd-hpa restart
+</code></pre>
+<h2 id="配置服务端"><a href="#配置服务端" class="headerlink" title="配置服务端"></a>配置服务端</h2><p>修改 /etc/default/tftpd-hpa 文件内容如下</p>
+<pre><code># /etc/default/tftpd-hpa
+
+TFTP_USERNAME=&quot;tftp&quot;
+TFTP_DIRECTORY=&quot;/home/qiushao/tftp-root&quot;
+TFTP_ADDRESS=&quot;:69&quot;
+TFTP_OPTIONS=&quot;-l -c -s&quot;
+TFTP_DIRECTORY : tftp 启动根目录，　修改成自己想要的目录
+
+TFTP_OPTIONS : tftp 启动选项，各选项解析如下：
+-l –Listen
+-c –create
+-s –secure
+</code></pre>
+<p>如果你在客户端获取文件时出现 Error code 1: File not found 这个错误，请检查一下 TFTP_OPTIONS=”-l -c -s”。<br>配置好后，重启 tftp 服务:</p>
+<pre><code>$ sudo service tftpd-hpa restart
+</code></pre>
+<h2 id="测试tftp获取文件"><a href="#测试tftp获取文件" class="headerlink" title="测试tftp获取文件"></a>测试tftp获取文件</h2><p>在/home/qiushao/tftp-root 目录下创建一个文件 foobar，<br>然后在 /home/qiushao　目录执行 tftp get 来下载文件:</p>
+<pre><code>$ cd tftp-root/
+$ touch foobar
+$ ls
+foobar
+$ cd 
+$ tftp localhost
+tftp&gt; get foobar
+$ ls foobar 
+foobar
+$
+tftp get 下载文件成功了，说明我们的 tftp 服务应该是没有问题的了。
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +744,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

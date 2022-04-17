@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>Linux 挂载硬盘 | Hexo</title>
+  <meta name="keywords" content=" linux , mount ">
+  <meta name="description" content="Linux 挂载硬盘 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,52 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Linux 挂载硬盘" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">Linux 挂载硬盘</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color1">mount</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 02:31:41'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98"><span class="toc-text">Linux 挂载硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mount%E6%8C%87%E4%BB%A4"><span class="toc-text">mount指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A1%AC%E7%9B%98%E4%BF%A1%E6%81%AF%E7%9A%84%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4"><span class="toc-text">查看硬盘信息的几个命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9C%8B%E7%9C%8B%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%A1%AC%E7%9B%98"><span class="toc-text">看看有多少个硬盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%89%E6%B2%A1%E6%9C%89%E5%88%86%E5%8C%BA"><span class="toc-text">查看有没有分区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%9A%84%E5%AD%98%E5%82%A8%E4%BB%8B%E8%B4%A8%E7%9A%84UUID"><span class="toc-text">查看所有的存储介质的UUID</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-text">硬盘格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98"><span class="toc-text">配置开机自动挂载硬盘</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +662,122 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-挂载硬盘"><a href="#Linux-挂载硬盘" class="headerlink" title="Linux 挂载硬盘"></a>Linux 挂载硬盘</h1><h3 id="mount指令"><a href="#mount指令" class="headerlink" title="mount指令"></a>mount指令</h3><pre><code>语法：
+mount [-hV]
+mount -a [-fFnrsvw] [-t vfstype]
+mount [-fnrsvw] [-o options [,...]] device | dir
+mount [-fnrsvw] [-t vfstype] [-o options] device dir
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+参数说明：
+
+-V：显示程序版本
+-h：显示辅助讯息
+-v：显示较讯息，通常和 -f 用来除错。
+-a：将 /etc/fstab 中定义的所有档案系统挂上。
+-F：这个命令通常和 -a 一起使用，它会为每一个 mount 的动作产生一个行程负责执行。在系统需要挂上大量 NFS 档案系统时可以加快挂上的动作。
+-f：通常用在除错的用途。它会使 mount 并不执行实际挂上的动作，而是模拟整个挂上的过程。通常会和 -v 一起使用。
+-n：一般而言，mount 在挂上后会在 /etc/mtab 中写入一笔资料。但在系统中没有可写入档案系统存在的情况下可以用这个选项取消这个动作。
+-s-r：等于 -o ro
+-w：等于 -o rw
+-L：将含有特定标签的硬盘分割挂上。
+-U：将档案分割序号为 的档案系统挂下。-L 和 -U 必须在/proc/partition 这种档案存在时才有意义。
+-t：指定档案系统的型态，通常不必指定。mount 会自动选择正确的型态。
+-o async：打开非同步模式，所有的档案读写动作都会用非同步模式执行。
+-o sync：在同步模式下执行。
+-o atime、-o noatime：当 atime 打开时，系统会在每次读取档案时更新档案的『上一次调用时间』。当我们使用 flash 档案系统时可能会选项把这个选项关闭以减少写入的次数。
+-o auto、-o noauto：打开/关闭自动挂上模式。
+-o defaults:使用预设的选项 rw, suid, dev, exec, auto, nouser, and async.
+-o dev、-o nodev-o exec、-o noexec允许执行档被执行。
+-o suid、-o nosuid：
+允许执行档在 root 权限下执行。
+-o user、-o nouser：使用者可以执行 mount/umount 的动作。
+-o remount：将一个已经挂下的档案系统重新用不同的方式挂上。例如原先是唯读的系统，现在用可读写的模式重新挂上。
+-o ro：用唯读模式挂上。
+-o rw：用可读写模式挂上。
+-o loop=：使用 loop 模式用来将一个档案当成硬盘分割挂上系统。
+
+-o:指定挂载选项
+    ro,rw:只读或者读写的方式挂载，默认是rw.
+    sync:不适用缓存，所有操作直接读写磁盘。
+    async:适用缓存，默认方式。
+    noatime:每次访问文件时不更新文件的访问时间。
+    atime:每次访问文件时更新文件的访问时间，默认方式。
+    user:任何用户都可以挂载
+    nouser:只有超级用户才可以挂载
+    auto:系统开机自动挂载
+    noauto:系统开机不自动挂载
+    remount:重新挂载文件系统。
+   
+</code></pre>
+<p>举例：</p>
+<ol>
+<li><p>将 /dev/hda1 挂在 /mnt 之下。</p>
+<pre><code> #mount /dev/hda1 /mnt
+</code></pre>
+</li>
+<li><p>将 /dev/hda1 用唯读模式挂在 /mnt 之下。</p>
+<pre><code> #mount -o ro /dev/hda1 /mnt
+</code></pre>
+</li>
+<li><p>将 /tmp/image.iso 这个光碟的 image 档使用 loop 模式挂在 /mnt/cdrom之下。用这种方法可以将一般网络上可以找到的 Linux 光 碟 ISO 档在不烧录成光碟的情况下检视其内容。</p>
+<pre><code> #mount -o loop /tmp/image.iso /mnt/cdrom
+</code></pre>
+</li>
+</ol>
+<h3 id="查看硬盘信息的几个命令"><a href="#查看硬盘信息的几个命令" class="headerlink" title="查看硬盘信息的几个命令"></a>查看硬盘信息的几个命令</h3><h4 id="看看有多少个硬盘"><a href="#看看有多少个硬盘" class="headerlink" title="看看有多少个硬盘"></a>看看有多少个硬盘</h4><pre><code>sudo lshw -c disk  
+</code></pre>
+<p>一般会显示 disk:0（设备名为 /dev/sda）  disk:1 （设备名为 /dev/sdb）</p>
+<h4 id="查看有没有分区"><a href="#查看有没有分区" class="headerlink" title="查看有没有分区"></a>查看有没有分区</h4><pre><code>sudo fdisk -l  
+
+(1)提示Command(m for help):n
+(2)选择p主分区（如果是扩展分区就写e）
+(3)Partition number(1-4):1 （个数）
+(4)First cylinder(...):
+(5)Command(m for help):p 这一步确认没有问题了就用w命令，将分区信息写入系统，保存退出
+(6)Comand(m for help):w
+</code></pre>
+<h4 id="查看所有的存储介质的UUID"><a href="#查看所有的存储介质的UUID" class="headerlink" title="查看所有的存储介质的UUID"></a>查看所有的存储介质的UUID</h4><pre><code>sudo blkid
+</code></pre>
+<h3 id="硬盘格式化"><a href="#硬盘格式化" class="headerlink" title="硬盘格式化"></a>硬盘格式化</h3><pre><code>sudo mkfs -t ext4 /dev/sdb1 
+</code></pre>
+<hr>
+<h3 id="配置开机自动挂载硬盘"><a href="#配置开机自动挂载硬盘" class="headerlink" title="配置开机自动挂载硬盘"></a>配置开机自动挂载硬盘</h3><ol>
+<li><p>记录下需要挂载的硬盘UUID（可以通过sudo blkid命令查看所有的存储介质的UUID）</p>
+</li>
+<li><p>编辑/etc/fstab文件，在最后加入以下格式：</p>
+<pre><code> UUID=XXXXXXXXX /挂载点  ntfs（硬盘格式） defaults 0 0
+</code></pre>
+<p> 第一列 UUID：       指所挂载数据盘的UUID序列号；<br> 第二列 挂载点：     指数据盘所挂载的路径及目录名；<br> 第三列 格式：       指数据盘的文件系统格式；<br> 第四列 挂载选项：    指挂载的选项，defaults为默认值，一般都选这个；<br> 第五列 数字：      0表示开机不检查磁盘，1表示开机检查磁盘；<br> 第六列 数字：      0表示交换分区，1表示启动分区(Linux)，2表示普通分区。</p>
+</li>
+</ol>
+<ol start="3">
+<li>解除挂载</li>
+</ol>
+<p>如果重复挂载一个硬盘会提示错误，需要先找到挂载程序：<br>sudo fuser -m /挂载硬盘<br>然后使用kill关闭对应的进程</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +786,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>

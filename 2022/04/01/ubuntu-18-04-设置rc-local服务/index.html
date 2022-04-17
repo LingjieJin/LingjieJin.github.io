@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>ubuntu 18.04 设置rc-local服务 | Hexo</title>
+  <meta name="keywords" content=" linux , ubuntu18.04 , system , rc-local ">
+  <meta name="description" content="ubuntu 18.04 设置rc-local服务 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -604,12 +604,56 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-ubuntu-18-04-设置rc-local服务" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Welcome-to-My-Blog"><span class="toc-text">Welcome to My Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">ubuntu 18.04 设置rc-local服务</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color2">ubuntu18.04</a>
+            
+            <a class="color2">system</a>
+            
+            <a class="color4">rc-local</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-17 01:51:07'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1"><span class="toc-text">ubuntu 18.04 设置rc-local服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AE%E9%93%BE%E6%8E%A5"><span class="toc-text">1、配置链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA-etc-rc-local%E6%96%87%E4%BB%B6"><span class="toc-text">2.创建&#x2F;etc&#x2F;rc.local文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%B5%8B%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-text">3. 赋可执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%BC%96%E8%BE%91rc-local%EF%BC%8C%E6%B7%BB%E5%8A%A0%E9%9C%80%E8%A6%81%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.编辑rc.local，添加需要开机启动的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%89%A7%E8%A1%8Creboot%E9%87%8D%E5%90%AF%E7%B3%BB%E7%BB%9F%EF%BC%8C%E7%84%B6%E5%90%8E%E6%9F%A5%E7%9C%8Btest-log"><span class="toc-text">5.执行reboot重启系统，然后查看test.log</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,23 +666,78 @@
     }
 </style>
 </div>
-            <h1 id="Welcome-to-My-Blog"><a href="#Welcome-to-My-Blog" class="headerlink" title="Welcome to My Blog"></a>Welcome to My Blog</h1><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 生成，部署在 <a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>主题 <a target="_blank" rel="noopener" href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a target="_blank" rel="noopener" href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
-</ul>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ubuntu-18-04-设置rc-local服务"><a href="#ubuntu-18-04-设置rc-local服务" class="headerlink" title="ubuntu 18.04 设置rc-local服务"></a>ubuntu 18.04 设置rc-local服务</h1><p>ubuntu18.04不再使用initd管理系统，改用systemd。<br>然而systemd很难用，改变太大，跟之前的完全不同。</p>
+<p>使用systemd设置开机启动<br>为了像以前一样，在/etc/rc.local中设置开机启动程序，需要以下几步：</p>
+<h3 id="1、配置链接"><a href="#1、配置链接" class="headerlink" title="1、配置链接"></a>1、配置链接</h3><p>systemd默认读取/etc/systemd/system下的配置文件，该目录下的文件会链接/lib/systemd/system/下的文件。一般系统安装完/lib/systemd/system/下会有rc-local.service文件，即我们需要的配置文件。<br>链接过来：</p>
+<pre><code>    ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+    cd /etc/systemd/system/
+
+    cat rc-local.service
+</code></pre>
+<p>rc-local.service内容</p>
+<pre><code>#  SPDX-License-Identifier: LGPL-2.1+
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+# This unit gets pulled automatically into multi-user.target by
+# systemd-rc-local-generator if /etc/rc.local is executable.
+[Unit]
+Description=/etc/rc.local Compatibility
+Documentation=man:systemd-rc-local-generator(8)
+ConditionFileIsExecutable=/etc/rc.local
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+</code></pre>
+<ol>
+<li>[Unit] 区块：启动顺序与依赖关系。 </li>
+<li>[Service] 区块：启动行为,如何启动，启动类型。 </li>
+<li>[Install] 区块，定义如何安装这个配置文件，即怎样做到开机启动。</li>
+</ol>
+<h3 id="2-创建-etc-rc-local文件"><a href="#2-创建-etc-rc-local文件" class="headerlink" title="2.创建/etc/rc.local文件"></a>2.创建/etc/rc.local文件</h3><p>touch /etc/rc.local</p>
+<h3 id="3-赋可执行权限"><a href="#3-赋可执行权限" class="headerlink" title="3. 赋可执行权限"></a>3. 赋可执行权限</h3><p>chmod 755 /etc/rc.local</p>
+<h3 id="4-编辑rc-local，添加需要开机启动的任务"><a href="#4-编辑rc-local，添加需要开机启动的任务" class="headerlink" title="4.编辑rc.local，添加需要开机启动的任务"></a>4.编辑rc.local，添加需要开机启动的任务</h3><pre><code>#!/bin/bash
+echo &quot;test rc &quot; &gt; /var/test.log
+</code></pre>
+<h3 id="5-执行reboot重启系统，然后查看test-log"><a href="#5-执行reboot重启系统，然后查看test-log" class="headerlink" title="5.执行reboot重启系统，然后查看test.log"></a>5.执行reboot重启系统，然后查看test.log</h3>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -647,11 +746,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
