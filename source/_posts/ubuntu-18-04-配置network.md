@@ -19,7 +19,12 @@ tags: [linux, ubuntu18.04, network interface]
         address 192.168.1.197
         netmask 255.255.255.0
         gateway 192.168.1.1
+        network 192.168.1.0
+        broadcast 192.168.1.255 
         dns-nameservers 8.8.8.8
+
+    auto enp2s0
+    iface enp2s0 inet dhcp
 
     auto enp0s3 — automatic launch of a specific interface;
     iface enp0s3 inet static — reports on static configuration;
@@ -39,3 +44,26 @@ tags: [linux, ubuntu18.04, network interface]
 
 #### 重启配置
     sudo /etc/init.d/networking restart
+
+#### 修改设置
+打开命令行，输入以下代码
+    
+        sudo gedit /etc/NetworkManager/NetworkManager.conf
+
+类似于上面的操作，打开该文件，将“managed=false” 修改为 “managed=true”。
+意思是，将网络连接设置为自定义或手动。#号后面的是注释内容
+
+修改设置
+
+重启network manager：
+        
+        sudo service network-manager restart
+
+重启系统后，发现依然可以正常使用静态ip。
+
+#### 修改网卡名称（默认的Ubuntu网卡名称不是eth0 wlan0）
+
+    sudo gedit /etc/default/grub
+
+    找到GRUB_CMDLINE_LINUX=""
+    改为GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
