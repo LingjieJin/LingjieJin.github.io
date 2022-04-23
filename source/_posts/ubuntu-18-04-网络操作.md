@@ -33,3 +33,8 @@ Centos6: service NetworkManager status  查看服务状态
 Centos7: systemctl status NetworkManager 查看服务状态
     systemctl stop NetworkManager   临时停止
     systemctl disable NetworkManager 下次开机即停止服务
+
+
+## 查看网卡
+lspci -v 查看网卡信息
+
