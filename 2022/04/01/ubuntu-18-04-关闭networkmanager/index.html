@@ -9,12 +9,12 @@
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2022/04/17/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:url" content="http://example.com/2022/04/24/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-16T18:43:57.647Z">
-<meta property="article:modified_time" content="2022-04-16T18:43:57.647Z">
+<meta property="article:published_time" content="2022-04-23T17:29:36.853Z">
+<meta property="article:modified_time" content="2022-04-23T17:29:36.853Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -242,7 +242,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(27)</small>
+                <small>(28)</small>
             
         </div>
     </li>
@@ -267,7 +267,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="27">
+<input type="hidden" id="yelog_site_posts_number" value="28">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -414,6 +414,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>systemctl</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>TFTP</a>
             </li>
         
@@ -433,11 +437,11 @@
     <nav id="title-list-nav">
         
         <a  class="All "
-           href="/2022/04/17/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
+           href="/2022/04/24/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
            data-tag=""
            data-author="" >
             <span class="post-title" title=""></span>
-            <span class="post-date" title="2022-04-17 02:43:57">2022/04/17</span>
+            <span class="post-date" title="2022-04-24 01:29:36">2022/04/24</span>
         </a>
         
         <a  class="All "
@@ -633,6 +637,14 @@
         </a>
         
         <a  class="All "
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
+           data-author="" >
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
            href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub/"
            data-tag="blog,hexo"
            data-author="" >
@@ -689,7 +701,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-23 19:32:34'>2022-04-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-04-24 02:25:10'>2022-04-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -711,7 +723,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager"><span class="toc-text">Ubuntu 18.04 关闭networkmanager</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%99%A8%E5%B9%B6%E5%90%AF%E7%94%A8systemd-networkd"><span class="toc-text">禁用网络管理器并启用systemd-networkd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E7%94%A8NetworkManager%E5%B9%B6%E7%A6%81%E7%94%A8systemd-networkd"><span class="toc-text">启用NetworkManager并禁用systemd-networkd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debian-Ubuntu%E7%9A%84Network-Manager"><span class="toc-text">Debian&#x2F;Ubuntu的Network-Manager</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager"><span class="toc-text">Ubuntu 18.04 关闭networkmanager</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%ADNetworkManager"><span class="toc-text">关闭NetworkManager</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85ifupdown-package"><span class="toc-text">1. 重新安装ifupdown package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9interface%E9%85%8D%E7%BD%AE"><span class="toc-text">2.修改interface配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E8%83%BD%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E9%87%8D%E5%90%AF%EF%BC%89"><span class="toc-text">3.使能配置（不需要重启）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%85%B3%E9%97%ADNetworkManager"><span class="toc-text">4. 关闭NetworkManager</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Upstart"><span class="toc-text">Using Upstart</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Using-Systemd"><span class="toc-text">Using Systemd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AEDNS"><span class="toc-text">5. 配置DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%90%AF%E5%8A%A8Systemd"><span class="toc-text">6. 启动Systemd</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E7%94%A8NetworkManager%E5%B9%B6%E7%A6%81%E7%94%A8systemd-networkd"><span class="toc-text">启用NetworkManager并禁用systemd-networkd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#networking%E5%90%AF%E5%8A%A8%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98"><span class="toc-text">networking启动耗时问题</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -727,19 +739,87 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Ubuntu-18-04-关闭networkmanager"><a href="#Ubuntu-18-04-关闭networkmanager" class="headerlink" title="Ubuntu 18.04 关闭networkmanager"></a>Ubuntu 18.04 关闭networkmanager</h1><p>参考</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anhuidelinger/article/details/17584299">Ubuntu中启用关闭Network-manager网络设置问题</a></p>
-<h4 id="禁用网络管理器并启用systemd-networkd"><a href="#禁用网络管理器并启用systemd-networkd" class="headerlink" title="禁用网络管理器并启用systemd-networkd"></a>禁用网络管理器并启用systemd-networkd</h4><p>首先，运行以下命令以禁用NetworkManager：</p>
-<pre><code>sudo systemctl stop NetworkManager
-sudo systemctl disable NetworkManager
-sudo systemctl mask NetworkManager
+        <h1 id="Ubuntu-18-04-关闭networkmanager"><a href="#Ubuntu-18-04-关闭networkmanager" class="headerlink" title="Ubuntu 18.04 关闭networkmanager"></a>Ubuntu 18.04 关闭networkmanager</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anhuidelinger/article/details/17584299">Ubuntu中启用关闭Network-manager网络设置问题</a></p>
+<p>这篇介绍了ubuntu 18.04如何将设置修改为interface<br><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1031709/ubuntu-18-04-switch-back-to-etc-network-interfaces">Ubuntu 18.04: switch back to /etc/network/interfaces</a></p>
+<p>Ubuntu 官方文档<br><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/NetworkManager#Stopping_and_Disabling_NetworkManager">Ubuntu-NetworkManager</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.xmodulo.com/switch-from-networkmanager-to-systemd-networkd.html">How to switch from Network Manager to systemd-networkd on Linux</a></p>
+<h2 id="关闭NetworkManager"><a href="#关闭NetworkManager" class="headerlink" title="关闭NetworkManager"></a>关闭NetworkManager</h2><h3 id="1-重新安装ifupdown-package"><a href="#1-重新安装ifupdown-package" class="headerlink" title="1. 重新安装ifupdown package"></a>1. 重新安装ifupdown package</h3><pre><code># apt-get update
+# apt-get install ifupdown
+
+删除netplan
+$ sudo apt remove netplan
+$ rm -rf /etc/netplan
+
+删除network-manager
+sudo apt-get purge network-manager
 </code></pre>
-<p>接下来，启动并启用systemd-networkd：</p>
+<h3 id="2-修改interface配置"><a href="#2-修改interface配置" class="headerlink" title="2.修改interface配置"></a>2.修改interface配置</h3><pre><code>source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+allow-hotplug enp0s3
+auto enp0s3
+iface enp0s3 inet static
+address 192.168.1.133
+netmask 255.255.255.0
+broadcast 192.168.1.255
+gateway 192.168.1.1
+# Only relevant if you make use of RESOLVCONF(8)
+# or similar...
+dns-nameservers 1.1.1.1 1.0.0.1
+</code></pre>
+<h3 id="3-使能配置（不需要重启）"><a href="#3-使能配置（不需要重启）" class="headerlink" title="3.使能配置（不需要重启）"></a>3.使能配置（不需要重启）</h3><pre><code># ifdown --force enp0s3 lo &amp;&amp; ifup -a
+# systemctl unmask networking
+# systemctl enable networking
+# systemctl restart networking
+</code></pre>
+<h3 id="4-关闭NetworkManager"><a href="#4-关闭NetworkManager" class="headerlink" title="4. 关闭NetworkManager"></a>4. 关闭NetworkManager</h3><p>The steps to disable NetworkManager depend on which of the initialization subsystems are running: Upstart or Systemd.</p>
+<h4 id="Using-Upstart"><a href="#Using-Upstart" class="headerlink" title="Using Upstart"></a>Using Upstart</h4><p>According to this bug here’s how to disable Network Manager without uninstalling it:</p>
+<ol>
+<li><p>Stop network manager<br> sudo stop network-manager</p>
+</li>
+<li><p>Create an override file for the Upstart job:<br> echo “manual” | sudo tee /etc/init/network-manager.override</p>
+</li>
+</ol>
+<h4 id="Using-Systemd"><a href="#Using-Systemd" class="headerlink" title="Using Systemd"></a>Using Systemd</h4><p>Systemd became the default initialization system in Ubuntu 15.04. Here’s how to stop and disable Network Manager without uninstalling it (taken from AskUbuntu):</p>
+<ol>
+<li><p>Stop network manager</p>
+<p> sudo systemctl stop NetworkManager.service<br> sudo systemctl stop NetworkManager-wait-online.service<br> sudo systemctl stop NetworkManager-dispatcher.service<br> sudo systemctl stop network-manager.service</p>
+</li>
+<li><p>Disable network manager (permanently) to avoid it restarting after a reboot</p>
+<p> sudo systemctl disable NetworkManager.service<br> sudo systemctl disable NetworkManager-wait-online.service<br> sudo systemctl disable NetworkManager-dispatcher.service<br> sudo systemctl disable network-manager.service</p>
+</li>
+</ol>
+<p>或者</p>
+<pre><code># systemctl stop systemd-networkd.socket systemd-networkd \
+networkd-dispatcher systemd-networkd-wait-online
+# systemctl disable systemd-networkd.socket systemd-networkd \
+networkd-dispatcher systemd-networkd-wait-online
+# systemctl mask systemd-networkd.socket systemd-networkd \
+networkd-dispatcher systemd-networkd-wait-online
+# apt-get --assume-yes purge nplan netplan.io
+</code></pre>
+<h3 id="5-配置DNS"><a href="#5-配置DNS" class="headerlink" title="5. 配置DNS"></a>5. 配置DNS</h3><p>Because Ubuntu Bionic Beaver (18.04) make use of the DNS stub resolver as provided by SYSTEMD-RESOLVED.SERVICE(8), you SHOULD also add the DNS to contact into the /etc/systemd/resolved.conf file. For instance:</p>
+<pre><code>....
+DNS=1.1.1.1 1.0.0.1
+....
+</code></pre>
+<p>and then restart the systemd-resolved service once done:</p>
+<pre><code># systemctl restart systemd-resolved
+</code></pre>
+<p>This will make sure that the resolver can be updated by the DHCP-client, like it was before when using interfaces.</p>
+<pre><code>rm /etc/resolv.conf
+ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+</code></pre>
+<h3 id="6-启动Systemd"><a href="#6-启动Systemd" class="headerlink" title="6. 启动Systemd"></a>6. 启动Systemd</h3><p>接下来，启动并启用systemd-networkd：</p>
 <pre><code>sudo systemctl unmask systemd-networkd.service
 sudo systemctl enable systemd-networkd.service
 sudo systemctl start systemd-networkd.service
 </code></pre>
-<h4 id="启用NetworkManager并禁用systemd-networkd"><a href="#启用NetworkManager并禁用systemd-networkd" class="headerlink" title="启用NetworkManager并禁用systemd-networkd"></a>启用NetworkManager并禁用systemd-networkd</h4><p>可以通过以下步骤启动和启用Ubuntu Network Manager（在Ubuntu服务器中不建议这样做）。</p>
+<hr>
+<h2 id="启用NetworkManager并禁用systemd-networkd"><a href="#启用NetworkManager并禁用systemd-networkd" class="headerlink" title="启用NetworkManager并禁用systemd-networkd"></a>启用NetworkManager并禁用systemd-networkd</h2><p>可以通过以下步骤启动和启用Ubuntu Network Manager（在Ubuntu服务器中不建议这样做）。</p>
 <ol>
 <li><p>首先，停止系统联网服务：</p>
 <pre><code> sudo systemctl disable systemd-networkd.service
@@ -770,54 +850,9 @@ sudo systemctl start systemd-networkd.service
 <li><p>现在启用了NetworkManager，可以使用nmcli命令通过GUI或从命令行完成接口配置</p>
 </li>
 </ol>
-<h3 id="Debian-Ubuntu的Network-Manager"><a href="#Debian-Ubuntu的Network-Manager" class="headerlink" title="Debian/Ubuntu的Network-Manager"></a>Debian/Ubuntu的Network-Manager</h3><p>debian/ubuntu管理网络连接的有两个东西，图形化的NetworkManager和文字的 ifup/ifdown，如果在 /etc/network/interfaces里设置了网卡信息，那么NetworkManager就不会接管该网卡，如果没有设置NetworkManager默认是会接管网卡的。</p>
-<p>NetworkManager最方便的地方是个人电脑用无线连网的时候，因为文字界面的 iwlist wlan0 scan 并不是非常好用，而NetworkManger可以像windows那样列出所有可用的wifi热点，如果有中文乱码的，也一样可以连接，但如果你的机子是用来做服务器的，或者是在办公室里使用，有固定的路由环境，一般来说，也会有固定的ip，因为这样可以方便内网共享资源。总之不是个人用的，而且不用移来移去的话，最好是关掉这个NetworkManager，当然如果你经常带着本子跑，想去咖啡馆蹭网的话，就一定要打开这个NetworkManager，自动搜索无线非常方便了。</p>
-<p>下面来说说这两种情况：</p>
-<ol>
-<li>使用NetworkManger来联网，这个时候，如果使用了无线连接路由，而在/etc/network/interfaces里配置了有线连接的eth0的话，就会发生一个超级诡异的问题：可以访问外网，但不能访问内网，比如无线路由ip 192.168.0.1，ping该地址，会显示有线网卡的ip地址无法ping通，而不是无线！证明在设置了有线eth0的时候，会优先采用，但奇怪的是，外网连接正常，所有我怀疑这可能是debian的一个bug。所以当使用 NetworkManager的时候，可以注释掉所有/etc/network/interfaces 里的内容，仅仅保留本地回环网络：<pre><code> auto lo
- iface lo inet loopback
-</code></pre>
- 这两句。设置固定ip，可以在NetworkManager图形界面里配置。</li>
-<li>关闭NetworkManager</li>
-</ol>
-<p>关闭命令：</p>
-<pre><code>sudo /etc/init.d/network-manager stop 
-</code></pre>
-<p>取消开机启动：</p>
-<pre><code>chkconfig network-manager off 
-</code></pre>
-<p>重启网络：</p>
-<pre><code>/etc/init.d/networking restart
-</code></pre>
-<p>修改 /etc/network/interfaces 文件</p>
-<pre><code>系统配置部分：本地回环网络。
-    auto lo
-    iface lo inet loopback
-
-有线配置部分：
-    auto eth0
-    #iface eth0 inet dhcp # 如果你不想用固定ip的话，推荐用固定ip，这样可以省去请求路由分配的时间
-    iface eth0 inet static
-    netmask 255.255.255.0
-    gateway 192.168.0.1      #gateway 0.0.0.0 # 拨号上网请把 gateway全部设置为0
-    address 192.168.0.112
-
-无线配置部分：
-    auto wlan0
-    iface wlan0 inet static
-    netmask 255.255.255.0
-    gateway 192.168.0.1
-    address 192.168.0.113
-    pre-up ip link set wlan0 up
-    pre-up iwconfig wlan0 essid ssid
-    wpa-ssid TP-Link # 这里的ssid为路由里设置的无线名称
-    wpa-psk 12345678 # 无线密码
-
-adsl拨号上网：
-    auto dsl-provider
-    iface dsl-provider inet ppp # dsl-provider 为之前配置好的拨号名称
-    provider dsl-provider
-</code></pre>
+<hr>
+<h2 id="networking启动耗时问题"><a href="#networking启动耗时问题" class="headerlink" title="networking启动耗时问题"></a>networking启动耗时问题</h2><p>systemd-analyze blame输出 :</p>
+<p> sudo nano /lib/systemd/system/networking.service</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
