@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Build Blog with Hexo+Github | Hexo</title>
-  <meta name="keywords" content=" blog , hexo ">
-  <meta name="description" content="Build Blog with Hexo+Github | Hexo">
+  <title>Ubuntu 18.04 关闭networkmanager | Hexo</title>
+  <meta name="keywords" content=" linux , ubuntu18.04 , networkmanager ">
+  <meta name="description" content="Ubuntu 18.04 关闭networkmanager | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
 <meta property="og:type" content="article">
@@ -666,9 +666,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-搭建博客-配置github" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ubuntu-18-04-关闭networkmanager" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Build Blog with Hexo+Github</h1>
+        <h1 class="article-title">Ubuntu 18.04 关闭networkmanager</h1>
     
     <div class="article-meta">
         
@@ -678,16 +678,18 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">blog</a>
+            <a class="color1">linux</a>
             
-            <a class="color5">hexo</a>
+            <a class="color2">ubuntu18.04</a>
+            
+            <a class="color5">networkmanager</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-17 15:46:07'>2022-01-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-04-23 19:32:34'>2022-04-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -709,7 +711,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BABlog"><span class="toc-text">创建Blog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">更多的设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E5%88%AB%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">特别的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows%E4%B8%8B%E6%8F%90%E7%A4%BA%E2%80%9C%E5%9C%A8%E6%AD%A4%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC%E2%80%9D%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">windows下提示“在此系统上禁止运行脚本”的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0Spawn-failed%E9%97%AE%E9%A2%98"><span class="toc-text">Hexo部署过程中碰到Spawn failed问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%A2%B0%E5%88%B0ERROR-Deployer-not-found-git%E9%97%AE%E9%A2%98"><span class="toc-text">Hexo部署过程中碰到ERROR Deployer not found: git问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager"><span class="toc-text">Ubuntu 18.04 关闭networkmanager</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%99%A8%E5%B9%B6%E5%90%AF%E7%94%A8systemd-networkd"><span class="toc-text">禁用网络管理器并启用systemd-networkd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E7%94%A8NetworkManager%E5%B9%B6%E7%A6%81%E7%94%A8systemd-networkd"><span class="toc-text">启用NetworkManager并禁用systemd-networkd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debian-Ubuntu%E7%9A%84Network-Manager"><span class="toc-text">Debian&#x2F;Ubuntu的Network-Manager</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -725,49 +727,97 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文章的写作参考了以下：<br>参考[zhihu GitHub+Hexo 搭建个人网站详细教程]：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">https://zhuanlan.zhihu.com/p/26625249</a></p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol>
-<li>创建一个github账号，并在github上创建一个resp</li>
-<li>下载Git</li>
-<li>设置ssh key，绑定本机和github</li>
-<li>下载node.js</li>
-</ol>
-<h1 id="创建Blog"><a href="#创建Blog" class="headerlink" title="创建Blog"></a>创建Blog</h1><p>当你完成以上的准备工作后，就可以直接创建一个Blog并上传到github上。<br>以下的操作过程仅在windows 10环境下完成，仅供参考。</p>
+        <h1 id="Ubuntu-18-04-关闭networkmanager"><a href="#Ubuntu-18-04-关闭networkmanager" class="headerlink" title="Ubuntu 18.04 关闭networkmanager"></a>Ubuntu 18.04 关闭networkmanager</h1><p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/anhuidelinger/article/details/17584299">Ubuntu中启用关闭Network-manager网络设置问题</a></p>
+<h4 id="禁用网络管理器并启用systemd-networkd"><a href="#禁用网络管理器并启用systemd-networkd" class="headerlink" title="禁用网络管理器并启用systemd-networkd"></a>禁用网络管理器并启用systemd-networkd</h4><p>首先，运行以下命令以禁用NetworkManager：</p>
+<pre><code>sudo systemctl stop NetworkManager
+sudo systemctl disable NetworkManager
+sudo systemctl mask NetworkManager
+</code></pre>
+<p>接下来，启动并启用systemd-networkd：</p>
+<pre><code>sudo systemctl unmask systemd-networkd.service
+sudo systemctl enable systemd-networkd.service
+sudo systemctl start systemd-networkd.service
+</code></pre>
+<h4 id="启用NetworkManager并禁用systemd-networkd"><a href="#启用NetworkManager并禁用systemd-networkd" class="headerlink" title="启用NetworkManager并禁用systemd-networkd"></a>启用NetworkManager并禁用systemd-networkd</h4><p>可以通过以下步骤启动和启用Ubuntu Network Manager（在Ubuntu服务器中不建议这样做）。</p>
 <ol>
-<li>创建一个空文件夹，比如Blog，打开文件夹，打开shell。</li>
-<li>初始化hexo<pre><code class="bash">hexo init
+<li><p>首先，停止系统联网服务：</p>
+<pre><code> sudo systemctl disable systemd-networkd.service
+ sudo systemctl mask systemd-networkd.service
+ sudo systemctl stop systemd-networkd.service
 </code></pre>
 </li>
-<li>创建一个新博客,并在本地测试预览效果<pre><code class="bash"># 生成博客
-hexo new first_blog
-# 生成文件
-hexo g
-# 打开本地预览
-hexo s
-# 打开浏览器，输入localhost:4000就能看到本地预览效果
+<li><p>在Ubuntu上安装NetworkManager：</p>
+<pre><code> sudo apt-get install network-manager
 </code></pre>
 </li>
-<li>将本地博客推送到github端推送本地博客文件需要修改一些配置。在Blog目录下的_config.yml文件是站点配置文件</li>
+<li><p>打开/etc/netplan目录中的.yaml配置文件，并用以下内容替换现有配置：</p>
+<pre><code> network:
+     version: 2
+     renderer: NetworkManager
+</code></pre>
+</li>
+<li><p>使用netplan命令为NetworkManager生成特定于后端的配置文件：</p>
+<pre><code> sudo netplan generate
+</code></pre>
+</li>
+<li><p>启动NetworkManager服务：</p>
+<pre><code> sudo systemctl unmask NetworkManager
+ sudo systemctl enable NetworkManager
+ sudo systemctl start NetworkManager
+</code></pre>
+</li>
+<li><p>现在启用了NetworkManager，可以使用nmcli命令通过GUI或从命令行完成接口配置</p>
+</li>
 </ol>
-<h1 id="更多的设置"><a href="#更多的设置" class="headerlink" title="更多的设置"></a>更多的设置</h1><h2 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h2><p>使用个人的个性化域名访问自己的博客。</p>
-<p>首先打开你的域名管理（笔者使用的是阿里云），进入域名解析并选择增加记录。选择记录类型是CNAME，主要是设置CNAME的记录值为：github用户名.github.io，这个就是你之前的resp名字。</p>
-<p>然后在github的resp中选择setting page选项，将custom domain改成你配置的解析值</p>
-<p>这时候使用域名就能访问自己的博客了。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="特别的问题"><a href="#特别的问题" class="headerlink" title="特别的问题"></a>特别的问题</h1><h2 id="windows下提示“在此系统上禁止运行脚本”的问题"><a href="#windows下提示“在此系统上禁止运行脚本”的问题" class="headerlink" title="windows下提示“在此系统上禁止运行脚本”的问题"></a>windows下提示“在此系统上禁止运行脚本”的问题</h2><p>原因是启动 Windows PowerShell 时，执行策略很可能是 Restricted（默认设置）。需要修改这个设置。</p>
-<pre><code>Restricted 执行策略不允许任何脚本运行。
-
-AllSigned 和 RemoteSigned 执行策略可防止 Windows PowerShell 运行没有数字签名的脚本。
-
-本主题说明如何运行所选未签名脚本（即使在执行策略为 RemoteSigned 的情况下），还说明如何对脚本进行签名以便您自己使用。
-
-有关 Windows PowerShell 执行策略的详细信息，请参阅 about_Execution_Policy。
+<h3 id="Debian-Ubuntu的Network-Manager"><a href="#Debian-Ubuntu的Network-Manager" class="headerlink" title="Debian/Ubuntu的Network-Manager"></a>Debian/Ubuntu的Network-Manager</h3><p>debian/ubuntu管理网络连接的有两个东西，图形化的NetworkManager和文字的 ifup/ifdown，如果在 /etc/network/interfaces里设置了网卡信息，那么NetworkManager就不会接管该网卡，如果没有设置NetworkManager默认是会接管网卡的。</p>
+<p>NetworkManager最方便的地方是个人电脑用无线连网的时候，因为文字界面的 iwlist wlan0 scan 并不是非常好用，而NetworkManger可以像windows那样列出所有可用的wifi热点，如果有中文乱码的，也一样可以连接，但如果你的机子是用来做服务器的，或者是在办公室里使用，有固定的路由环境，一般来说，也会有固定的ip，因为这样可以方便内网共享资源。总之不是个人用的，而且不用移来移去的话，最好是关掉这个NetworkManager，当然如果你经常带着本子跑，想去咖啡馆蹭网的话，就一定要打开这个NetworkManager，自动搜索无线非常方便了。</p>
+<p>下面来说说这两种情况：</p>
+<ol>
+<li>使用NetworkManger来联网，这个时候，如果使用了无线连接路由，而在/etc/network/interfaces里配置了有线连接的eth0的话，就会发生一个超级诡异的问题：可以访问外网，但不能访问内网，比如无线路由ip 192.168.0.1，ping该地址，会显示有线网卡的ip地址无法ping通，而不是无线！证明在设置了有线eth0的时候，会优先采用，但奇怪的是，外网连接正常，所有我怀疑这可能是debian的一个bug。所以当使用 NetworkManager的时候，可以注释掉所有/etc/network/interfaces 里的内容，仅仅保留本地回环网络：<pre><code> auto lo
+ iface lo inet loopback
 </code></pre>
-<p>想了解 计算机上的现用执行策略，打开PowerShell 然后输入 get-executionpolicy<br>以管理员身份打开PowerShell 输入 set-executionpolicy remotesigned<br>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4eaad2163567">https://www.jianshu.com/p/4eaad2163567</a></p>
-<hr>
-<h2 id="Hexo部署过程中碰到Spawn-failed问题"><a href="#Hexo部署过程中碰到Spawn-failed问题" class="headerlink" title="Hexo部署过程中碰到Spawn failed问题"></a>Hexo部署过程中碰到Spawn failed问题</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c60ad2a33a1e">https://www.jianshu.com/p/c60ad2a33a1e</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.zhheo.com/p/128998ac.html">https://blog.zhheo.com/p/128998ac.html</a></p>
-<hr>
-<h2 id="Hexo部署过程中碰到ERROR-Deployer-not-found-git问题"><a href="#Hexo部署过程中碰到ERROR-Deployer-not-found-git问题" class="headerlink" title="Hexo部署过程中碰到ERROR Deployer not found: git问题"></a>Hexo部署过程中碰到ERROR Deployer not found: git问题</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Java_Mike/article/details/96456318">https://blog.csdn.net/Java_Mike/article/details/96456318</a></p>
-<hr>
+ 这两句。设置固定ip，可以在NetworkManager图形界面里配置。</li>
+<li>关闭NetworkManager</li>
+</ol>
+<p>关闭命令：</p>
+<pre><code>sudo /etc/init.d/network-manager stop 
+</code></pre>
+<p>取消开机启动：</p>
+<pre><code>chkconfig network-manager off 
+</code></pre>
+<p>重启网络：</p>
+<pre><code>/etc/init.d/networking restart
+</code></pre>
+<p>修改 /etc/network/interfaces 文件</p>
+<pre><code>系统配置部分：本地回环网络。
+    auto lo
+    iface lo inet loopback
+
+有线配置部分：
+    auto eth0
+    #iface eth0 inet dhcp # 如果你不想用固定ip的话，推荐用固定ip，这样可以省去请求路由分配的时间
+    iface eth0 inet static
+    netmask 255.255.255.0
+    gateway 192.168.0.1      #gateway 0.0.0.0 # 拨号上网请把 gateway全部设置为0
+    address 192.168.0.112
+
+无线配置部分：
+    auto wlan0
+    iface wlan0 inet static
+    netmask 255.255.255.0
+    gateway 192.168.0.1
+    address 192.168.0.113
+    pre-up ip link set wlan0 up
+    pre-up iwconfig wlan0 essid ssid
+    wpa-ssid TP-Link # 这里的ssid为路由里设置的无线名称
+    wpa-psk 12345678 # 无线密码
+
+adsl拨号上网：
+    auto dsl-provider
+    iface dsl-provider inet ppp # dsl-provider 为之前配置好的拨号名称
+    provider dsl-provider
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
