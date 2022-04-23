@@ -689,7 +689,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-23 19:30:37'>2022-04-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-04-23 20:03:34'>2022-04-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -711,7 +711,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork%E7%9A%84interface"><span class="toc-text">Ubuntu 18.04 配置network的interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-DNS"><span class="toc-text">修改 DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E9%85%8D%E7%BD%AE"><span class="toc-text">重启配置</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork%E7%9A%84interface"><span class="toc-text">Ubuntu 18.04 配置network的interface</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-DNS"><span class="toc-text">修改 DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E9%85%8D%E7%BD%AE"><span class="toc-text">重启配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%AE%BE%E7%BD%AE"><span class="toc-text">修改设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0%EF%BC%88%E9%BB%98%E8%AE%A4%E7%9A%84Ubuntu%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0%E4%B8%8D%E6%98%AFeth0-wlan0%EF%BC%89"><span class="toc-text">修改网卡名称（默认的Ubuntu网卡名称不是eth0 wlan0）</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -737,7 +737,12 @@ iface enp2s0 inet static
     address 192.168.1.197
     netmask 255.255.255.0
     gateway 192.168.1.1
+    network 192.168.1.0
+    broadcast 192.168.1.255 
     dns-nameservers 8.8.8.8
+
+auto enp2s0
+iface enp2s0 inet dhcp
 
 auto enp0s3 — automatic launch of a specific interface;
 iface enp0s3 inet static — reports on static configuration;
@@ -754,6 +759,20 @@ nameserver 172.16.3.4 #希望修改成的DNS
 nameserver 172.16.3.3 #希望修改成的DNS
 </code></pre>
 <h4 id="重启配置"><a href="#重启配置" class="headerlink" title="重启配置"></a>重启配置</h4><pre><code>sudo /etc/init.d/networking restart
+</code></pre>
+<h4 id="修改设置"><a href="#修改设置" class="headerlink" title="修改设置"></a>修改设置</h4><p>打开命令行，输入以下代码</p>
+<pre><code>    sudo gedit /etc/NetworkManager/NetworkManager.conf
+</code></pre>
+<p>类似于上面的操作，打开该文件，将“managed=false” 修改为 “managed=true”。<br>意思是，将网络连接设置为自定义或手动。#号后面的是注释内容</p>
+<p>修改设置</p>
+<p>重启network manager：</p>
+<pre><code>    sudo service network-manager restart
+</code></pre>
+<p>重启系统后，发现依然可以正常使用静态ip。</p>
+<h4 id="修改网卡名称（默认的Ubuntu网卡名称不是eth0-wlan0）"><a href="#修改网卡名称（默认的Ubuntu网卡名称不是eth0-wlan0）" class="headerlink" title="修改网卡名称（默认的Ubuntu网卡名称不是eth0 wlan0）"></a>修改网卡名称（默认的Ubuntu网卡名称不是eth0 wlan0）</h4><pre><code>sudo gedit /etc/default/grub
+
+找到GRUB_CMDLINE_LINUX=&quot;&quot;
+改为GRUB_CMDLINE_LINUX=&quot;net.ifnames=0 biosdevname=0&quot;
 </code></pre>
 
       
