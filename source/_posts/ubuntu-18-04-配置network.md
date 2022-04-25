@@ -67,3 +67,25 @@ tags: [linux, ubuntu18.04, network interface]
 
     找到GRUB_CMDLINE_LINUX=""
     改为GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+
+### interface参数
+#### auto与allow-hotplug的区别
+1. auto
+
+    auto <interface_name>
+    
+    含义：
+    
+    在系统启动的时候启动网络接口,无论网络接口有无连接(插入网线),如果该接口配置了DHCP,则无论有无网线,系统都会去执行DHCP,如果没有插入网线,则等该接口超时后才会继续。
+
+2. allow-hotplug
+
+    allow-hotplug <interface_name>
+
+    含义：
+    
+    只有当内核从该接口检测到热插拔事件后才启动该接口。如果系统开机时该接口没有插入网线,则系统不会启动该接口,系统启动后,如果插入网线,系统会自动启动该接口。也就是将网络接口设置为热插拔模式。
+
+#### 设置开机启动 promisc
+在每个网卡驱动下加入：
+up ip link set enpxxx promisc on
