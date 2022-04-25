@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux systemctl 指令 | Hexo</title>
-  <meta name="keywords" content=" linux , 指令 , system , systemctl ">
-  <meta name="description" content="Linux systemctl 指令 | Hexo">
+  <title>docker 在docker里运行openwrt | Hexo</title>
+  <meta name="keywords" content=" docker , openwrt ">
+  <meta name="description" content="docker 在docker里运行openwrt | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="GIT 操作总结 安装git服务器https:&#x2F;&#x2F;blog.csdn.net&#x2F;zc_ad&#x2F;article&#x2F;details&#x2F;84953039  如何将本地已有仓储上传到新仓储将已有的库重新上传到git服务器上  在服务器上重新创建一个git仓储  本地git文件增加一个remoteurl  git remote add tagname git@192.168.2.199:&#x2F;home&#x2F;git&#x2F;nvr.">
 <meta property="og:type" content="article">
@@ -694,9 +694,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux systemctl介绍" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker-在docker里运行openwrt" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux systemctl 指令</h1>
+        <h1 class="article-title">docker 在docker里运行openwrt</h1>
     
     <div class="article-meta">
         
@@ -706,20 +706,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">linux</a>
+            <a class="color2">docker</a>
             
-            <a class="color3">指令</a>
-            
-            <a class="color2">system</a>
-            
-            <a class="color5">systemctl</a>
+            <a class="color3">openwrt</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-24 01:52:24'>2022-04-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-04-25 21:31:07'>2022-04-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -741,7 +737,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-systemctl-%E6%8C%87%E4%BB%A4"><span class="toc-text">Linux systemctl 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl-enable%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">systemctl enable的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl-disable-xxx%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">systemctl disable xxx的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl-mask-xxx%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">systemctl mask xxx的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#systemctl-mask-xxx%E5%92%8Csystemctl-disable-xxx%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">systemctl mask xxx和systemctl disable xxx的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#systemctl-unmask-xxx%E5%8F%96%E6%B6%88%E5%B1%8F%E8%94%BD"><span class="toc-text">systemctl unmask xxx取消屏蔽</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8docker%E4%B8%AD%E5%90%AF%E5%8A%A8openwrt"><span class="toc-text">在docker中启动openwrt</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85docker"><span class="toc-text">安装docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E8%BD%AF%E4%BB%B6"><span class="toc-text">安装必要软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0GPG%E5%AF%86%E9%92%A5"><span class="toc-text">添加GPG密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91sourcelist%E4%B8%AD%E6%B7%BB%E5%8A%A0Docker%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">向sourcelist中添加Docker软件源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85docker-1"><span class="toc-text">安装docker</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAdocker%E7%94%A8%E6%88%B7%E7%BB%84"><span class="toc-text">创建docker用户组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAdocker%E7%BB%84"><span class="toc-text">创建docker组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E5%8A%A0%E5%85%A5docker%E7%BB%84"><span class="toc-text">将当前用户加入docker组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8docker"><span class="toc-text">启动docker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="toc-text">网络设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E5%8D%A1%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">打开网卡混杂模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C"><span class="toc-text">创建网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C"><span class="toc-text">查看网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F"><span class="toc-text">导入镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F"><span class="toc-text">查看镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">创建并启动容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-text">查看容器运行状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E5%86%85%E4%BF%AE%E6%94%B9%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0"><span class="toc-text">进入容器内修改网络参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9openwrt%E7%9A%84ip%E5%9C%B0%E5%9D%80"><span class="toc-text">修改openwrt的ip地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%8C%E5%90%8E%E9%87%8D%E5%90%AF%E7%BD%91%E7%BB%9C"><span class="toc-text">配置完后重启网络</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8Copenwrt%E6%97%A0%E6%B3%95%E9%80%9A%E4%BF%A1"><span class="toc-text">解决宿主机和openwrt无法通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">解决办法:</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -757,46 +753,111 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux-systemctl-指令"><a href="#Linux-systemctl-指令" class="headerlink" title="Linux systemctl 指令"></a>Linux systemctl 指令</h1><p>systemctl mask和systemctl disable的区别一般很难注意到，因为我大部分时候只会使用systemctl disable，并不会用到systemctl mask。在一次遇到问题的时候，需要使用systemctl mask来禁用服务，下边具体说明。</p>
+        <h1 id="在docker中启动openwrt"><a href="#在docker中启动openwrt" class="headerlink" title="在docker中启动openwrt"></a>在docker中启动openwrt</h1><p>参考<a target="_blank" rel="noopener" href="https://blog.hearthewind.top/posts/db1132b0-4e36-11eb-bbe3-c117a7825fa4/">在docker里运行openwrt</a></p>
 <hr>
-<h2 id="systemctl-enable的作用"><a href="#systemctl-enable的作用" class="headerlink" title="systemctl enable的作用"></a>systemctl enable的作用</h2><p>我们知道，在系统中安装了某个服务以后，需要将该服务设置为开机自启，那么一般会执行systemctl enable xxx，这个时候会发现shell中会输出两行提示，一般类似如下：</p>
-<pre><code># systemctl enable NetworkManager 
-
-Created symlink from /etc/systemd/system/multi-user.target.wants/NetworkManager.service to /usr/lib/systemd/system/NetworkManager.service.
-
-Created symlink from /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service to /usr/lib/systemd/system/NetworkManager-dispatcher.service.
-
-Created symlink from /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service to /usr/lib/systemd/system/NetworkManager-wait-online.service.
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><h4 id="安装必要软件"><a href="#安装必要软件" class="headerlink" title="安装必要软件"></a>安装必要软件</h4><pre><code>sudo apt install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
 </code></pre>
-<p>这个命令会在/etc/systemd/system/目录下创建需要的符号链接，表示服务需要进行启动。</p>
-<p>通过stdout输出的信息可以看到，软连接实际指向的文件为/usr/lib/systemd/system/目录中的文件，实际起作用的也是这个目录中的文件。</p>
-<hr>
-<h2 id="systemctl-disable-xxx的作用"><a href="#systemctl-disable-xxx的作用" class="headerlink" title="systemctl disable xxx的作用"></a>systemctl disable xxx的作用</h2><p>执行systemctl disable xxx后，会禁用这个服务。它实现的方法是将服务对应的软连接从/etc/systemd/system中删除。命令执行情况一般类似如下：</p>
-<pre><code>systemctl disable NetworkManager
-
-Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
-
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
-
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
-
-Removed symlink /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service.
+<h4 id="添加GPG密钥"><a href="#添加GPG密钥" class="headerlink" title="添加GPG密钥"></a>添加GPG密钥</h4><pre><code>curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/raspbian/gpg | sudo apt-key add -
 </code></pre>
-<p>在执行systemctl disable xxx的时候，实际只是删除了软连接，并不会产生其他影响。</p>
-<hr>
-<h2 id="systemctl-mask-xxx的作用"><a href="#systemctl-mask-xxx的作用" class="headerlink" title="systemctl mask xxx的作用"></a>systemctl mask xxx的作用</h2><p>执行 systemctl mask xxx会屏蔽这个服务。它和systemctl disable xxx的区别在于，前者只是删除了符号链接，后者会建立一个指向/dev/null的符号链接，这样，即使有其他服务要启动被mask的服务，仍然无法执行成功。执行该命令的效果一般类似如下：</p>
-<pre><code>systemctl mask NetworkManager 
-
-Created symlink from /etc/systemd/system/NetworkManager.service to /dev/null.
+<h4 id="向sourcelist中添加Docker软件源"><a href="#向sourcelist中添加Docker软件源" class="headerlink" title="向sourcelist中添加Docker软件源"></a>向sourcelist中添加Docker软件源</h4><pre><code>sudo add-apt-repository \
+    &quot;deb [arch=armhf] https://mirrors.aliyun.com/docker-ce/linux/raspbian \
+    $(lsb_release -cs) \
+    stable&quot;
+</code></pre>
+<h4 id="安装docker-1"><a href="#安装docker-1" class="headerlink" title="安装docker"></a>安装docker</h4><pre><code>apt update    #刷新包缓存
+apt install docker-ce    #安装docker
+docker info #查看docker状态
 </code></pre>
 <hr>
-<h3 id="systemctl-mask-xxx和systemctl-disable-xxx的区别"><a href="#systemctl-mask-xxx和systemctl-disable-xxx的区别" class="headerlink" title="systemctl mask xxx和systemctl disable xxx的区别"></a>systemctl mask xxx和systemctl disable xxx的区别</h3><p>在执行过mask后，如果想要启动服务，那么会报类似如下错误：</p>
-<pre><code>systemctl start NetworkManager
-Failed to start NetworkManager.service: Unit is masked.
+<h2 id="创建docker用户组"><a href="#创建docker用户组" class="headerlink" title="创建docker用户组"></a>创建docker用户组</h2><p>默认情况下，docker 命令会使用 Unix socket 与 Docker 引擎通讯。而只有 root 用户和 docker 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 root 用户。因此，更好地做法是将需要使用 docker 的用户加入 docker 用户组。</p>
+<h4 id="创建docker组"><a href="#创建docker组" class="headerlink" title="创建docker组"></a>创建docker组</h4><pre><code>groupadd docker
 </code></pre>
-<p>如果使用disable的话，可以正常启动服务。总体来看，disable和enable是一对操作，是用来启动、停止服务。</p>
+<h4 id="将当前用户加入docker组"><a href="#将当前用户加入docker组" class="headerlink" title="将当前用户加入docker组"></a>将当前用户加入docker组</h4><pre><code>usermod -aG docker $USER
+</code></pre>
+<p>这样每次使用docker就不用非得使用root用户或者sudo了</p>
+<h4 id="启动docker"><a href="#启动docker" class="headerlink" title="启动docker"></a>启动docker</h4><pre><code>systemctl enable docker
+systemctl start docker
+</code></pre>
 <hr>
-<h2 id="systemctl-unmask-xxx取消屏蔽"><a href="#systemctl-unmask-xxx取消屏蔽" class="headerlink" title="systemctl unmask xxx取消屏蔽"></a>systemctl unmask xxx取消屏蔽</h2><p>如果使用了mask，要想重新启动服务，必须先执行unmask将服务取消屏蔽。mask和unmask是一对操作，用来屏蔽和取消屏蔽服务。</p>
+<h3 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h3><h4 id="打开网卡混杂模式"><a href="#打开网卡混杂模式" class="headerlink" title="打开网卡混杂模式"></a>打开网卡混杂模式</h4><pre><code>sudo ip link set eth0 promisc on
+
+混杂模式（Promiscuous Model）:
+工作在混杂模式下的网卡接收所有的流过网卡的帧，抓包程序就是在这种模式下运行的。网卡的缺省工作模式包含广播模式和直接模式，即它只接收广播帧和发给自己的帧。如果采用混杂模式，网卡将接受同一网络内所有所发送的数据包，这样就可以到达对于网络信息监视捕获的目的。它将接收所有经过的数据包，这个特性是编写网络监听程序的关键。
+</code></pre>
+<h4 id="创建网络"><a href="#创建网络" class="headerlink" title="创建网络"></a>创建网络</h4><pre><code>docker network create -d macvlan --subnet=192.168.31.0/24 --gateway=192.168.31.1 -o parent=eth0 macnet
+
+上面的网关网段要根据自己的实际情况配置,比如我的树梅派ip是192.168.31.253,所以subnet是192.168.31.0/24,网关192.168.31.1
+</code></pre>
+<h4 id="查看网络"><a href="#查看网络" class="headerlink" title="查看网络"></a>查看网络</h4><pre><code>创建之后使用docker network ls 命令查看docker所有网络
+
+$  sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+5addd9978433        bridge              bridge              local
+588d43873bfc        host                host                local
+87f8ffd37be7        macnet              macvlan             local
+33fc1833eaa0        none                null                local
+</code></pre>
+<h4 id="导入镜像"><a href="#导入镜像" class="headerlink" title="导入镜像"></a>导入镜像</h4><p>编译固件可以参考之前的文章编译openwrt<br>    cat openwrt-bcm27xx-bcm2711-rpi-4-rootfs.tar.gz | docker import - openwrt-wind:1226<br>    #最后的参数为镜像名和标签</p>
+<h4 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h4><pre><code>docker images     #查看镜像列表
+
+openwrt-wind                   1226                89c5edb75e9b        2 hours ago         184MB
+如以上镜像拉取成功了
+</code></pre>
+<h4 id="创建并启动容器"><a href="#创建并启动容器" class="headerlink" title="创建并启动容器"></a>创建并启动容器</h4><pre><code>docker run --restart always --name openwrt -d --network macnet --privileged openwrt-wind:1226 /sbin/init
+
+--restart always 为容器退出时始终重启,保证重启物理主机后容器能正常启动使用
+
+--name openwrt 容器别名,可以执行设置,方便区分使用
+
+-d 后台运行
+
+--network macnet 容器在之前创建的网络下运行
+
+--privilleged 特权模式下运行
+
+/sbin/init 定义容器启动后执行的命令
+</code></pre>
+<h4 id="查看容器运行状态"><a href="#查看容器运行状态" class="headerlink" title="查看容器运行状态"></a>查看容器运行状态</h4><pre><code>docker ps -a    #查看容器运行状况,如下,状态为up则说明成功运行
+
+CONTAINER ID        IMAGE                                                     COMMAND             CREATED             STATUS              PORTS                    NAMES
+acb0b0bff88b        portainer/portainer                                       &quot;/portainer&quot;        3 days ago          Up 22 minutes       0.0.0.0:9000-&gt;9000/tcp   portainer
+915332f9a045        openwrt-wind:1226   &quot;/sbin/init&quot;        3 days ago          Up 22 minutes                                openwrt
+</code></pre>
+<h4 id="进入容器内修改网络参数"><a href="#进入容器内修改网络参数" class="headerlink" title="进入容器内修改网络参数"></a>进入容器内修改网络参数</h4><pre><code>docker exec -it openwrt-wind bash
+openwrt为容器名
+bash为进入容器后执行的命令
+</code></pre>
+<h4 id="修改openwrt的ip地址"><a href="#修改openwrt的ip地址" class="headerlink" title="修改openwrt的ip地址"></a>修改openwrt的ip地址</h4><pre><code class="bash">vim /etc/config/network
+将lan口配置如下:
+
+config interface &#39;lan&#39;
+        option type &#39;bridge&#39;
+        option ifname &#39;eth0&#39;
+        option proto &#39;static&#39;
+        option netmask &#39;255.255.255.0&#39;
+        option ipaddr &#39;192.168.31.254&#39;
+        option gateway &#39;192.168.31.1&#39;
+        option broadcast &#39;192.168.31.255&#39;
+        option dns &#39;114.114.114.114&#39;
+</code></pre>
+<h4 id="配置完后重启网络"><a href="#配置完后重启网络" class="headerlink" title="配置完后重启网络"></a>配置完后重启网络</h4><pre><code>/etc/init.d/network restart
+</code></pre>
+<p>接下来就可以通过web页面来访问并配置openwrt的具体内容了,可以参考之前的文章</p>
+<h3 id="解决宿主机和openwrt无法通信"><a href="#解决宿主机和openwrt无法通信" class="headerlink" title="解决宿主机和openwrt无法通信"></a>解决宿主机和openwrt无法通信</h3><p>当然了,如果是在宿主机上开启网卡混杂模式,然后启动了一个使用macnet的容器,这样容器和宿主机是无法通信的.关于macvlan<br>在一张物理网卡上虚拟出两个虚拟网卡，具有不同的MAC地址，可以让宿主机和docker同时接入网络并且使用不同的ip，此时docker可以直接和同一网络下的其他设备直接通信，相当的方便，但是这种模式有一个问题，宿主机和容器是没办法直接进行网络通信的，如宿主机ping容器的ip，尽管他们属于同一网段，但是也是ping不通的，反过来也是。因为该模式在设计的时候，为了安全禁止了宿主机与容器的直接通信，不过解决的方法其实也很简单——宿主机虽然没办法直接和容器内的macvlan接口通信，但是只要在宿主机上再建立一个macvlan，然后修改路由，使数据经由该macvlan传输到容器内的macvlan即可，macvlan之间是可以互相通信的。</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h4><pre><code>假设宿主机ip 192.168.31.58,容器ip192.168.31.250
+ip link add mynet link eth0 type macvlan mode bridge
+# 为该接口分配ip，并启用
+ip addr add 192.168.31.10 dev mynet
+ip link set mynet up
+# 修改路由，使宿主机到192.168.31.250的通信全部经由mynet进行
+ip route add 192.168.31.250 dev mynet
+这样就可以ping通互相访问了.
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
