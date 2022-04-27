@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Linux 用户管理 | Hexo</title>
+  <meta name="keywords" content=" linux , user ">
+  <meta name="description" content="Linux 用户管理 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T02:28:54.207Z">
+<meta property="article:modified_time" content="2022-04-27T02:28:54.207Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/p2.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/p2.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LingjieJin"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(30)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="30">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>blog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>group</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ifconfig</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ip</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jellyfin</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mount</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netplan</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netstat</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>networkmanager</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nmcli</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>node</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>openwrt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rc-local</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>route</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>samba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ss</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>system</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>systemctl</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>user</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-04-27 10:28:54">2022/04/27</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/16/Git%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GIT 操作总结">GIT 操作总结</span>
+            <span class="post-date" title="2022-04-16 18:17:05">2022/04/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E4%BD%BF%E7%94%A8netplan%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C/"
+           data-tag="linux,network,ubuntu18.04,netplan"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 使用netplan设置网络">ubuntu 18.04 使用netplan设置网络</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,system,ubuntu18.04,rc-local"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 设置rc-local服务">ubuntu 18.04 设置rc-local服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,TFTP"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ifconfig%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,ifconfig,指令"
+           data-author="" >
+            <span class="post-title" title="Linux ifconfig 指令">Linux ifconfig 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ip"
+           data-author="" >
+            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,netstat"
+           data-author="" >
+            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,nmcli"
+           data-author="" >
+            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ss%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ss"
+           data-author="" >
+            <span class="post-title" title="Linux ss 指令">Linux ss 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20route%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,route"
+           data-author="" >
+            <span class="post-title" title="Linux route 指令">Linux route 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
+           data-author="" >
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="linux,mount"
+           data-author="" >
+            <span class="post-title" title="Linux 挂载硬盘">Linux 挂载硬盘</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="linux,user"
+           data-author="" >
+            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/"
+           data-tag="linux,group"
+           data-author="" >
+            <span class="post-title" title="Linux 用户组管理">Linux 用户组管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux 系统管理">Linux 系统管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
+           data-tag="linux,ubuntu18.04,docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
+           data-tag="docker,jellyfin"
+           data-author="" >
+            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E5%AE%89%E8%A3%85OpenWRT%E5%81%9A%E6%97%81%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker安装OpenWRT做旁路由">Docker安装OpenWRT做旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-docker%20%E8%BF%90%E8%A1%8C%20openwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 配置openwrt 单网卡 旁路由">docker 配置openwrt 单网卡 旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-%E5%9C%A8docker%E9%87%8C%E8%BF%90%E8%A1%8Copenwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 在docker里运行openwrt">docker 在docker里运行openwrt</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%20%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,samba"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置samba">Ubuntu 18.04 配置samba</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager/"
+           data-tag="linux,ubuntu18.04,networkmanager"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 关闭networkmanager">Ubuntu 18.04 关闭networkmanager</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork/"
+           data-tag="linux,ubuntu18.04,network interface"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置network的interface">Ubuntu 18.04 配置network的interface</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,nfs"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 配置nfs服务">ubuntu 18.04 配置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag="hexo,blog,node"
+           data-author="" >
+            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub/"
+           data-tag="hexo,blog"
+           data-author="" >
+            <span class="post-title" title="Build Blog with Hexo+Github">Build Blog with Hexo+Github</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub%E5%88%86%E6%94%AF%E5%AD%98%E5%82%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置github分支存储">配置github分支存储</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Linux 用户管理" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Linux 用户管理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color5">user</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-27 10:28:54'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">增加用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-text">删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">修改用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7"><span class="toc-text">修改属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%8B%A5%E6%9C%89%E8%80%85-%E7%94%A8%E6%88%B7-%E4%BF%AE%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D"><span class="toc-text">将文件或目录的拥有者(用户)修改为指定的用户名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%89%80%E5%B1%9E%E7%BB%84%E4%BF%AE%E6%94%B9%E4%B8%BA%E6%8C%87%E5%AE%9A%E7%9A%84%E7%BB%84"><span class="toc-text">将文件或目录的所属组修改为指定的组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E4%B8%A4%E7%A7%8D%EF%BC%9A"><span class="toc-text">修改权限的方式有两种：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86"><span class="toc-text">密码管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E6%9C%89%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-text">查看用户有关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0sudo-root%E6%9D%83%E9%99%90"><span class="toc-text">增加sudo root权限</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-用户管理"><a href="#Linux-用户管理" class="headerlink" title="Linux 用户管理"></a>Linux 用户管理</h1><hr>
+<h3 id="增加用户"><a href="#增加用户" class="headerlink" title="增加用户"></a>增加用户</h3><p>Linux 中通常会使用 useradd，而 Ubuntu 中通常使用 adduser。</p>
+<pre><code>useradd 选项 用户名
+参数说明：
+-c&lt;备注&gt; 　加上备注文字。备注文字会保存在passwd的备注栏位中。
+-d&lt;登入目录&gt; 　指定用户登入时的起始目录。
+-D 　变更预设值．
+-e&lt;有效期限&gt; 　指定帐号的有效期限。
+-f&lt;缓冲天数&gt; 　指定在密码过期后多少天即关闭该帐号。
+-g&lt;群组&gt; 　指定用户所属的群组。
+-G&lt;群组&gt; 　指定用户所属的附加群组。
+-m 　自动建立用户的登入目录。
+-M 　不要自动建立用户的登入目录。
+-n 　取消建立以用户名称为名的群组．
+-r 　建立系统帐号。
+-s&lt;shell&gt;　 　指定用户登入后所使用的shell。
+-u&lt;uid&gt; 　指定用户ID。
+</code></pre>
+<p>只有 root 才能将用户或组添加到系统， 默认为 root。</p>
+<pre><code>[sudo] adduser newuser
+
+adduser 可以不带任何参数使用，自动添加用户 newuser 到新组 newuser 、创建主目录 /home/newuser、 提示设置密码和用户信息。
+
+[sudo] useradd newuser
+[sudo] passwd newuser
+[sudo] useradd -d /home/newuser newuser
+
+useradd 创建用户分三步：用户名，密码和主目录。
+</code></pre>
+<p>举例：</p>
+<ol>
+<li>添加一个不能登录的用户 useradd -d /usr/local/apache -g apache -s /bin/false apache 要拒绝系统用户登录，可以将其 shell 设置为 /usr/sbin/nologin 或者 /bin/false。</li>
+</ol>
+<hr>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>删除一个已有的用户账号使用userdel命令，其格式如下：</p>
+<pre><code>userdel 选项 用户名
+常用的选项是 -r，它的作用是把用户的主目录一起删除。
+要刪除已登入的使用者賬戶或與之相關的正在執行的程序，我們可以使用 userdel 命令中的 -f 或 --force 選項。
+
+id username 查看是否删除
+</code></pre>
+<hr>
+<h3 id="修改用户信息"><a href="#修改用户信息" class="headerlink" title="修改用户信息"></a>修改用户信息</h3><p>修改用户账号就是根据实际情况更改用户的有关属性，如用户号、主目录、用户组、登录Shell等。</p>
+<p>修改已有用户的信息使用usermod命令，其格式如下：</p>
+<pre><code>usermod 选项 用户名
+选项包括-c, -d, -m, -g, -G, -s, -u以及-o等，这些选项的意义与useradd命令中的选项一样，可以为用户指定新的资源值。
+参数：
+
+-a&lt;追加&gt; 必须与-G选项一起使用，把用户追加到某些组中。
+-c&lt;备注&gt; 修改用户帐号的备注文字。
+-d&lt;登入目录&gt; 修改用户登入时的目录。
+-e&lt;有效期限&gt; 修改帐号的有效期限。
+-f&lt;缓冲天数&gt; 修改在密码过期后多少天即关闭该帐号。
+-g&lt;群组&gt; 修改用户所属的群组。
+-G&lt;群组&gt; 修改用户所属的附加群组。
+-l&lt;帐号名称&gt; 修改用户帐号名称。
+-L 锁定用户密码，使密码无效。
+-s&lt;shell&gt; 修改用户登入后所使用的shell。
+-u&lt;uid&gt; 修改用户ID。
+-U 解除密码锁定。
+
+另外，有些系统可以使用选项：-l 新用户名
+</code></pre>
+<p>举例：</p>
+<ol>
+<li><p>usermod最典型的用例是将用户添加到组中。要将现有用户添加到辅助组，请使用-a和-G选项，然后输入组的名称和用户名。</p>
+<pre><code> usermod -a -G GROUP USER
+     
+ 如果要一次将用户添加到多个组，请在-G选项后指定由逗号,分隔的组，中间不留空格。例如，要将用户myfreax添加到games组，您可以运行以下命令：
+     
+ sudo usermod -a -G games myfreax
+</code></pre>
+</li>
+<li><p>这是清空用户testUser1所有的追加组，执行该命令以后testUser1只属于testUser1这个默认组，不管testUser1以前有多少个附加组。</p>
+<pre><code> usermod -G &quot;&quot; testUser1
+</code></pre>
+</li>
+<li><p>让用户testUser1的附加组变成testUser1,testGroup1,testGroup4，这个命令有点类似usermod -G “” testUser1，只不过usermod -G “” testUser1是清空，而usermod -G  testGroup2,testGroup3 testUser1 则是把 testGroup2,testGroup3以外的组清空，而保留testGroup2,testGroup3。因为gpasswd -d  一次只能删除一个，所以用这种方法可以一步直达。</p>
+<pre><code> usermod -G  testGroup2,testGroup3 testUser1
+</code></pre>
+</li>
+<li><p>删除用户testUser1的testGroup2所属组，即把用户testUser1从testGroup2 组中剔除，执行以后用户testUser1属于testUser1,testGroup1,testGroup3,testGroup4组，注 意，gpasswd -d只能一个组一个组操作，如果要删除多个组则只能操作多次</p>
+<pre><code> gpasswd -d  testUser1 testGroup2
+</code></pre>
+</li>
+<li><p>假设系统已经存在testGroup1,testGroup2两个用户组和一个用户testUser1，现在要把testUser1加到testGroup1,testGroup2两个用户组中</p>
+<pre><code> usermod -a -G  testGroup1,testGroup2  testUser1
+
+ 或者
+
+ usermod -a -G  testGroup1 testUser1
+
+ usermod -a -G  testGroup2 testUser1
+</code></pre>
+</li>
+<li><p>假设系统已经存在testGroup1,testGroup2两个用户组，现在要新增一个用户testUser1，同时让testUser1属于testGroup1,testGroup2两个用户组</p>
+<pre><code> useradd -G  testGroup1,testGroup2  testUser1
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="修改属性"><a href="#修改属性" class="headerlink" title="修改属性"></a>修改属性</h3><h4 id="将文件或目录的拥有者-用户-修改为指定的用户名"><a href="#将文件或目录的拥有者-用户-修改为指定的用户名" class="headerlink" title="将文件或目录的拥有者(用户)修改为指定的用户名"></a>将文件或目录的拥有者(用户)修改为指定的用户名</h4><pre><code>chown [选项] 用户名 文件名|目录　　　 
+</code></pre>
+<h4 id="将文件或目录的所属组修改为指定的组"><a href="#将文件或目录的所属组修改为指定的组" class="headerlink" title="将文件或目录的所属组修改为指定的组"></a>将文件或目录的所属组修改为指定的组</h4><pre><code>chgrp [选项] 组名 文件名|目录 　　　 
+</code></pre>
+<h4 id="修改权限的方式有两种："><a href="#修改权限的方式有两种：" class="headerlink" title="修改权限的方式有两种："></a>修改权限的方式有两种：</h4><pre><code>chmod [选项] .. &#123;对象-操作-权限&#125; 文件名|目录
+选项：-R 表示当为目录的时候递归修改。即把该目录下的所有文件和目录一并修改
+对象：a 表示所有人；u 表示拥有者；g 表示所属组 ； o 表示其他人
+操作：+ 表示增加权限 ； - 表示减少权限
+权限 ： r 读； w 写 ； x 执行用三个数字分别是拥有者、组、其他人的权限。
+777 表示 u=rwx,g=rwx,o=rwx
+755 表示 u=rwx,g=rx,o=rx
+644 表示 u=rw,g=r,o=r
+</code></pre>
+<p>举例：</p>
+<ol>
+<li><p>对所有对象减少目录a的写权限</p>
+<pre><code> sudo chmod a-w 目录a 
+</code></pre>
+</li>
+<li><p>对目录a的权限设置是拥有者rwx，组rx，其他人rx</p>
+<pre><code> sudo chmod -R 755 目录a 
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="密码管理"><a href="#密码管理" class="headerlink" title="密码管理"></a>密码管理</h3><pre><code>passwd 选项 用户名
+可使用的选项：
+-l 锁定口令，即禁用账号。
+-u 口令解锁。
+-d 使账号无口令。
+-f 强迫用户下次登录时修改口令。
+</code></pre>
+<hr>
+<h2 id="查看用户有关信息"><a href="#查看用户有关信息" class="headerlink" title="查看用户有关信息"></a>查看用户有关信息</h2><pre><code>#查看用户列表
+cat /etc/passwd
+
+#查看群组消息
+cat /etc/group
+
+#查看用户的UID(用户id) 和 GID(组id) 和附件组等， 用户不写，默认当前用户
+id [选项]….[用户]..　　　 
+
+#查看目前所有登录的用户和用户IP地址和时间,未登录用户不能显示
+who [选项]… 　　　 
+
+#查看我是哪个用户
+whoami [选项] …..　　　 
+
+#查看系统负载与用户
+w 　　　 
+
+tty1～tty6:本地控制台终端；tty7表示图形终端；pts/0~255表示虚拟终端
+</code></pre>
+<hr>
+<h2 id="增加sudo-root权限"><a href="#增加sudo-root权限" class="headerlink" title="增加sudo root权限"></a>增加sudo root权限</h2><p>为用户添加 sudo 权限，可以使用修改 sudoers 和 adduser 两种方法：</p>
+<ol>
+<li><p>etc/sudoers 文件就是与 sudo 组有关的文件，在里面添加一行</p>
+<pre><code> newuser ALL=(ALL) ALL
+</code></pre>
+</li>
+<li><p>第二种是使用 adduser 命令，添加用户的同时赋予 root 权限：</p>
+<pre><code> [sudo] adduser newuser sudo
+</code></pre>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 author
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Support</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

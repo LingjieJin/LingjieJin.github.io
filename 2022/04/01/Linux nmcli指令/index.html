@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Linux nmcli 指令 | Hexo</title>
+  <meta name="keywords" content=" linux , network , 指令 , nmcli ">
+  <meta name="description" content="Linux nmcli 指令 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-27T02:28:54.207Z">
+<meta property="article:modified_time" content="2022-04-27T02:28:54.207Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/p2.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/p2.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LingjieJin"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(30)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="30">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>blog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>group</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ifconfig</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ip</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jellyfin</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mount</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netplan</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netstat</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>networkmanager</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nmcli</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>node</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>openwrt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rc-local</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>route</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>samba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ss</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>system</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>systemctl</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>user</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-04-27 10:28:54">2022/04/27</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/16/Git%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GIT 操作总结">GIT 操作总结</span>
+            <span class="post-date" title="2022-04-16 18:17:05">2022/04/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E4%BD%BF%E7%94%A8netplan%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C/"
+           data-tag="linux,network,ubuntu18.04,netplan"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 使用netplan设置网络">ubuntu 18.04 使用netplan设置网络</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,system,ubuntu18.04,rc-local"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 设置rc-local服务">ubuntu 18.04 设置rc-local服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,TFTP"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ifconfig%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,ifconfig,指令"
+           data-author="" >
+            <span class="post-title" title="Linux ifconfig 指令">Linux ifconfig 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ip"
+           data-author="" >
+            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,netstat"
+           data-author="" >
+            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,nmcli"
+           data-author="" >
+            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ss%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ss"
+           data-author="" >
+            <span class="post-title" title="Linux ss 指令">Linux ss 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20route%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,route"
+           data-author="" >
+            <span class="post-title" title="Linux route 指令">Linux route 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
+           data-author="" >
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="linux,mount"
+           data-author="" >
+            <span class="post-title" title="Linux 挂载硬盘">Linux 挂载硬盘</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="linux,user"
+           data-author="" >
+            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/"
+           data-tag="linux,group"
+           data-author="" >
+            <span class="post-title" title="Linux 用户组管理">Linux 用户组管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux 系统管理">Linux 系统管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
+           data-tag="linux,ubuntu18.04,docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
+           data-tag="docker,jellyfin"
+           data-author="" >
+            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E5%AE%89%E8%A3%85OpenWRT%E5%81%9A%E6%97%81%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker安装OpenWRT做旁路由">Docker安装OpenWRT做旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-docker%20%E8%BF%90%E8%A1%8C%20openwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 配置openwrt 单网卡 旁路由">docker 配置openwrt 单网卡 旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-%E5%9C%A8docker%E9%87%8C%E8%BF%90%E8%A1%8Copenwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 在docker里运行openwrt">docker 在docker里运行openwrt</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%20%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,samba"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置samba">Ubuntu 18.04 配置samba</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager/"
+           data-tag="linux,ubuntu18.04,networkmanager"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 关闭networkmanager">Ubuntu 18.04 关闭networkmanager</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork/"
+           data-tag="linux,ubuntu18.04,network interface"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置network的interface">Ubuntu 18.04 配置network的interface</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,nfs"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 配置nfs服务">ubuntu 18.04 配置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag="hexo,blog,node"
+           data-author="" >
+            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub/"
+           data-tag="hexo,blog"
+           data-author="" >
+            <span class="post-title" title="Build Blog with Hexo+Github">Build Blog with Hexo+Github</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub%E5%88%86%E6%94%AF%E5%AD%98%E5%82%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置github分支存储">配置github分支存储</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Linux nmcli指令" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Linux nmcli 指令</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color3">network</a>
+            
+            <a class="color3">指令</a>
+            
+            <a class="color1">nmcli</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-04-27 10:28:54'>2022-04-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nmcli%E5%91%BD%E4%BB%A4"><span class="toc-text">nmcli命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-text">常用选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA"><span class="toc-text">显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E5%90%AF%E7%94%A8"><span class="toc-text">新建、删除、启用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nmcli%E5%AE%9E%E7%8E%B0bonding"><span class="toc-text">nmcli实现bonding</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="nmcli命令"><a href="#nmcli命令" class="headerlink" title="nmcli命令"></a>nmcli命令</h1><p>nmcli是网络配置工具，功能丰富，优点是可让网卡关联多套配置。<br>如在公司会议室需要使用网络名office-eth1的网络配置，获取类型是静态获取IP地址；在办公室使用网络名为bangong-eth1的网络配置，获取类型是动态DHCP获取。</p>
+<p>格式：</p>
+<pre><code>nmcli [OPTIONS(选项)] OBJECT(过滤) &#123; COMMAND(命令) | help &#125;
+</code></pre>
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><ol>
+<li><p>device：显示和管理网络接口, 选项具体使用可看帮助 </p>
+<pre><code>     nmcli device help
+</code></pre>
+</li>
+<li><p>connection：启动，停止和管理网络连接, 选项具体使用可看帮助 </p>
+<pre><code>     nmcli device help
+</code></pre>
+<ul>
+<li><p>修改IP地址等属性：</p>
+<pre><code>  nmcli connection modify IFACE(网卡设备的网络名) [+|-]setting(设置).property(属性) value(值)
+
+  “setting.property”有很多，Tab键可补全，常用的有：
+  - ipv4.addresses
+  - ipv4.gateway
+  - ipv4.dns1
+  - ipv4.method manual | auto
+</code></pre>
+</li>
+<li><p>执行“nmcli connection modify”和修改”ifcfg-*”文件的对应关系：</p>
+<table>
+<thead>
+<tr>
+<th>nmcli con mod</th>
+<th>ifcfg-*文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ipv4.method manual</td>
+<td>BOOTPROTO=none</td>
+</tr>
+<tr>
+<td>ipv4.method auto</td>
+<td>BOOTPROTO=dhcp</td>
+</tr>
+<tr>
+<td>ipv4.addresses“192.0.2.1/24192.0.2.254”</td>
+<td>IPADDR0=192.0.2.1</td>
+</tr>
+<tr>
+<td>PREFIXO=24</td>
+<td>GATEWAY0=192.0.2.254</td>
+</tr>
+<tr>
+<td>ipv4.dns8.8.8.8</td>
+<td>DNS0=8.8.8.8</td>
+</tr>
+<tr>
+<td>ipv4.dns-search example.com</td>
+<td>DOMAIN=example.com</td>
+</tr>
+<tr>
+<td>ipv4.ignore-auto-dns true</td>
+<td>PEERDNS=no</td>
+</tr>
+<tr>
+<td>connection.autoconnect yes</td>
+<td>ONBOOT=yes</td>
+</tr>
+<tr>
+<td>connection.id etho</td>
+<td>NAME=eth0</td>
+</tr>
+<tr>
+<td>connection.interface-name etho</td>
+<td>DEVICE=eth0</td>
+</tr>
+<tr>
+<td>802-3-ethernet.mac-address…</td>
+<td>HWADDR=…</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>生效命令</p>
+<ul>
+<li><p>修改网络配置文件，生效的方式</p>
+<p>方法一：</p>
+<pre><code>systemctl restart network   \\重启网络服务
+</code></pre>
+<p>方法二：</p>
+<pre><code>nmcli con reload
+</code></pre>
+</li>
+<li><p>使用nmcli命令后，生效的办法</p>
+<p>方法一：</p>
+<pre><code>nmcli con down eth0 ;nmcli con up eth0
+</code></pre>
+<p>方法二：</p>
+<pre><code>nmcli con reload
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><ol>
+<li><p>显示网络状态 </p>
+<pre><code>nmcli connection
+</code></pre>
+</li>
+<li><p>显示网络设备状态</p>
+<pre><code>nmcli device status
+</code></pre>
+</li>
+<li><p>显示网络连接配置及借款属性</p>
+<pre><code>nmcli connection show 网络名
+</code></pre>
+</li>
+<li><p>显示所有包括不活动连接</p>
+<pre><code>nmcli con show
+</code></pre>
+</li>
+<li><p>显示所有活动连接</p>
+<pre><code>nmcli con show --active  
+</code></pre>
+</li>
+</ol>
+<h3 id="新建、删除、启用"><a href="#新建、删除、启用" class="headerlink" title="新建、删除、启用"></a>新建、删除、启用</h3><ol>
+<li><p>创建新连接default，IP自动通过dhcp获取</p>
+<pre><code>nmcli con add con-name default type Ethernet ifname eth0
+</code></pre>
+</li>
+<li><p>删除连接</p>
+<pre><code>nmcli con del default
+</code></pre>
+</li>
+<li><p>创建新连接static ，指定静态IP，不自动连接</p>
+<pre><code> nmcti con add con-name static ifname eth0 autoconnect no typeEthernet ipv4.addresses 172.25.X.10/24 ipv4.gateway 172.25.X.254
+</code></pre>
+</li>
+<li><p>创建(con-name)网络名“meeting-eth1”,针对(ifname)网卡eth1,类型(type)是ethernet,开机自启(autoconnect)</p>
+<pre><code> nmcli connection add con-name meeting-eth1 type ethernet autoconnect yes ifname eth1
+</code></pre>
+</li>
+<li><p>启用static连接配置</p>
+<pre><code> nmcli con up static
+</code></pre>
+</li>
+<li><p>启用default连接配置</p>
+<pre><code> nmcli con up default
+</code></pre>
+</li>
+<li><p>查看帮助</p>
+<pre><code> nmcli con add help  
+</code></pre>
+</li>
+</ol>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><ol>
+<li><p>修改网卡设备的信息“nmcli connection modify”</p>
+<p> 示例：修改网卡设备eth1的网络名为office-eth1</p>
+<pre><code> nmcli connection modify eth1 connection.id office-eth1
+</code></pre>
+</li>
+<li><p>修改连接设置</p>
+<pre><code> nmcli con mod “static” connection.autoconnect no
+ 
+ nmcli con mod “static” ipv4.dns 172.25.X.254
+ 
+ nmcli con mod “static” +ipv4.dns 8.8.8.8
+ 
+ nmcli con mod “static” -ipv4.dns 8.8.8.8
+ 
+ nmcli con mod “static” ipv4.addresses “172.16.X.10/24 172.16.X.254”
+ 
+ nmcli con mod “static” +ipv4.addresses 10.10.10.10/16
+</code></pre>
+</li>
+<li><p>设置DNS</p>
+<pre><code> nmcli con mod “system eth0” ipv4.ignore-auto-dns yes等价于：
+ 
+</code></pre>
+<p> 修改/etc/resolv.conf文件中PEERDNS=no 表示当IP通过dhcp自动获取时，dns仍是手动设置，不自动获取。DNS设置的存放在此文件。</p>
+</li>
+</ol>
+<h3 id="nmcli实现bonding"><a href="#nmcli实现bonding" class="headerlink" title="nmcli实现bonding"></a>nmcli实现bonding</h3><ol>
+<li><p>添加bonding接口</p>
+<p> 添加binding，类型是bond,名字是mybond0,接口叫bond0,模式是modeactive-backup  </p>
+<pre><code> nmcli con add type bond con-name mybond0 ifname bond0 modeactive-backup  
+</code></pre>
+</li>
+<li><p>添加从属接口</p>
+<p> 让两个网卡接口“ens3”和“ens7”加入到bonding</p>
+<pre><code> nmcli con add type bond-slave ifname ens7 master bond0
+ 
+ nmcli con add type bond-slave ifname ens3 master bond0  
+</code></pre>
+<p> 注：如无为从属接口(网卡设备)提供连接名(网络名)，则该名称是接口名称加类型构成  </p>
+</li>
+<li><p>给bonding添加IP地址  </p>
+</li>
+<li><p>要启动绑定，则必须首先启动从属接口</p>
+<pre><code> nmcli con up bond-slave-eth0
+ 
+ nmcli con up bond-slave-eth1  
+</code></pre>
+</li>
+<li><p>启动绑定</p>
+<pre><code> nmcli con up mybond0  
+</code></pre>
+</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 author
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Support</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
