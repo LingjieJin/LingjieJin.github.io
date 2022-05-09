@@ -16,6 +16,6 @@ post:
   copyright2: "Reprint please keep the original link and author."
 donation:
   button: "💰"
-  headline: "Help us with donation"
-  alipay: "alipay"
+  headline: "Support"
+  alipay: "alipay"  #
   weixin: "weixin"
