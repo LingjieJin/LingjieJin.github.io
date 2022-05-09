@@ -6,16 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="GIT 操作总结 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta name="description" content="IP V6测试windows 查看ipv6信息通过ipconfig-all命令查看到ipv6地址如下： fe80::cd04:c16b:9adf:dfe7%22  %后面是本ipv6地址对应的网络接口的index，windows术语叫scope id，可理解为一个接口序号，则22为当前windows接口序号。 linux 查看ipv6信息通过ip addr命令查看到ipv6地址如下： fe80::">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:title" content="IP V6测试">
+<meta property="og:url" content="http://example.com/2022/05/01/ipv6%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Ubuntu 1804 网络配置有关基础配置修改主机名hostnamectl set-hostname ubuntu1804  查看主机名、IP地址、域名、DNS资源记录、服务的状态systemd-resolve --status  网卡名默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等  修改配置文件 vi &#x2F;etc&#x2F;default&#x2F;grub 在GRUB_CMDL">
+<meta property="og:description" content="IP V6测试windows 查看ipv6信息通过ipconfig-all命令查看到ipv6地址如下： fe80::cd04:c16b:9adf:dfe7%22  %后面是本ipv6地址对应的网络接口的index，windows术语叫scope id，可理解为一个接口序号，则22为当前windows接口序号。 linux 查看ipv6信息通过ip addr命令查看到ipv6地址如下： fe80::">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-27T02:28:54.207Z">
-<meta property="article:modified_time" content="2022-04-27T02:28:54.207Z">
+<meta property="article:published_time" content="2022-05-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-09T07:01:30.533Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ipv6">
 <meta name="twitter:card" content="summary">
 
 
@@ -90,7 +91,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(30)</small>
+                <small>(32)</small>
             
         </div>
     </li>
@@ -115,7 +116,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="30">
+<input type="hidden" id="yelog_site_posts_number" value="32">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -187,6 +188,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>ip</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipv6</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -285,6 +290,14 @@
     <nav id="title-list-nav">
         
         <a  class="All "
+           href="/2022/05/01/ipv6%E6%B5%8B%E8%AF%95/"
+           data-tag="ipv6"
+           data-author="" >
+            <span class="post-title" title="IP V6测试">IP V6测试</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
            href="/2022/04/27/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
            data-tag=""
            data-author="" >
@@ -301,18 +314,26 @@
         </a>
         
         <a  class="All "
+           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,ip,指令"
+           data-author="" >
+            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
            href="/2022/04/01/Linux%20ifconfig%E6%8C%87%E4%BB%A4/"
-           data-tag="linux,network,ifconfig,指令"
+           data-tag="linux,network,指令,ifconfig"
            data-author="" >
             <span class="post-title" title="Linux ifconfig 指令">Linux ifconfig 指令</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
         <a  class="All "
-           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
-           data-tag="linux,network,指令,ip"
+           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,nmcli"
            data-author="" >
-            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -333,18 +354,10 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
-           data-tag="linux,network,指令,nmcli"
+           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,netstat"
            data-author="" >
-            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
-            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
-        </a>
-        
-        <a  class="All "
-           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
-           data-tag="linux,指令,system,systemctl"
-           data-author="" >
-            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -357,18 +370,18 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
-           data-tag="linux,user"
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
            data-author="" >
-            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
         <a  class="All "
-           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
-           data-tag="markdown"
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="linux,user"
            data-author="" >
-            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -389,10 +402,34 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
-           data-tag="linux,network,指令,netstat"
+           href="/2022/04/01/Linux%20%E8%AE%BE%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+           data-tag="linux,nfs"
            data-author="" >
-            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
+            <span class="post-title" title="Linux 设置nfs服务">Linux 设置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
+           data-tag="linux,ubuntu18.04,docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
+           data-tag="docker,jellyfin"
+           data-author="" >
+            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -405,10 +442,10 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
-           data-tag="docker,jellyfin"
+           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
            data-author="" >
-            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
+            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -425,14 +462,6 @@
            data-tag="docker,openwrt"
            data-author="" >
             <span class="post-title" title="docker 在docker里运行openwrt">docker 在docker里运行openwrt</span>
-            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
-        </a>
-        
-        <a  class="All "
-           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
-           data-tag="docker,openwrt"
-           data-author="" >
-            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
@@ -469,14 +498,6 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
-           data-tag="linux,ubuntu18.04,TFTP"
-           data-author="" >
-            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
-            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
-        </a>
-        
-        <a  class="All "
            href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork/"
            data-tag="linux,ubuntu18.04,network interface"
            data-author="" >
@@ -485,26 +506,26 @@
         </a>
         
         <a  class="All "
-           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
-           data-tag="blog,node,hexo"
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,TFTP"
            data-author="" >
-            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
         <a  class="All "
            href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1/"
-           data-tag="linux,ubuntu18.04,nfs"
+           data-tag="linux,nfs,ubuntu18.04"
            data-author="" >
             <span class="post-title" title="ubuntu 18.04 配置nfs服务">ubuntu 18.04 配置nfs服务</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         
         <a  class="All "
-           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
-           data-tag="linux,docker,ubuntu18.04"
+           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag="blog,node,hexo"
            data-author="" >
-            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
             <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
         </a>
         

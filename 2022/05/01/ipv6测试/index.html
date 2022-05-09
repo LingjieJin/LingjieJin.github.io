@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Docker安装OpenWRT做旁路由 | Hexo</title>
-  <meta name="keywords" content=" docker , openwrt ">
-  <meta name="description" content="Docker安装OpenWRT做旁路由 | Hexo">
+  <title>IP V6测试 | Hexo</title>
+  <meta name="keywords" content=" ipv6 ">
+  <meta name="description" content="IP V6测试 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="IP V6测试windows 查看ipv6信息通过ipconfig-all命令查看到ipv6地址如下： fe80::cd04:c16b:9adf:dfe7%22  %后面是本ipv6地址对应的网络接口的index，windows术语叫scope id，可理解为一个接口序号，则22为当前windows接口序号。 linux 查看ipv6信息通过ip addr命令查看到ipv6地址如下： fe80::">
 <meta property="og:type" content="article">
@@ -563,9 +563,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docker-Docker安装OpenWRT做旁路由" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ipv6测试" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Docker安装OpenWRT做旁路由</h1>
+        <h1 class="article-title">IP V6测试</h1>
     
     <div class="article-meta">
         
@@ -575,16 +575,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">docker</a>
-            
-            <a class="color3">openwrt</a>
+            <a class="color5">ipv6</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-04-27 10:28:54'>2022-04-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-05-09 15:01:30'>2022-05-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -606,7 +604,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1"><span class="toc-text">Docker运行Openwrt并作为主路由</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IP-V6%E6%B5%8B%E8%AF%95"><span class="toc-text">IP V6测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows-%E6%9F%A5%E7%9C%8Bipv6%E4%BF%A1%E6%81%AF"><span class="toc-text">windows 查看ipv6信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-%E6%9F%A5%E7%9C%8Bipv6%E4%BF%A1%E6%81%AF"><span class="toc-text">linux 查看ipv6信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows%E4%B8%BB%E6%9C%BA-ping-linux%E7%9A%84IPv6%E5%9C%B0%E5%9D%80"><span class="toc-text">windows主机 ping linux的IPv6地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E4%B8%BB%E6%9C%BA-ping-windows%E7%9A%84IPv6%E5%9C%B0%E5%9D%80"><span class="toc-text">linux主机 ping windows的IPv6地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E4%B8%BB%E6%9C%BA-ping-linux%E7%9A%84IPv6%E5%9C%B0%E5%9D%80"><span class="toc-text">linux主机 ping linux的IPv6地址</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -622,7 +620,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docker运行Openwrt并作为主路由"><a href="#Docker运行Openwrt并作为主路由" class="headerlink" title="Docker运行Openwrt并作为主路由"></a>Docker运行Openwrt并作为主路由</h1><p>参考<br><a target="_blank" rel="noopener" href="https://www.kejiwanjia.com/jiaocheng/57242.html">Docker安装OpenWRT做旁路由，魔法上网</a></p>
+        <h1 id="IP-V6测试"><a href="#IP-V6测试" class="headerlink" title="IP V6测试"></a>IP V6测试</h1><h3 id="windows-查看ipv6信息"><a href="#windows-查看ipv6信息" class="headerlink" title="windows 查看ipv6信息"></a>windows 查看ipv6信息</h3><p>通过<em>ipconfig-all</em>命令查看到ipv6地址如下：</p>
+<pre><code>fe80::cd04:c16b:9adf:dfe7%22
+</code></pre>
+<p>%后面是本ipv6地址对应的网络接口的index，windows术语叫scope id，可理解为一个接口序号，则22为当前windows接口序号。</p>
+<h3 id="linux-查看ipv6信息"><a href="#linux-查看ipv6信息" class="headerlink" title="linux 查看ipv6信息"></a>linux 查看ipv6信息</h3><p>通过<em>ip addr</em>命令查看到ipv6地址如下：</p>
+<pre><code>fe80::20c:29ff:fea4:1509
+</code></pre>
+<h3 id="windows主机-ping-linux的IPv6地址"><a href="#windows主机-ping-linux的IPv6地址" class="headerlink" title="windows主机 ping linux的IPv6地址"></a>windows主机 ping linux的IPv6地址</h3><pre><code>命令：ping -6 （linux的ipv6地址）%（windows的接口序号）
+</code></pre>
+<h3 id="linux主机-ping-windows的IPv6地址"><a href="#linux主机-ping-windows的IPv6地址" class="headerlink" title="linux主机 ping windows的IPv6地址"></a>linux主机 ping windows的IPv6地址</h3><pre><code>命令：ping6 -I linux_接口名 win_ipv6地址
+</code></pre>
+<h3 id="linux主机-ping-linux的IPv6地址"><a href="#linux主机-ping-linux的IPv6地址" class="headerlink" title="linux主机 ping linux的IPv6地址"></a>linux主机 ping linux的IPv6地址</h3><pre><code>命令：ping6 –I A服务器linux接口名 B服务器linux_ipv6地址
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
