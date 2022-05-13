@@ -44,3 +44,32 @@ https://blog.csdn.net/zc_ad/article/details/84953039
         [User]
         XSession=
         SystemAccount=false  //将false改为true
+
+
+---
+## GIT 推送代码到远程新分支
+        git push origin 本地分支:远端希望创建的分支
+
+---
+## GIT 创建本地新分支并推送到远程
+### 1. 切换到需要基于变更的主分支
+        git checkout master
+
+### 2. 创建本地新分支并切换至新分支
+        git checkout -b new_branch
+
+### 3. 将新建分支推送至远程仓库
+        git push origin new_branch:new_branch
+
+### 4.解决报错：当前分支没有跟踪信息。（There is no tracking information for the current branch.）
+        git branch --set-upstream-to=origin/new_branch
+
+        # 取消跟踪
+        git branch --unset-upstream master
+　　
+### 5. 删除本地旧的分支，同时删除远程旧的分支
+#### 删除远程分支： 
+        git push origin --delete 分支名字
+
+#### 删除本地分支： 
+        git branch -D 分支名字
