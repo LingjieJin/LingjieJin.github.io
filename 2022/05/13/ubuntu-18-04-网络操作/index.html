@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux 用户组管理 | Hexo</title>
-  <meta name="keywords" content=" linux , group ">
-  <meta name="description" content="Linux 用户组管理 | Hexo">
+  <title>Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="HEXDUMP 工具hexdumpdisplay file contents in hexadecimal, decimal, octal, or asciihexdump options file …    hd options file ...  DESCRIPTION         top       The hexdump utility is a filter which displa">
 <meta property="og:type" content="article">
@@ -586,28 +586,17 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux 用户组管理" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">Linux 用户组管理</h1>
+        <article id="post-ubuntu-18-04-网络操作" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color1">linux</a>
-            
-            <a class="color1">group</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-05-13 09:44:33'>2022-04-01 08:00</time>
+            Created At : <time class="date" title='Updated At: 2022-05-13 09:44:33'>2022-05-13 09:44</time>
         
     </div>
     <div class="article-meta">
@@ -629,7 +618,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="toc-text">Linux 用户组管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#groupadd"><span class="toc-text">groupadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#groupmod"><span class="toc-text">groupmod</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#groupdel"><span class="toc-text">groupdel</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-1804-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%9C%89%E5%85%B3"><span class="toc-text">Ubuntu 1804 网络配置有关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">修改主机名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA%E5%90%8D%E3%80%81IP%E5%9C%B0%E5%9D%80%E3%80%81%E5%9F%9F%E5%90%8D%E3%80%81DNS%E8%B5%84%E6%BA%90%E8%AE%B0%E5%BD%95%E3%80%81%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">查看主机名、IP地址、域名、DNS资源记录、服务的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E5%90%8D"><span class="toc-text">网卡名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E2%80%9CNetworkManager%E6%9C%8D%E5%8A%A1%E2%80%9D"><span class="toc-text">重启“NetworkManager服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E2%80%9CNetworkManager%E6%9C%8D%E5%8A%A1%E2%80%9D%EF%BC%8C%E9%87%8D%E5%90%AF%E2%80%9Cnetwork%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E2%80%9D"><span class="toc-text">关闭“NetworkManager服务”，重启“network网络服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1"><span class="toc-text">查看网卡</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -645,27 +634,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux-用户组管理"><a href="#Linux-用户组管理" class="headerlink" title="Linux 用户组管理"></a>Linux 用户组管理</h1><hr>
-<h3 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h3><p>groupadd 命令使用命令行上指定的值以及系统中的默认值创建一个新的组帐户。新组将根据需要被添加到系统文件中。</p>
-<p>groupadd 命令 语法格式如下：</p>
-<pre><code>groupadd [-g gid [-o]] [-r] [-f] group
-参数说明:
--g：指定新建工作组的 id；
--r：创建系统工作组，系统工作组的组ID小于 500；
--K：覆盖配置文件 &quot;/ect/login.defs&quot;；
--o：允许添加组 ID 号不唯一的工作组。
--f,--force: 如果指定的组已经存在，此选项将失明了仅以成功状态退出。当与 -g 一起使用，并且指定的GID_MIN已经存在时，选择另一个唯一的GID（即-g关闭）。
+        <h1 id="Ubuntu-1804-网络配置有关"><a href="#Ubuntu-1804-网络配置有关" class="headerlink" title="Ubuntu 1804 网络配置有关"></a>Ubuntu 1804 网络配置有关</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><pre><code>hostnamectl set-hostname ubuntu1804
 </code></pre>
-<hr>
-<h3 id="groupmod"><a href="#groupmod" class="headerlink" title="groupmod"></a>groupmod</h3><p>groupmod 命令用于修改用户组的相关信息，命令格式如下：</p>
-<pre><code>groupmod [选现] 组名
-选项：
--g GID：修改组 ID；
--n 新组名：修改组名；
+<h3 id="查看主机名、IP地址、域名、DNS资源记录、服务的状态"><a href="#查看主机名、IP地址、域名、DNS资源记录、服务的状态" class="headerlink" title="查看主机名、IP地址、域名、DNS资源记录、服务的状态"></a>查看主机名、IP地址、域名、DNS资源记录、服务的状态</h3><pre><code>systemd-resolve --status
 </code></pre>
-<hr>
-<h3 id="groupdel"><a href="#groupdel" class="headerlink" title="groupdel"></a>groupdel</h3><pre><code>groupdel [群组名称]
-</code></pre>
+<h3 id="网卡名"><a href="#网卡名" class="headerlink" title="网卡名"></a>网卡名</h3><p>默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等</p>
+<ol>
+<li>修改配置文件 vi /etc/default/grub</li>
+<li>在GRUB_CMDLINE_LINUX添加内容<br>GRUB_CMDLINE_LINUX=”net.ifnames=0 biosdevname=0”</li>
+<li>生效新的grub.cfg文件<br>grub-mkconfig -o /boot/grub/grub.cfg</li>
+<li>修改网卡配置文件的名称<br>把原来的”ensxx” 改为 “ethxx”</li>
+<li>重启系统生效</li>
+</ol>
+<h2 id="重启“NetworkManager服务”"><a href="#重启“NetworkManager服务”" class="headerlink" title="重启“NetworkManager服务”"></a>重启“NetworkManager服务”</h2><p>service NetworkManager restart</p>
+<h2 id="关闭“NetworkManager服务”，重启“network网络服务”"><a href="#关闭“NetworkManager服务”，重启“network网络服务”" class="headerlink" title="关闭“NetworkManager服务”，重启“network网络服务”"></a>关闭“NetworkManager服务”，重启“network网络服务”</h2><p>Centos6: service NetworkManager status  查看服务状态<br>    chkconfig NetworkManager off    \关闭自动启动<br>    service NetworkManager stop     \关闭服务<br>    service network restart         \重启网络服务<br>    注释：“NetworkManager服务停止后，在Centos6图形化界面，网络图标会消失。<br>Centos7: systemctl status NetworkManager 查看服务状态<br>    systemctl stop NetworkManager   临时停止<br>    systemctl disable NetworkManager 下次开机即停止服务</p>
+<h2 id="查看网卡"><a href="#查看网卡" class="headerlink" title="查看网卡"></a>查看网卡</h2><p>lspci -v 查看网卡信息</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
