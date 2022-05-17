@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>VMware扩展硬盘后无法正常开机的解决方法 | Hexo</title>
+  <meta name="keywords" content=" vmware ">
+  <meta name="description" content="VMware扩展硬盘后无法正常开机的解决方法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Git HEAD detached from XXX 解决办法解决办法1. 查看当前分支状态git branch * (HEAD detached at 925fda6) master  2.新建一个临时 tem 分支，把当前提交的代码放到整个分支git branch tem git checkout tem  3.换回要回到的那个分支，这里是 mastergit checkout master">
 <meta property="og:type" content="article">
@@ -610,17 +610,26 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux hexdump工具" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-VMWARE 扩容ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">VMware扩展硬盘后无法正常开机的解决方法</h1>
     
     <div class="article-meta">
         
         
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">vmware</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-05-13 11:55:24'>2022-05-13 11:55</time>
+            Created At : <time class="date" title='Updated At: 2022-05-17 21:26:35'>2022-05-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -642,7 +651,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HEXDUMP-%E5%B7%A5%E5%85%B7"><span class="toc-text">HEXDUMP 工具</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VMware%E6%89%A9%E5%B1%95%E7%A1%AC%E7%9B%98%E5%90%8E%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%BC%80%E6%9C%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">VMware扩展硬盘后无法正常开机的解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Assuming-drive-cache-write-through"><span class="toc-text">Assuming drive cache: write through</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -658,50 +667,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HEXDUMP-工具"><a href="#HEXDUMP-工具" class="headerlink" title="HEXDUMP 工具"></a>HEXDUMP 工具</h1><p>hexdump<br>display file contents in hexadecimal, decimal, octal, or ascii<br>hexdump options file …</p>
-<pre><code>   hd options file ...
-</code></pre>
-<p>DESCRIPTION         top<br>       The hexdump utility is a filter which displays the specified<br>       files, or standard input if no files are specified, in a<br>       user-specified format.<br>OPTIONS<br>       Below, the length and offset arguments may be followed by the<br>       multiplicative suffixes KiB (=1024), MiB (=1024<em>1024), and so on<br>       for GiB, TiB, PiB, EiB, ZiB and YiB (the “iB” is optional, e.g.,<br>       “K” has the same meaning as “KiB”), or the suffixes KB (=1000),<br>       MB (=1000</em>1000), and so on for GB, TB, PB, EB, ZB and YB.</p>
-<p>-b 单字节八进制显示<br>-b, –one-byte-octal<br>           One-byte octal display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated,<br>           three-column, zero-filled bytes of input data, in octal, per<br>           line.</p>
-<p>-c 单字节字符显示<br>-c, –one-byte-char<br>           One-byte character display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated,<br>           three-column, space-filled characters of input data per line.</p>
-<p>-C 输出规范的十六进制和ASCII码<br>-C, –canonical<br>           Canonical hex+ASCII display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated, two-column,<br>           hexadecimal bytes, followed by the same sixteen bytes in %_p<br>           format enclosed in ‘|’ characters. Invoking the program as hd<br>           implies this option.</p>
-<p>-d 双字节十进制显示<br>-d, –two-bytes-decimal<br>           Two-byte decimal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, five-column,<br>           zero-filled, two-byte units of input data, in unsigned<br>           decimal, per line.</p>
-<p>-e 指定格式字符串，格式字符串包含在一对单引号中，格式字符串形如：’a/b “format1” “format2”‘<br>-e, –format format_string<br>           Specify a format string to be used for displaying data.</p>
-<pre><code>   -f, --format-file file
-       Specify a file that contains one or more newline-separated
-       format strings. Empty lines and lines whose first non-blank
-       character is a hash mark (#) are ignored.
-
-   -L, --color[=when]
-       Accept color units for the output. The optional argument when
-       can be auto, never or always. If the when argument is
-       omitted, it defaults to auto. The colors can be disabled; for
-       the current built-in default see the --help output. See also
-       the Colors subsection and the COLORS section below.
-</code></pre>
-<p>-n length 只格式化输入文件的前length个字节。<br>-n, –length length<br>Interpret only length bytes of input.</p>
-<p>-o 双字节八进制显示<br>-o, –two-bytes-octal<br>           Two-byte octal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, six-column,<br>           zero-filled, two-byte quantities of input data, in octal, per<br>           line.</p>
-<p>-s 从偏移量开始输出<br>-s, –skip offset<br>           Skip offset bytes from the beginning of the input.</p>
-<pre><code>   -v, --no-squeezing
-       The -v option causes hexdump to display all input data.
-       Without the -v option, any number of groups of output lines
-       which would be identical to the immediately preceding group
-       of output lines (except for the input offsets), are replaced
-       with a line comprised of a single asterisk.
-</code></pre>
-<p>-x 双字节十六进制显示<br>-x, –two-bytes-hex<br>           Two-byte hexadecimal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, four-column,<br>           zero-filled, two-byte quantities of input data, in<br>           hexadecimal, per line.</p>
-<pre><code>   -V, --version
-       Display version information and exit.
-
-   -h, --help
-       Display help text and exit.
-
-   For each input file, hexdump sequentially copies the input to
-   standard output, transforming the data according to the format
-   strings specified by the -e and -f options, in the order that
-   they were specified.
-</code></pre>
-
+        <h1 id="VMware扩展硬盘后无法正常开机的解决方法"><a href="#VMware扩展硬盘后无法正常开机的解决方法" class="headerlink" title="VMware扩展硬盘后无法正常开机的解决方法"></a>VMware扩展硬盘后无法正常开机的解决方法</h1><p>参考：<br><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/a5g0ez07/">https://post.smzdm.com/p/a5g0ez07/</a></p>
+<h2 id="Assuming-drive-cache-write-through"><a href="#Assuming-drive-cache-write-through" class="headerlink" title="Assuming drive cache: write through"></a>Assuming drive cache: write through</h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
     </div>

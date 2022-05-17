@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hexo">
+  <title>Ubuntu 1804 网络配置有关 | Hexo</title>
+  <meta name="keywords" content=" linux , network ">
+  <meta name="description" content="Ubuntu 1804 网络配置有关 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Git HEAD detached from XXX 解决办法解决办法1. 查看当前分支状态git branch * (HEAD detached at 925fda6) master  2.新建一个临时 tem 分支，把当前提交的代码放到整个分支git branch tem git checkout tem  3.换回要回到的那个分支，这里是 mastergit checkout master">
 <meta property="og:type" content="article">
@@ -610,17 +610,28 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux hexdump工具" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ubuntu-18-04-网络操作" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Ubuntu 1804 网络配置有关</h1>
     
     <div class="article-meta">
         
         
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color3">network</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-05-13 11:55:24'>2022-05-13 11:55</time>
+            Created At : <time class="date" title='Updated At: 2022-05-17 21:27:36'>2022-04-01 08:00</time>
         
     </div>
     <div class="article-meta">
@@ -642,7 +653,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HEXDUMP-%E5%B7%A5%E5%85%B7"><span class="toc-text">HEXDUMP 工具</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-1804-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%9C%89%E5%85%B3"><span class="toc-text">Ubuntu 1804 网络配置有关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">基础配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">修改主机名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%BB%E6%9C%BA%E5%90%8D%E3%80%81IP%E5%9C%B0%E5%9D%80%E3%80%81%E5%9F%9F%E5%90%8D%E3%80%81DNS%E8%B5%84%E6%BA%90%E8%AE%B0%E5%BD%95%E3%80%81%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">查看主机名、IP地址、域名、DNS资源记录、服务的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%8D%A1%E5%90%8D"><span class="toc-text">网卡名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E2%80%9CNetworkManager%E6%9C%8D%E5%8A%A1%E2%80%9D"><span class="toc-text">重启“NetworkManager服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E2%80%9CNetworkManager%E6%9C%8D%E5%8A%A1%E2%80%9D%EF%BC%8C%E9%87%8D%E5%90%AF%E2%80%9Cnetwork%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E2%80%9D"><span class="toc-text">关闭“NetworkManager服务”，重启“network网络服务”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1"><span class="toc-text">查看网卡</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -658,49 +669,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HEXDUMP-工具"><a href="#HEXDUMP-工具" class="headerlink" title="HEXDUMP 工具"></a>HEXDUMP 工具</h1><p>hexdump<br>display file contents in hexadecimal, decimal, octal, or ascii<br>hexdump options file …</p>
-<pre><code>   hd options file ...
+        <h1 id="Ubuntu-1804-网络配置有关"><a href="#Ubuntu-1804-网络配置有关" class="headerlink" title="Ubuntu 1804 网络配置有关"></a>Ubuntu 1804 网络配置有关</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><pre><code>hostnamectl set-hostname ubuntu1804
 </code></pre>
-<p>DESCRIPTION         top<br>       The hexdump utility is a filter which displays the specified<br>       files, or standard input if no files are specified, in a<br>       user-specified format.<br>OPTIONS<br>       Below, the length and offset arguments may be followed by the<br>       multiplicative suffixes KiB (=1024), MiB (=1024<em>1024), and so on<br>       for GiB, TiB, PiB, EiB, ZiB and YiB (the “iB” is optional, e.g.,<br>       “K” has the same meaning as “KiB”), or the suffixes KB (=1000),<br>       MB (=1000</em>1000), and so on for GB, TB, PB, EB, ZB and YB.</p>
-<p>-b 单字节八进制显示<br>-b, –one-byte-octal<br>           One-byte octal display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated,<br>           three-column, zero-filled bytes of input data, in octal, per<br>           line.</p>
-<p>-c 单字节字符显示<br>-c, –one-byte-char<br>           One-byte character display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated,<br>           three-column, space-filled characters of input data per line.</p>
-<p>-C 输出规范的十六进制和ASCII码<br>-C, –canonical<br>           Canonical hex+ASCII display. Display the input offset in<br>           hexadecimal, followed by sixteen space-separated, two-column,<br>           hexadecimal bytes, followed by the same sixteen bytes in %_p<br>           format enclosed in ‘|’ characters. Invoking the program as hd<br>           implies this option.</p>
-<p>-d 双字节十进制显示<br>-d, –two-bytes-decimal<br>           Two-byte decimal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, five-column,<br>           zero-filled, two-byte units of input data, in unsigned<br>           decimal, per line.</p>
-<p>-e 指定格式字符串，格式字符串包含在一对单引号中，格式字符串形如：’a/b “format1” “format2”‘<br>-e, –format format_string<br>           Specify a format string to be used for displaying data.</p>
-<pre><code>   -f, --format-file file
-       Specify a file that contains one or more newline-separated
-       format strings. Empty lines and lines whose first non-blank
-       character is a hash mark (#) are ignored.
-
-   -L, --color[=when]
-       Accept color units for the output. The optional argument when
-       can be auto, never or always. If the when argument is
-       omitted, it defaults to auto. The colors can be disabled; for
-       the current built-in default see the --help output. See also
-       the Colors subsection and the COLORS section below.
+<h3 id="查看主机名、IP地址、域名、DNS资源记录、服务的状态"><a href="#查看主机名、IP地址、域名、DNS资源记录、服务的状态" class="headerlink" title="查看主机名、IP地址、域名、DNS资源记录、服务的状态"></a>查看主机名、IP地址、域名、DNS资源记录、服务的状态</h3><pre><code>systemd-resolve --status
 </code></pre>
-<p>-n length 只格式化输入文件的前length个字节。<br>-n, –length length<br>Interpret only length bytes of input.</p>
-<p>-o 双字节八进制显示<br>-o, –two-bytes-octal<br>           Two-byte octal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, six-column,<br>           zero-filled, two-byte quantities of input data, in octal, per<br>           line.</p>
-<p>-s 从偏移量开始输出<br>-s, –skip offset<br>           Skip offset bytes from the beginning of the input.</p>
-<pre><code>   -v, --no-squeezing
-       The -v option causes hexdump to display all input data.
-       Without the -v option, any number of groups of output lines
-       which would be identical to the immediately preceding group
-       of output lines (except for the input offsets), are replaced
-       with a line comprised of a single asterisk.
-</code></pre>
-<p>-x 双字节十六进制显示<br>-x, –two-bytes-hex<br>           Two-byte hexadecimal display. Display the input offset in<br>           hexadecimal, followed by eight space-separated, four-column,<br>           zero-filled, two-byte quantities of input data, in<br>           hexadecimal, per line.</p>
-<pre><code>   -V, --version
-       Display version information and exit.
-
-   -h, --help
-       Display help text and exit.
-
-   For each input file, hexdump sequentially copies the input to
-   standard output, transforming the data according to the format
-   strings specified by the -e and -f options, in the order that
-   they were specified.
-</code></pre>
+<h3 id="网卡名"><a href="#网卡名" class="headerlink" title="网卡名"></a>网卡名</h3><p>默认ubuntu的网卡名称和Cent OS 7类似，如：ens33，ens38等</p>
+<ol>
+<li>修改配置文件 vi /etc/default/grub</li>
+<li>在GRUB_CMDLINE_LINUX添加内容<br>GRUB_CMDLINE_LINUX=”net.ifnames=0 biosdevname=0”</li>
+<li>生效新的grub.cfg文件<br>grub-mkconfig -o /boot/grub/grub.cfg</li>
+<li>修改网卡配置文件的名称<br>把原来的”ensxx” 改为 “ethxx”</li>
+<li>重启系统生效</li>
+</ol>
+<h2 id="重启“NetworkManager服务”"><a href="#重启“NetworkManager服务”" class="headerlink" title="重启“NetworkManager服务”"></a>重启“NetworkManager服务”</h2><p>service NetworkManager restart</p>
+<h2 id="关闭“NetworkManager服务”，重启“network网络服务”"><a href="#关闭“NetworkManager服务”，重启“network网络服务”" class="headerlink" title="关闭“NetworkManager服务”，重启“network网络服务”"></a>关闭“NetworkManager服务”，重启“network网络服务”</h2><p>Centos6: service NetworkManager status  查看服务状态<br>    chkconfig NetworkManager off    \关闭自动启动<br>    service NetworkManager stop     \关闭服务<br>    service network restart         \重启网络服务<br>    注释：“NetworkManager服务停止后，在Centos6图形化界面，网络图标会消失。<br>Centos7: systemctl status NetworkManager 查看服务状态<br>    systemctl stop NetworkManager   临时停止<br>    systemctl disable NetworkManager 下次开机即停止服务</p>
+<h2 id="查看网卡"><a href="#查看网卡" class="headerlink" title="查看网卡"></a>查看网卡</h2><p>lspci -v 查看网卡信息</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
