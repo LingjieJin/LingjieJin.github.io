@@ -1,3 +1,9 @@
+---
+title: Ubuntu 1804 网络配置有关
+date: 2022-04
+tags: [linux, network]
+---
+
 # Ubuntu 1804 网络配置有关
 
 ## 基础配置
