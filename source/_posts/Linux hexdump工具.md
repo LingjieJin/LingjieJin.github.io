@@ -1,3 +1,8 @@
+---
+title: Linux Hexdump
+date: 2022-05
+tags: [linux, hexdump]
+---
 
 # HEXDUMP 工具
 hexdump 
