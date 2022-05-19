@@ -1,8 +1,18 @@
+---
+title: zsh 配置
+date: 2022-05
+tags: [zsh, linux, mac]
+---
+
 ref：https://www.jianshu.com/p/246b844f4449
+
+# zsh配置
+记录各个版本的zsh安装和配置
+
 
 # Mac下安装zsh以及配置
 
-# 安装zsh
+### 安装zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 卸载oh-my-zsh命令：uninstall_oh_my_zsh
@@ -17,11 +27,15 @@ sh install.sh
 ```
 
 
-# 配置zsh
+# Linux下安装zsh
 
-# 别名配置
-vim ~/.zshrc
-```
+
+
+# zsh配置
+
+## 别名配置
+nano ~/.zshrc
+```bash
 # For git
 alias gs="git status"
 alias ga='git add'
@@ -47,18 +61,18 @@ alias ip="curl ip.cn"
 ```
 source ~/.zshrc
 
-# 基础配置
-## 主题
+## 基础配置
+### 主题
 安装成功后，用vim打开隐藏文件 .zshrc ，修改主题为 agnoster：
 ZSH_THEME="agnoster"
 
-## 安装powerline
+### 安装powerline
 先安装pip
 sudo easy_install pip
 再安装Powerline
 pip install powerline-status
 
-## 安装meslo字体
+### 安装meslo字体
 应用这个主题需要特殊的字体支持，否则会出现乱码情况，这时我们来配置字体：
 安装 Meslo 字体库。
 方法1、可以直接复制下面命令到终端中安装：
@@ -75,11 +89,12 @@ rm -rf fonts
 应用字体到iTerm2下，我自己喜欢将字号设置为16px，看着舒服（iTerm -> Preferences -> Profiles -> Text -> Change Font）
 重新打开iTerm2窗口，这时便可以看到效果了
 
-# 配置插件
+### 配置插件
 切入扩展目录
-cd ~/.oh-my-zsh/custom/plugins
+    
+    cd ~/.oh-my-zsh/custom/plugins
 
-# 高亮显示
+#### 高亮显示
 git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 打开`.zshrc`文件，在最后添加下面内容
 vim  ~/.zshrc
@@ -90,23 +105,22 @@ plugins=(zsh-syntax-highlighting)
 执行
 source ~/.zshrc
 
-# 自动提示命令
-将工程克隆到当前目录
-git clone git://github.com/zsh-users/zsh-autosuggestions
+#### 自动提示命令
+    git clone git://github.com/zsh-users/zsh-autosuggestions
 
-打开.zshrc文件，在最后添加下面内容
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-plugins=(zsh-autosuggestions)
+    打开.zshrc文件，在最后添加下面内容
+    source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    plugins=(zsh-autosuggestions)
 
-修改高亮提示
-cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    修改高亮提示
+    cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-vim zsh-autosuggestions.zsh 
+    im zsh-autosuggestions.zsh 
 
-修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10' 
+    修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10' 
 
-# 执行修改
-source ~/.zshrc
+    # 执行修改
+    source ~/.zshrc
 
 
 # 使用homebrew安装语法高亮
@@ -121,7 +135,7 @@ source ~/.zshrc
 # 安装coreutils
 brew install coreutils
 
-# 安装自动补全插件incr
+#### 安装自动补全插件incr
 incr地址：https://mimosa-pudica.net/zsh-incremental.html
 cd ~/.oh-my-zsh/plugins/
 mkdir -p incr
