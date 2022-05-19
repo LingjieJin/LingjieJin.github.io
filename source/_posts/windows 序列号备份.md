@@ -1,4 +1,6 @@
-# AIDA 序列号 
+# windows 序列号备份
+ 
+## AIDA 序列号 
 
 2020.05.07有效
 AIDA64 Extreme 至尊版：FARRD-CU2D6-J9D59-LD2Q4-3AJG7
