@@ -4,31 +4,128 @@ date: 2022-05
 tags: [zsh, linux, mac]
 ---
 
-ref：https://www.jianshu.com/p/246b844f4449
-
 # zsh配置
 记录各个版本的zsh安装和配置
 
-
 # Mac下安装zsh以及配置
+[Mac 安装zsh参考](https://www.xiebruce.top/590.html)
 
 ### 安装zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-卸载oh-my-zsh命令：uninstall_oh_my_zsh
+### 卸载oh-my-zsh命令
+    uninstall_oh_my_zsh
 
-或者使用homebrew安装
-brew install zsh
+### 使用homebrew安装
+    brew install zsh
 
-或者从git上安装：
+### 安装插件
+#### 安装meslo字体
+应用这个主题需要特殊的字体支持，否则会出现乱码情况，这时我们来配置字体：
+安装 Meslo 字体库。
+方法1、可以直接复制下面命令到终端中安装：
 ```
-curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh install.sh
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# clean-up a bit
+cd ..
+rm -rf fonts
 ```
+应用字体到iTerm2下，我自己喜欢将字号设置为16px，看着舒服（iTerm -> Preferences -> Profiles -> Text -> Change Font）
+重新打开iTerm2窗口，这时便可以看到效果了
 
+#### 使用homebrew安装语法高亮
+brew install zsh-syntax-highlighting
+配置.zshrc文件，插入一行。
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zshrc
+
+# 安装coreutils
+brew install coreutils
+
+------------------------------------------------------------------------------------------------------
 
 # Linux下安装zsh
+## 安装zsh
+检查是否已经安装了zsh，输入 zsh --version 查看版本信息
+执行 sudo apt-get install zsh
 
+## 安装oh-my-zsh插件
+### 下载安装脚本
+    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+
+    或者
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    国内服务器如果用上边的命令安装不了，可以用gitee同步的仓库来安装
+    sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)"
+
+### 由于国内下载git源可能会很慢，可以修改成gitee下载：
+vim install.sh：
+找到以下部分：
+
+    # Default settings
+    ZSH=${ZSH:-~/.oh-my-zsh}
+    REPO=${REPO:-ohmyzsh/ohmyzsh}
+    REMOTE=${REMOTE:-https://github.com/${REPO}.git}
+    BRANCH=${BRANCH:-master}
+
+然后将中间两行改为：
+
+    REPO=${REPO:-mirrors/oh-my-zsh}
+    REMOTE=${REMOTE:-https://gitee.com/${REPO}.git}
+
+### 配置zsh
+修改 ~/.zshrc 文件
+#### 修改主题：
+ZSH_THEME="robbyrussell"
+改为
+ZSH_THEME="ys"
+#### 随机主题
+ZSH_THEME="random" 
+
+从你最喜欢的主题列表中选择随机主题
+
+    ZSH_THEME_RANDOM_CANDIDATES=(
+    "robbyrussell"
+    "agnoster"
+    )
+
+#### 修改插件：
+plugins=(git)
+改为
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+- Git：用于在你的主机名后显示git项目信息，比如分支，目录，当前项目状态等信息，可以使用各种git命令缩写；
+- z：用于目录间快速跳转，比如之前进入过~/User/my_project目录后，下一次再想进入的时候，直接z my_project即可，对于较长目录跳转非常的实用；
+- zsh-syntax-highlighting：用于高亮显示常见的命令，比如ls，cd等命令为绿色，输入错误命令时会显示红色；
+- zsh-autosuggestions：当你输入命令的时候，会用灰色显示出你可能想输入的推荐命令，直接键盘→就能补全命令，效率神器。
+
+#### 如果.bash_profile中有配置内容的话，还需要增加一行：
+source ~/.bash_profile
+
+### 安装插件
+#### 安装zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+    // 或者用git下载
+    git clone git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+#### 安装zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+    // 或者用git下载
+    git clone git@github.com:zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+#### 安装powerline插件
+    sudo apt install powerline fonts-powerline
+    sudo apt install zsh-theme-powerlevel9k
+    echo "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
+
+#### 安装完成后，重新更新配置
+    source .zshrc
 
 
 # zsh配置
@@ -59,95 +156,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ip="curl ip.cn"
 ```
-source ~/.zshrc
 
-## 基础配置
-### 主题
-安装成功后，用vim打开隐藏文件 .zshrc ，修改主题为 agnoster：
-ZSH_THEME="agnoster"
-
-### 安装powerline
-先安装pip
-sudo easy_install pip
-再安装Powerline
-pip install powerline-status
-
-### 安装meslo字体
-应用这个主题需要特殊的字体支持，否则会出现乱码情况，这时我们来配置字体：
-安装 Meslo 字体库。
-方法1、可以直接复制下面命令到终端中安装：
-```
-# clone
-git clone https://github.com/powerline/fonts.git --depth=1
-# install
-cd fonts
-./install.sh
-# clean-up a bit
-cd ..
-rm -rf fonts
-```
-应用字体到iTerm2下，我自己喜欢将字号设置为16px，看着舒服（iTerm -> Preferences -> Profiles -> Text -> Change Font）
-重新打开iTerm2窗口，这时便可以看到效果了
-
-### 配置插件
-切入扩展目录
-    
-    cd ~/.oh-my-zsh/custom/plugins
-
-#### 高亮显示
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-打开`.zshrc`文件，在最后添加下面内容
-vim  ~/.zshrc
-添加代码
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-plugins=(zsh-syntax-highlighting)
-保存文件。
-执行
-source ~/.zshrc
-
-#### 自动提示命令
-    git clone git://github.com/zsh-users/zsh-autosuggestions
-
-    打开.zshrc文件，在最后添加下面内容
-    source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    plugins=(zsh-autosuggestions)
-
-    修改高亮提示
-    cd ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-
-    im zsh-autosuggestions.zsh 
-
-    修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10' 
-
-    # 执行修改
-    source ~/.zshrc
-
-
-# 使用homebrew安装语法高亮
-brew install zsh-syntax-highlighting
-
-配置.zshrc文件，插入一行。
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-source ~/.zshrc
-
-
-# 安装coreutils
-brew install coreutils
-
-#### 安装自动补全插件incr
-incr地址：https://mimosa-pudica.net/zsh-incremental.html
-cd ~/.oh-my-zsh/plugins/
-mkdir -p incr
-cd incr
-touch incr-0.2.zsh（将上面链接中的代码复制粘贴到incr-0.2.zsh文件中）
-chmod 777 incr-0.2.zsh
-
-## 配置.zshrc文件
- vim ~/.zshrc
- source ~/.oh-my-zsh/plugins/incr/incr*.zsh
- source ~/.zshrc 
- 
 # 隐藏用户名
 在zshrc中添加该字段：
 
@@ -155,7 +164,11 @@ DEFAULT_USER="用户名"
 
 用户名指当前电脑用户，可以用whoami查看
 
-
+### 安装powerline
+先安装pip
+sudo easy_install pip
+再安装Powerline
+pip install powerline-status
 
 
 

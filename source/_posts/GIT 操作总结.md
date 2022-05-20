@@ -117,8 +117,20 @@ git pull git@github.com:LingjieJin/SomeSample.git main:localmain
 ### 将本地分支推送到远程
     git push <远程主机名> <本地分支名>:<远程分支名>
 
+-----------------------------------------------------------------------------------------
+
+## git创建一个空白分支推送到远程仓库
+
 ### 创建一个空白的分支
     git checkout --orphan newbranch
+
+### 删除所有文件记录
+        git rm -rf . //注意：最后的‘.’不能少
+
+### 提交分支到远程仓储
+        git add .
+        git commit -m 'new branch'
+        git push origin newbranch
 
 -------------------------------------------------------------------------------------------
 
