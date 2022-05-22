@@ -53,6 +53,22 @@ brew install coreutils
 检查是否已经安装了zsh，输入 zsh --version 查看版本信息
 执行 sudo apt-get install zsh
 
+## 修改默认shell
+查看当前默认使用的shell：
+
+    echo $SHELL
+    或者
+    echo $0
+
+    查看当前有哪些shell：
+    cat /etc/shells
+
+
+切换shell为zsh：
+    
+    chsh -s /bin/zsh
+
+
 ## 安装oh-my-zsh插件
 ### 下载安装脚本
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -172,3 +188,4 @@ pip install powerline-status
 
 
 
+## 
