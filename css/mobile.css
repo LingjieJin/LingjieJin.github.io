@@ -257,7 +257,7 @@
   .shang_box .shang_payimg .pay_img {
     width: 427px;
   }
-  .shang_box .shang_payimg .pay_img.weixin_img {
+  .shang_box .shang_payimg .pay_img.weixin_png {
     margin-left: -227px;
   }
   .shang_box .shang_payimg .pay_img img {
@@ -297,7 +297,7 @@ font-size
   .shang_box .shang_payimg .pay_img {
     width: 324px;
   }
-  .shang_box .shang_payimg .pay_img.weixin_img {
+  .shang_box .shang_payimg .pay_img.weixin_png {
     margin-left: -174px;
   }
   .shang_box .shang_payimg .pay_img img {

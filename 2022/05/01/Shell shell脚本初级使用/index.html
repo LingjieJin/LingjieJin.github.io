@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Shell初级使用 | Hexo</title>
+  <meta name="keywords" content=" Shell ">
+  <meta name="description" content="Shell初级使用 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="参考文章ubuntu新硬盘挂载及格式化NTFS[https:&#x2F;&#x2F;codeantenna.com&#x2F;a&#x2F;XkEEPnJY3Z]  格式化新硬盘查看硬盘信息指令查看硬盘具体信息，包括分区等  sudo fdisk -l  查看有多少个硬盘  sudo lshw -c disk   一般会显示:  disk:0（设备名为 &#x2F;dev&#x2F;sda）  disk:1（设备名为 &#x2F;dev&#x2F;sdb）  查看所有的存储介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS-挂载硬盘">
+<meta property="og:url" content="http://example.com/2022/10/23/NAS-%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考文章ubuntu新硬盘挂载及格式化NTFS[https:&#x2F;&#x2F;codeantenna.com&#x2F;a&#x2F;XkEEPnJY3Z]  格式化新硬盘查看硬盘信息指令查看硬盘具体信息，包括分区等  sudo fdisk -l  查看有多少个硬盘  sudo lshw -c disk   一般会显示:  disk:0（设备名为 &#x2F;dev&#x2F;sda）  disk:1（设备名为 &#x2F;dev&#x2F;sdb）  查看所有的存储介">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-22T18:34:34.050Z">
+<meta property="article:author" content="King">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="nas">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/p2.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/p2.jpg"/>
+</a>
+<div class="author">
+    <span>King</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LingjieJin"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(65)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="65">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码流地址</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>外星人</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令索引</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>blog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>command</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>diskpart</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>group</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexdump</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ifconfig</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ip</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipv6</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jellyfin</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mac</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mount</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nano</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nas</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NAS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netplan</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netstat</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>networkmanager</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nmcli</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>node</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>openwrt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rc-local</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>route</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>samba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ss</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>system</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>systemctl</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>user</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vim</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vmware</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zsh</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/2022/10/23/NAS-%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="NAS,nas"
+           data-author="" >
+            <span class="post-title" title="NAS-挂载硬盘">NAS-挂载硬盘</span>
+            <span class="post-date" title="2022-10-23 00:00:00">2022/10/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20%E5%BA%8F%E5%88%97%E5%8F%B7%E5%A4%87%E4%BB%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20win10%E4%BD%BF%E7%94%A8vs%E8%BF%9E%E6%8E%A5%E5%AD%90%E7%B3%BB%E7%BB%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20w10%E5%BC%80%E5%90%AF%E5%AD%90%E7%B3%BB%E7%BB%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20powershell%E7%BE%8E%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20mysql%E9%87%8D%E7%BD%AEroot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/raspberry%203b+%20%E5%AE%89%E8%A3%85picam%20%E5%92%8Copencv/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/iterm2%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8Bssh%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/iterm2%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/aliyun%20ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/docker%20%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AAweb%E5%BA%94%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/docker%20%E9%83%A8%E7%BD%B2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Raspberry%20%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Raspberry%20%E5%AE%89%E8%A3%85opencv/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Macos%20%E5%BC%80%E5%8F%91%E4%B8%AD%E7%A2%B0%E5%88%B0%E6%91%84%E5%83%8F%E5%A4%B4%E9%9A%90%E7%A7%81%E9%97%AE%E9%A2%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20%E6%8C%87%E4%BB%A4%E7%B4%A2%E5%BC%952/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20systemd%20%E8%AE%BE%E7%BD%AE%E6%AF%8F5min%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20systemd%20%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/GIT%20%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="GIT 操作总结">GIT 操作总结</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20hexdump%E5%B7%A5%E5%85%B7/"
+           data-tag="linux,hexdump"
+           data-author="" >
+            <span class="post-title" title="Linux Hexdump">Linux Hexdump</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/IPV6%20ipv6%20ping%E6%B5%8B%E8%AF%95/"
+           data-tag="ipv6"
+           data-author="" >
+            <span class="post-title" title="IP V6测试">IP V6测试</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20nano%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,nano"
+           data-author="" >
+            <span class="post-title" title="Linux Nano使用">Linux Nano使用</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20tar%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,指令,tar"
+           data-author="" >
+            <span class="post-title" title="Linux tar 指令">Linux tar 指令</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20%E6%8C%87%E4%BB%A4%E7%B4%A2%E5%BC%95/"
+           data-tag="linux,command,指令索引"
+           data-author="" >
+            <span class="post-title" title="Linux 指令索引">Linux 指令索引</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Shell%20shell%E8%84%9A%E6%9C%AC%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8/"
+           data-tag="Shell"
+           data-author="" >
+            <span class="post-title" title="Shell初级使用">Shell初级使用</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/windows%20VMWARE%20%E6%89%A9%E5%AE%B9ubuntu/"
+           data-tag="vmware"
+           data-author="" >
+            <span class="post-title" title="VMware扩展硬盘后无法正常开机的解决方法">VMware扩展硬盘后无法正常开机的解决方法</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/windows%20%E8%87%AA%E5%B8%A6diskpart%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"
+           data-tag="windows,diskpart"
+           data-author="" >
+            <span class="post-title" title="使用Windows自带的Diskpart工具">使用Windows自带的Diskpart工具</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E7%AC%94%E8%AE%B0%20%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86IPCamera/"
+           data-tag="ipc,码流地址"
+           data-author="" >
+            <span class="post-title" title="海康威视 IPCamera 码流地址">海康威视 IPCamera 码流地址</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E7%AC%94%E8%AE%B0%20%E5%A4%96%E6%98%9F%E4%BA%BA%E6%94%B9%E8%A3%85%E6%96%87%E6%A1%A3/"
+           data-tag="外星人"
+           data-author="" >
+            <span class="post-title" title="外星人改装">外星人改装</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20Bash%E9%85%8D%E7%BD%AE/"
+           data-tag="linux,bash,mac"
+           data-author="" >
+            <span class="post-title" title="Bash配置">Bash配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20Vim%E8%AE%BE%E7%BD%AE/"
+           data-tag="linux,mac,vim"
+           data-author="" >
+            <span class="post-title" title="Vim 配置">Vim 配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20zsh%E9%85%8D%E7%BD%AE/"
+           data-tag="linux,mac,zsh"
+           data-author="" >
+            <span class="post-title" title="zsh 配置">zsh 配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ifconfig%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,ifconfig,指令"
+           data-author="" >
+            <span class="post-title" title="Linux ifconfig 指令">Linux ifconfig 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ip"
+           data-author="" >
+            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,nmcli"
+           data-author="" >
+            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20route%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,route"
+           data-author="" >
+            <span class="post-title" title="Linux route 指令">Linux route 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ss%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ss"
+           data-author="" >
+            <span class="post-title" title="Linux ss 指令">Linux ss 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="linux,mount"
+           data-author="" >
+            <span class="post-title" title="Linux 挂载硬盘">Linux 挂载硬盘</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/"
+           data-tag="linux,group"
+           data-author="" >
+            <span class="post-title" title="Linux 用户组管理">Linux 用户组管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="linux,user"
+           data-author="" >
+            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux 系统管理">Linux 系统管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
+           data-tag="linux,ubuntu18.04,docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
+           data-tag="docker,jellyfin"
+           data-author="" >
+            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%20%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,samba"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置samba">Ubuntu 18.04 配置samba</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E4%BD%BF%E7%94%A8netplan%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C/"
+           data-tag="linux,network,ubuntu18.04,netplan"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 使用netplan设置网络">ubuntu 18.04 使用netplan设置网络</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,system,rc-local"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 设置rc-local服务">ubuntu 18.04 设置rc-local服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
+           data-tag="linux,network"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 1804 网络配置有关">Ubuntu 1804 网络配置有关</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,TFTP"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag="blog,node,hexo"
+           data-author="" >
+            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,nfs"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 配置nfs服务">ubuntu 18.04 配置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,netstat"
+           data-author="" >
+            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager/"
+           data-tag="linux,ubuntu18.04,networkmanager"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 关闭networkmanager">Ubuntu 18.04 关闭networkmanager</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork/"
+           data-tag="linux,ubuntu18.04,network interface"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置network的interface">Ubuntu 18.04 配置network的interface</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
+           data-author="" >
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E5%AE%89%E8%A3%85OpenWRT%E5%81%9A%E6%97%81%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker安装OpenWRT做旁路由">Docker安装OpenWRT做旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-docker%20%E8%BF%90%E8%A1%8C%20openwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 配置openwrt 单网卡 旁路由">docker 配置openwrt 单网卡 旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-%E5%9C%A8docker%E9%87%8C%E8%BF%90%E8%A1%8Copenwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 在docker里运行openwrt">docker 在docker里运行openwrt</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/C++%20c++%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%AE%9A%E4%B9%89/"
+           data-tag="c++,interface,接口"
+           data-author="" >
+            <span class="post-title" title="C++ 接口类">C++ 接口类</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E8%AE%BE%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+           data-tag="linux,nfs"
+           data-author="" >
+            <span class="post-title" title="Linux 设置nfs服务">Linux 设置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%91%BD%E4%BB%A4/"
+           data-tag="linux,docker"
+           data-author="" >
+            <span class="post-title" title="docker 命令">docker 命令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub/"
+           data-tag="blog,hexo"
+           data-author="" >
+            <span class="post-title" title="Build Blog with Hexo+Github">Build Blog with Hexo+Github</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub%E5%88%86%E6%94%AF%E5%AD%98%E5%82%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置github分支存储">配置github分支存储</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Shell shell脚本初级使用" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Shell初级使用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Shell</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-05-22 14:15:19'>2022-05-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shell%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8"><span class="toc-text">Shell初级使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E5%8F%98%E9%87%8F"><span class="toc-text">Shell变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%91%BD%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E8%B5%8B%E5%80%BC%E7%BB%99%E5%8F%98%E9%87%8F"><span class="toc-text">将命令的执行结果赋值给变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F"><span class="toc-text">Shell特殊变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell-IF-%E5%88%A4%E6%96%AD%E9%80%BB%E8%BE%91"><span class="toc-text">Shell IF 判断逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">基本语法:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-text">扩展语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6-%E7%9B%AE%E5%BD%95%E5%88%A4%E6%96%AD"><span class="toc-text">文件&#x2F;目录判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%A4%E6%96%AD"><span class="toc-text">字符串判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E5%88%A4%E6%96%AD"><span class="toc-text">数值判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%88%A4%E6%96%AD"><span class="toc-text">逻辑判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%88%A4%E6%96%AD"><span class="toc-text">其他判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IF%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-text">IF高级特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample"><span class="toc-text">sample</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E7%9B%AE%E5%BD%95-doiido%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%EF%BC%8C%E8%8B%A5%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%88%99%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA"><span class="toc-text">判断目录$doiido是否存在，若不存在，则新建一个</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%99%AE%E9%80%9A%E6%96%87%E4%BB%B6-doiido%E6%98%AF%E5%90%A6%E5%AD%98%EF%BC%8C%E8%8B%A5%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%88%99%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA"><span class="toc-text">判断普通文件$doiido是否存，若不存在，则新建一个</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-doiido%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%B9%B6%E4%B8%94%E6%98%AF%E5%90%A6%E5%85%B7%E6%9C%89%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-text">判断$doiido是否存在并且是否具有可执行权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F-doiido%E6%98%AF%E5%90%A6%E6%9C%89%E5%80%BC"><span class="toc-text">是判断变量$doiido是否有值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="toc-text">两个变量判断是否相等</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E9%80%80%E5%87%BA%E7%8A%B6%E6%80%81%EF%BC%9A"><span class="toc-text">测试退出状态：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%EF%BC%9A"><span class="toc-text">数值的比较：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-gt-b-%E4%B8%94-a-lt-c"><span class="toc-text">a&gt;b 且 a&lt;c</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E5%B8%B8%E7%94%A8%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4"><span class="toc-text">shell常用组合命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8Dip%E5%9C%B0%E5%9D%80"><span class="toc-text">获取当前ip地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96ssid"><span class="toc-text">获取ssid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%97%B6%E9%97%B4"><span class="toc-text">获取时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%BC%80%E6%9C%BA%E6%A3%80%E6%B5%8B%E8%84%9A%E6%9C%AC"><span class="toc-text">简单的开机检测脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B"><span class="toc-text">查看当前操作系统类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if%E5%88%A9%E7%94%A8read%E4%BC%A0%E5%8F%82%E5%88%A4%E6%96%AD"><span class="toc-text">if利用read传参判断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-text">判断文件是否存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%9C%A8%E6%AF%8F%E4%B8%AA%E6%98%9F%E6%9C%9F%E5%A4%A9%E7%94%B1cron%E6%9D%A5%E6%89%A7%E8%A1%8C%E3%80%82%E5%A6%82%E6%9E%9C%E6%98%9F%E6%9C%9F%E7%9A%84%E6%95%B0%E6%98%AF%E5%81%B6%E6%95%B0%EF%BC%8C%E4%BB%96%E5%B0%B1%E6%8F%90%E9%86%92%E4%BD%A0%E6%8A%8A%E5%9E%83%E5%9C%BE%E7%AE%B1%E6%B8%85%E7%90%86%EF%BC%9A"><span class="toc-text">这个脚本在每个星期天由cron来执行。如果星期的数是偶数，他就提醒你把垃圾箱清理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98%E8%84%9A%E6%9C%AC-windows%E4%B8%8B%E7%9A%84ntfs%E6%A0%BC%E5%BC%8F%E7%A1%AC%E7%9B%98"><span class="toc-text">挂载硬盘脚本(windows下的ntfs格式硬盘)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA"><span class="toc-text">判断字符串是否为空</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Shell初级使用"><a href="#Shell初级使用" class="headerlink" title="Shell初级使用"></a>Shell初级使用</h1><h2 id="Shell变量"><a href="#Shell变量" class="headerlink" title="Shell变量"></a>Shell变量</h2><p>shell变量的三种定义方式：</p>
+<ol>
+<li><p>variable=value</p>
+</li>
+<li><p>variable=’value’</p>
+</li>
+<li><p>variable=”value”</p>
+<pre><code> =号前后不能有空格
+
+ variable 是变量名，value 是赋给变量的值
+
+ 如果 value 不包含任何空白符（例如空格、Tab缩进等），那么可以不使用引号
+
+ 如果 value 包含了空白符，那么就必须使用引号包围起来
+
+ 使用单引号和使用双引号也是有区别的
+
+ 使用变量时加上$符号
+ 变量使用时加上&#123;&#125;限定符
+
+ 以单引号&#39; &#39;包围变量的值时，单引号里面是什么就输出什么
+ 即使内容中有变量和命令（命令需要反引起来）也会把它们原样输出
+ 这种方式比较适合定义显示纯字符串的情况，即不希望解析变量、命令等的场景
+
+ 以双引号&quot; &quot;包围变量的值时，输出时会先解析里面的变量和命令，而不是把双引号中的变量名和命令原样输出
+ 这种方式比较适合字符串中附带有变量和命令并且想将其解析后再输出的变量定义
+</code></pre>
+</li>
+</ol>
+<h3 id="将命令的执行结果赋值给变量"><a href="#将命令的执行结果赋值给变量" class="headerlink" title="将命令的执行结果赋值给变量"></a>将命令的执行结果赋值给变量</h3><pre><code class="bash">variable=`command`
+variable=$(command)
+
+第一种方式把命令用反引号包围起来，反引号和单引号非常相似，容易产生混淆，所以不推荐使用这种方式
+第二种方式把命令用$()包围起来，区分更加明显
+</code></pre>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>运行shell时，会同时存在三种变量：</p>
+<ol>
+<li><p>局部变量</p>
+<pre><code> 局部变量在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量。
+</code></pre>
+</li>
+<li><p>环境变量</p>
+<pre><code> 所有的程序，包括shell启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候shell脚本也可以定义环境变量。
+</code></pre>
+</li>
+<li><p>shell变量</p>
+<pre><code> shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行
+</code></pre>
+</li>
+<li><p>环境变量：全局环境变量</p>
+<pre><code> 查看系统全局变量，可以使用env命令,
+ 查看个别环境变量，可以使用printenv xxx查看.printenv则打印所有的变量
+</code></pre>
+</li>
+<li><p>自定义局部变量</p>
+<pre><code> 声明变量名时必须加$关键词, 赋值时不要加$关键词,输出时要加$关键词，也可以说使用echo时都要加$。
+ 变量名，等号，值三者之间不能有空格。如果变量值有空格时，必须加双引号。
+</code></pre>
+</li>
+</ol>
+<ol start="6">
+<li><p>自定义全局变量</p>
+<pre><code> 创建全局变量的方法是先创建一个局部变量,然后导出到全局环境中。
+ 通过export来导出，变量名前面不加$。
+</code></pre>
+</li>
+<li><p>删除变量</p>
+<pre><code> 要删除环境变量可以用unset命令，在unset引用变量名时，不要加$。
+</code></pre>
+</li>
+</ol>
+<h3 id="Shell特殊变量"><a href="#Shell特殊变量" class="headerlink" title="Shell特殊变量"></a>Shell特殊变量</h3><pre><code class="bash">$? 上个命令的退出状态，或者函数的返回值
+$$ 表示当前shell的进程ID echo “pid $$”
+
+$0 当前脚本的文件名
+$1 ... 
+$n 传递给脚本或函数的参数 
+$1 是第一个参数 
+$2 是第二个参数
+
+$# 传递给脚本的参数个数
+$* 传递给脚本的所有参数
+$@ 传递给脚本的所有参数
+$* 和 $@ 都表示传递给函数或脚本的所有参数
+
+不被双引号(&quot; &quot;)包含时, 都以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数
+当它们被双引号(&quot; &quot;)包含时, &quot;$*&quot; 会将所有的参数作为一个整体，以&quot;$1 $2 … $n&quot;的形式输出所有参数
+&quot;$@&quot; 会将各个参数分开，以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数。
+</code></pre>
+<h2 id="Shell-IF-判断逻辑"><a href="#Shell-IF-判断逻辑" class="headerlink" title="Shell IF 判断逻辑"></a>Shell IF 判断逻辑</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法:"></a>基本语法:</h3><pre><code>    if [ command ]; then
+    符合该条件执行的语句
+    fi
+</code></pre>
+<h3 id="扩展语法："><a href="#扩展语法：" class="headerlink" title="扩展语法："></a>扩展语法：</h3><pre><code>    if [ command ];then
+    符合该条件执行的语句
+    elif [ command ];then
+    符合该条件执行的语句
+    else
+    符合该条件执行的语句
+    fi
+</code></pre>
+<h3 id="文件-目录判断"><a href="#文件-目录判断" class="headerlink" title="文件/目录判断"></a>文件/目录判断</h3><pre><code class="bash">[ -a FILE ] 如果 FILE 存在则为真。 
+[ -b FILE ] 如果 FILE 存在且是一个块文件则返回为真。
+[ -c FILE ] 如果 FILE 存在且是一个字符文件则返回为真。
+[ -d FILE ] 如果 FILE 存在且是一个目录则返回为真。 
+[ -e FILE ] 如果 指定的文件或目录存在时返回为真。
+[ -f FILE ] 如果 FILE 存在且是一个普通文件则返回为真。
+[ -g FILE ] 如果 FILE 存在且设置了SGID则返回为真。
+[ -h FILE ] 如果 FILE 存在且是一个符号符号链接文件则返回为真。（该选项在一些老系统上无效）
+[ -k FILE ] 如果 FILE 存在且已经设置了冒险位则返回为真。
+[ -p FILE ] 如果 FILE 存并且是命令管道时返回为真。
+[ -r FILE ] 如果 FILE 存在且是可读的则返回为真。
+[ -s FILE ] 如果 FILE 存在且大小非0时为真则返回为真。
+[ -u FILE ] 如果 FILE 存在且设置了SUID位时返回为真。
+[ -w FILE ] 如果 FILE 存在且是可写的则返回为真。（一个目录为了它的内容被访问必然是可执行的）
+[ -x FILE ] 如果 FILE 存在且是可执行的则返回为真。
+[ -O FILE ] 如果 FILE 存在且属有效用户ID则返回为真。
+[ -G FILE ] 如果 FILE 存在且默认组为当前组则返回为真。（只检查系统默认组）
+[ -L FILE ] 如果 FILE 存在且是一个符号连接则返回为真。 
+[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则返回为真。 
+[ -S FILE ] 如果 FILE 存在且是一个套接字则返回为真。
+[ FILE1 -nt FILE2 ] 如果 FILE1 比 FILE2 新, 或者 FILE1 存在但是 FILE2 不存在则返回为真。 
+[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 老, 或者 FILE2 存在但是 FILE1 不存在则返回为真。
+[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则返回为真。
+</code></pre>
+<h3 id="字符串判断"><a href="#字符串判断" class="headerlink" title="字符串判断"></a>字符串判断</h3><pre><code class="bash">[ -z STRING ]    如果STRING的长度为零则返回为真，即空是真
+[ -n STRING ]    如果STRING的长度非零则返回为真，即非空是真
+[ STRING1 ]　   如果字符串不为空则返回为真,与-n类似
+[ STRING1 == STRING2 ]   如果两个字符串相同则返回为真
+[ STRING1 != STRING2 ]    如果字符串不相同则返回为真
+[ STRING1 &lt; STRING2 ]     如果 “STRING1”字典排序在“STRING2”前面则返回为真。 
+[ STRING1 &gt; STRING2 ]     如果 “STRING1”字典排序在“STRING2”后面则返回为真。
+</code></pre>
+<h3 id="数值判断"><a href="#数值判断" class="headerlink" title="数值判断"></a>数值判断</h3><pre><code class="bash">[ INT1 -eq INT2 ]          INT1和INT2两数相等返回为真 ,=
+[ INT1 -ne INT2 ]          INT1和INT2两数不等返回为真 ,&lt;&gt;
+[ INT1 -gt INT2 ]           INT1大于INT2返回为真 ,&gt;
+[ INT1 -ge INT2 ]          INT1大于等于INT2返回为真,&gt;=
+[ INT1 -lt INT2 ]            INT1小于INT2返回为真 ,&lt;
+[ INT1 -le INT2 ]           INT1小于等于INT2返回为真,&lt;=
+</code></pre>
+<h3 id="逻辑判断"><a href="#逻辑判断" class="headerlink" title="逻辑判断"></a>逻辑判断</h3><pre><code class="bash">[ ! EXPR ]       逻辑非，如果 EXPR 是false则返回为真。
+[ EXPR1 -a EXPR2 ]      逻辑与，如果 EXPR1 and EXPR2 全真则返回为真。
+[ EXPR1 -o EXPR2 ]      逻辑或，如果 EXPR1 或者 EXPR2 为真则返回为真。
+[  ] || [  ]           用OR来合并两个条件
+[  ] &amp;&amp; [  ]        用AND来合并两个条件
+</code></pre>
+<h3 id="其他判断"><a href="#其他判断" class="headerlink" title="其他判断"></a>其他判断</h3><pre><code class="bash">[ -t FD ]  如果文件描述符 FD （默认值为1）打开且指向一个终端则返回为真
+[ -o optionname ]  如果shell选项optionname开启则返回为真
+</code></pre>
+<h3 id="IF高级特性"><a href="#IF高级特性" class="headerlink" title="IF高级特性"></a>IF高级特性</h3><ol>
+<li><p>双圆括号((  ))：表示数学表达式</p>
+<p> 在判断命令中只允许在比较中进行简单的算术操作，而双圆括号提供更多的数学符号，而且在双圆括号里面的’&gt;’,’&lt;’号不需要转意。</p>
+</li>
+<li><p>双方括号[[  ]]：表示高级字符串处理函数</p>
+<p> 双方括号中判断命令使用标准的字符串比较，还可以使用匹配模式，从而定义与字符串相匹配的正则表达式。</p>
+</li>
+<li><p>双括号的作用：</p>
+<pre><code> 在shell中，[ $a != 1 || $b = 2 ]是不允许，要用[ $a != 1 ] || [ $b = 2 ]，而双括号就可以解决这个问题的，[[ $a != 1 || $b = 2 ]]。
+ 
+ 又比如这个[ &quot;$a&quot; -lt &quot;$b&quot; ]，也可以改成双括号的形式((&quot;$a&quot; &lt; &quot;$b&quot;))
+</code></pre>
+</li>
+</ol>
+<h3 id="sample"><a href="#sample" class="headerlink" title="sample"></a>sample</h3><h4 id="判断目录-doiido是否存在，若不存在，则新建一个"><a href="#判断目录-doiido是否存在，若不存在，则新建一个" class="headerlink" title="判断目录$doiido是否存在，若不存在，则新建一个"></a>判断目录$doiido是否存在，若不存在，则新建一个</h4><pre><code>    if [ ! -d &quot;$doiido&quot;]; then
+    　　mkdir &quot;$doiido&quot;
+    fi
+</code></pre>
+<h4 id="判断普通文件-doiido是否存，若不存在，则新建一个"><a href="#判断普通文件-doiido是否存，若不存在，则新建一个" class="headerlink" title="判断普通文件$doiido是否存，若不存在，则新建一个"></a>判断普通文件$doiido是否存，若不存在，则新建一个</h4><pre><code>    if [ ! -f &quot;$doiido&quot; ]; then
+    　　touch &quot;$doiido&quot;
+    fi
+</code></pre>
+<h4 id="判断-doiido是否存在并且是否具有可执行权限"><a href="#判断-doiido是否存在并且是否具有可执行权限" class="headerlink" title="判断$doiido是否存在并且是否具有可执行权限"></a>判断$doiido是否存在并且是否具有可执行权限</h4><pre><code>    if [ ! -x &quot;$doiido&quot;]; then
+    　　mkdir &quot;$doiido&quot;
+    chmod +x &quot;$doiido&quot;
+    fi
+</code></pre>
+<h4 id="是判断变量-doiido是否有值"><a href="#是判断变量-doiido是否有值" class="headerlink" title="是判断变量$doiido是否有值"></a>是判断变量$doiido是否有值</h4><pre><code>    if [ ! -n &quot;$doiido&quot; ]; then
+    　　echo &quot;$doiido is empty&quot;
+    　　exit 0
+    fi
+</code></pre>
+<h4 id="两个变量判断是否相等"><a href="#两个变量判断是否相等" class="headerlink" title="两个变量判断是否相等"></a>两个变量判断是否相等</h4><pre><code>    if [ &quot;$var1&quot; = &quot;$var2&quot; ]; then
+    　　echo &#39;$var1 eq $var2&#39;
+    else
+    　　echo &#39;$var1 not eq $var2&#39;
+    fi
+</code></pre>
+<h4 id="测试退出状态："><a href="#测试退出状态：" class="headerlink" title="测试退出状态："></a>测试退出状态：</h4><pre><code>    if [ $? -eq 0 ];then
+    echo &#39;That is ok&#39;
+    fi
+</code></pre>
+<h4 id="数值的比较："><a href="#数值的比较：" class="headerlink" title="数值的比较："></a>数值的比较：</h4><pre><code>    if [ &quot;$num&quot; -gt &quot;150&quot; ]
+    echo &quot;$num is biger than 150&quot;
+    fi
+</code></pre>
+<h4 id="a-gt-b-且-a-lt-c"><a href="#a-gt-b-且-a-lt-c" class="headerlink" title="a&gt;b 且 a&lt;c"></a>a&gt;b 且 a&lt;c</h4><pre><code>    (( a &gt; b )) &amp;&amp; (( a &lt; c ))
+    [[ $a &gt; $b ]] &amp;&amp; [[ $a &lt; $c ]]
+    [ $a -gt $b -a $a -lt $c ]
+</code></pre>
+<p>9：a&gt;b或a&lt;c<br>(( a &gt; b )) || (( a &lt; c ))<br>[[ $a &gt; $b ]] || [[ $a &lt; $c ]]<br>[ $a -gt $b -o $a -lt $c ]</p>
+<p>10：检测执行脚本的用户<br>if [ “$(whoami)” != ‘root’ ]; then<br>    echo “You have no permission to run $0 as non-root user.”<br>    exit 1;<br>fi<br>上面的语句也可以使用以下的精简语句<br>[ “$(whoami)” != ‘root’ ] &amp;&amp; ( echo “You have no permission to run $0 as non-root user.”; exit 1 )</p>
+<p>11：正则表达式<br>doiido=”hero”<br>if [[ “$doiido” == h* ]];then<br>    echo “hello，hero”<br>fi</p>
+<h1 id="shell常用组合命令"><a href="#shell常用组合命令" class="headerlink" title="shell常用组合命令"></a>shell常用组合命令</h1><h2 id="获取当前ip地址"><a href="#获取当前ip地址" class="headerlink" title="获取当前ip地址"></a>获取当前ip地址</h2><pre><code>    ifconfig eth0 | grep &quot;inet &quot; | awk &#39;&#123;print $2&#125;&#39;
+</code></pre>
+<h2 id="获取ssid"><a href="#获取ssid" class="headerlink" title="获取ssid"></a>获取ssid</h2><pre><code>    iwlist wlan0 scan | grep ESSID | cut -d&quot;\&quot;&quot; -f 2
+</code></pre>
+<h2 id="获取时间"><a href="#获取时间" class="headerlink" title="获取时间"></a>获取时间</h2><pre><code class="bash">#!/bin/bash
+
+#明天凌晨 对应的毫秒时间戳
+tomorrow=`date -d next-day +%Y-%m-%d`
+timeStamp=`date -d &quot;$tomorrow 00:00:00&quot; +%s`
+currentTimeStamp=$(($timeStamp*1000+`date &quot;+%N&quot;`/1000000))
+#将current转换为时间戳，精确到毫秒
+echo $currentTimeStamp
+#当前时间对应的毫秒时间戳&lt;
+current=`date &quot;+%Y-%m-%d %H:%M:%S&quot;`
+timeStamp=`date -d &quot;$current&quot; +%s`
+currentTimeStamp=$((timeStamp*1000+`date &quot;+%N&quot;`/1000000))
+#将current转换为时间戳，精确到毫秒
+echo $curre
+</code></pre>
+<h2 id="简单的开机检测脚本"><a href="#简单的开机检测脚本" class="headerlink" title="简单的开机检测脚本"></a>简单的开机检测脚本</h2><pre><code class="bash">#!/bin/bash
+
+# var
+process_name=&quot;mqtt_logger_main&quot;
+process_path=/home/cv/mqtt_logger/mqtt_logger_main
+process_log=/home/cv/mqtt_logger/log.txt
+
+# check function
+fun()&#123;
+        while [ true ]
+        do
+                ps -ef | grep $&#123;process_name&#125; | grep -v grep
+                if [ $? -ne 0 ]
+                then
+                        echo &quot;not exist, create process&quot;
+                        ($process_path) &amp;
+                        pid=$(ps -ef | grep $&#123;process_name&#125; | grep -v grep | awk &#39;&#123;print $2&#125;&#39;)
+                        date=$(date &quot;+%Y-%m-%d %H:%M:%S&quot;)
+                        echo &quot;$&#123;date&#125; $&#123;process_name&#125; PID=$&#123;pid&#125; start.&quot; &gt;&gt; $&#123;process_log&#125;
+                else
+                        echo &quot;exist, ignore&quot;
+                fi
+                sleep 1m #sleep 1 minute
+        done
+&#125;
+
+# only run
+fun
+
+# error quit
+echo &quot;error quit!&quot; &gt;&gt; $&#123;process_log&#125;
+</code></pre>
+<h2 id="查看当前操作系统类型"><a href="#查看当前操作系统类型" class="headerlink" title="查看当前操作系统类型"></a>查看当前操作系统类型</h2><pre><code class="bash">#!/bin/sh
+SYSTEM=`uname -s`
+if [ $SYSTEM = &quot;Linux&quot; ] ; then
+    echo &quot;Linux&quot;
+elif [ $SYSTEM = &quot;FreeBSD&quot; ] ; then
+    echo &quot;FreeBSD&quot;
+elif [ $SYSTEM = &quot;Solaris&quot; ] ; then
+    echo &quot;Solaris&quot;
+else
+    echo &quot;What?&quot;
+fi
+</code></pre>
+<h3 id="if利用read传参判断"><a href="#if利用read传参判断" class="headerlink" title="if利用read传参判断"></a>if利用read传参判断</h3><pre><code class="bash">#!/bin/bash
+read -p &quot;please input a score:&quot; score
+echo -e &quot;your score [$score] is judging by sys now&quot;
+
+if [ &quot;$score&quot; -ge &quot;0&quot; ]&amp;&amp;[ &quot;$score&quot; -lt &quot;60&quot; ];then
+    echo &quot;sorry,you are lost!&quot;
+elif [ &quot;$score&quot; -ge &quot;60&quot; ]&amp;&amp;[ &quot;$score&quot; -lt &quot;85&quot; ];then
+    echo &quot;just soso!&quot;
+elif [ &quot;$score&quot; -le &quot;100&quot; ]&amp;&amp;[ &quot;$score&quot; -ge &quot;85&quot; ];then
+    echo &quot;good job!&quot;
+else
+    echo &quot;input score is wrong , the range is [0-100]!&quot;
+fi
+</code></pre>
+<h2 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h2><pre><code class="bash">#!/bin/sh
+today=`date -d yesterday +%y%m%d`
+file=&quot;apache_$today.tar.gz&quot;
+cd /home/chenshuo/shell
+if [ -f &quot;$file&quot; ];then
+    echo &quot;OK&quot;
+else
+    echo &quot;error $file&quot; &gt;error.log
+    mail -s &quot;fail backup from test&quot; loveyasxn924@126.com &lt;error.log
+fi
+</code></pre>
+<h2 id="这个脚本在每个星期天由cron来执行。如果星期的数是偶数，他就提醒你把垃圾箱清理："><a href="#这个脚本在每个星期天由cron来执行。如果星期的数是偶数，他就提醒你把垃圾箱清理：" class="headerlink" title="这个脚本在每个星期天由cron来执行。如果星期的数是偶数，他就提醒你把垃圾箱清理："></a>这个脚本在每个星期天由cron来执行。如果星期的数是偶数，他就提醒你把垃圾箱清理：</h2><pre><code class="bash">#!/bin/bash
+WEEKOFFSET=$[ $(date +&quot;%V&quot;) % 2 ]
+
+if [ $WEEKOFFSET -eq &quot;0&quot; ]; then
+    echo &quot;Sunday evening, put out the garbage cans.&quot; | mail -s &quot;Garbage cans out&quot; your@your_domain.org
+fi
+</code></pre>
+<h2 id="挂载硬盘脚本-windows下的ntfs格式硬盘"><a href="#挂载硬盘脚本-windows下的ntfs格式硬盘" class="headerlink" title="挂载硬盘脚本(windows下的ntfs格式硬盘)"></a>挂载硬盘脚本(windows下的ntfs格式硬盘)</h2><pre><code class="bash">#! /bin/sh
+dir_d=/media/disk_d
+dir_e=/media/disk_e
+dir_f=/media/disk_f
+
+a=`ls $dir_d | wc -l`
+b=`ls $dir_e | wc -l`
+c=`ls $dir_f | wc -l`
+
+echo &quot;checking disk_d...&quot;
+if [ $a -eq 0 ]; then
+  echo &quot;disk_d is not exsit,now creating...&quot;
+  sudo mount -t ntfs /dev/disk/by-label/software /media/disk_d
+else
+  echo &quot;disk_d exits&quot;
+fi
+
+echo &quot;checking disk_e...&quot;
+if [ $b -eq 0 ]; then
+  echo &quot;disk_e is not exsit,now creating...&quot;
+  sudo mount -t ntfs /dev/disk/by-label/elitor /media/disk_e
+else
+  echo &quot;disk_e exits&quot;
+fi
+
+echo &quot;checking disk_f...&quot;
+if [ $c -eq 0 ]; then
+  echo &quot;disk_f is not exsit,now creating...&quot;
+  sudo mount -t ntfs /dev/disk/by-label/work /media/disk_f
+else
+  echo &quot;disk_f exits&quot;
+fi
+</code></pre>
+<h2 id="判断字符串是否为空"><a href="#判断字符串是否为空" class="headerlink" title="判断字符串是否为空"></a>判断字符串是否为空</h2><pre><code class="bash">#!/bin/bash
+str1=&quot;hello world&quot;
+if [[ -n &quot;$str1&quot; ]]; then
+    echo &quot;str1 is not empty&quot;
+fi
+str2=&quot;&quot;
+if [[ ! -n &quot;$str2&quot; ]]; then
+    echo &quot;str2 is empty&quot;
+fi
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 author
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Support</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

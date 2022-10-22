@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bash配置 | Hexo</title>
+  <meta name="keywords" content=" linux , bash , mac ">
+  <meta name="description" content="Bash配置 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="参考文章ubuntu新硬盘挂载及格式化NTFS[https:&#x2F;&#x2F;codeantenna.com&#x2F;a&#x2F;XkEEPnJY3Z]  格式化新硬盘查看硬盘信息指令查看硬盘具体信息，包括分区等  sudo fdisk -l  查看有多少个硬盘  sudo lshw -c disk   一般会显示:  disk:0（设备名为 &#x2F;dev&#x2F;sda）  disk:1（设备名为 &#x2F;dev&#x2F;sdb）  查看所有的存储介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS-挂载硬盘">
+<meta property="og:url" content="http://example.com/2022/10/23/NAS-%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参考文章ubuntu新硬盘挂载及格式化NTFS[https:&#x2F;&#x2F;codeantenna.com&#x2F;a&#x2F;XkEEPnJY3Z]  格式化新硬盘查看硬盘信息指令查看硬盘具体信息，包括分区等  sudo fdisk -l  查看有多少个硬盘  sudo lshw -c disk   一般会显示:  disk:0（设备名为 &#x2F;dev&#x2F;sda）  disk:1（设备名为 &#x2F;dev&#x2F;sdb）  查看所有的存储介">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-22T18:34:34.050Z">
+<meta property="article:author" content="King">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="nas">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/p2.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/p2.jpg"/>
+</a>
+<div class="author">
+    <span>King</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LingjieJin"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(65)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="65">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>接口</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>码流地址</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>外星人</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>指令索引</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>blog</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>c++</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>command</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>diskpart</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>git</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>group</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexdump</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ifconfig</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ip</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipc</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ipv6</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>jellyfin</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mac</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mount</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nano</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nas</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NAS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netplan</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>netstat</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>network interface</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>networkmanager</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>nmcli</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>node</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>openwrt</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>rc-local</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>route</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>samba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ss</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>system</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>systemctl</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tar</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>TFTP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ubuntu18.04</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>user</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vim</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>vmware</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>zsh</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/2022/10/23/NAS-%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="NAS,nas"
+           data-author="" >
+            <span class="post-title" title="NAS-挂载硬盘">NAS-挂载硬盘</span>
+            <span class="post-date" title="2022-10-23 00:00:00">2022/10/23</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20%E5%BA%8F%E5%88%97%E5%8F%B7%E5%A4%87%E4%BB%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20win10%E4%BD%BF%E7%94%A8vs%E8%BF%9E%E6%8E%A5%E5%AD%90%E7%B3%BB%E7%BB%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20w10%E5%BC%80%E5%90%AF%E5%AD%90%E7%B3%BB%E7%BB%9F/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:45">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20powershell%E7%BE%8E%E5%8C%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/windows%20mysql%E9%87%8D%E7%BD%AEroot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/raspberry%203b+%20%E5%AE%89%E8%A3%85picam%20%E5%92%8Copencv/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/iterm2%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8Bssh%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/iterm2%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/aliyun%20ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/docker%20%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AAweb%E5%BA%94%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/docker%20%E9%83%A8%E7%BD%B2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Raspberry%20%E8%AE%BE%E7%BD%AE%E7%B3%BB%E7%BB%9F%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Raspberry%20%E5%AE%89%E8%A3%85opencv/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Macos%20%E5%BC%80%E5%8F%91%E4%B8%AD%E7%A2%B0%E5%88%B0%E6%91%84%E5%83%8F%E5%A4%B4%E9%9A%90%E7%A7%81%E9%97%AE%E9%A2%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E5%90%8D/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20%E6%8C%87%E4%BB%A4%E7%B4%A2%E5%BC%952/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20systemd%20%E8%AE%BE%E7%BD%AE%E6%AF%8F5min%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/20/Linux%20systemd%20%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2022-05-20 00:32:44">2022/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/GIT%20%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"
+           data-tag="git"
+           data-author="" >
+            <span class="post-title" title="GIT 操作总结">GIT 操作总结</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20hexdump%E5%B7%A5%E5%85%B7/"
+           data-tag="linux,hexdump"
+           data-author="" >
+            <span class="post-title" title="Linux Hexdump">Linux Hexdump</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/IPV6%20ipv6%20ping%E6%B5%8B%E8%AF%95/"
+           data-tag="ipv6"
+           data-author="" >
+            <span class="post-title" title="IP V6测试">IP V6测试</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20nano%E7%BC%96%E8%BE%91%E5%99%A8%E4%BD%BF%E7%94%A8/"
+           data-tag="linux,nano"
+           data-author="" >
+            <span class="post-title" title="Linux Nano使用">Linux Nano使用</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20tar%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,指令,tar"
+           data-author="" >
+            <span class="post-title" title="Linux tar 指令">Linux tar 指令</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Linux%20%E6%8C%87%E4%BB%A4%E7%B4%A2%E5%BC%95/"
+           data-tag="linux,command,指令索引"
+           data-author="" >
+            <span class="post-title" title="Linux 指令索引">Linux 指令索引</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/Shell%20shell%E8%84%9A%E6%9C%AC%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8/"
+           data-tag="Shell"
+           data-author="" >
+            <span class="post-title" title="Shell初级使用">Shell初级使用</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/windows%20VMWARE%20%E6%89%A9%E5%AE%B9ubuntu/"
+           data-tag="vmware"
+           data-author="" >
+            <span class="post-title" title="VMware扩展硬盘后无法正常开机的解决方法">VMware扩展硬盘后无法正常开机的解决方法</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/windows%20%E8%87%AA%E5%B8%A6diskpart%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"
+           data-tag="windows,diskpart"
+           data-author="" >
+            <span class="post-title" title="使用Windows自带的Diskpart工具">使用Windows自带的Diskpart工具</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E7%AC%94%E8%AE%B0%20%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86IPCamera/"
+           data-tag="ipc,码流地址"
+           data-author="" >
+            <span class="post-title" title="海康威视 IPCamera 码流地址">海康威视 IPCamera 码流地址</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E7%AC%94%E8%AE%B0%20%E5%A4%96%E6%98%9F%E4%BA%BA%E6%94%B9%E8%A3%85%E6%96%87%E6%A1%A3/"
+           data-tag="外星人"
+           data-author="" >
+            <span class="post-title" title="外星人改装">外星人改装</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20Bash%E9%85%8D%E7%BD%AE/"
+           data-tag="linux,bash,mac"
+           data-author="" >
+            <span class="post-title" title="Bash配置">Bash配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20Vim%E8%AE%BE%E7%BD%AE/"
+           data-tag="linux,mac,vim"
+           data-author="" >
+            <span class="post-title" title="Vim 配置">Vim 配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/05/01/%E9%85%8D%E7%BD%AE%20zsh%E9%85%8D%E7%BD%AE/"
+           data-tag="linux,mac,zsh"
+           data-author="" >
+            <span class="post-title" title="zsh 配置">zsh 配置</span>
+            <span class="post-date" title="2022-05-01 08:00:00">2022/05/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ifconfig%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,ifconfig,指令"
+           data-author="" >
+            <span class="post-title" title="Linux ifconfig 指令">Linux ifconfig 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ip%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ip"
+           data-author="" >
+            <span class="post-title" title="Linux ip 指令">Linux ip 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20nmcli%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,nmcli"
+           data-author="" >
+            <span class="post-title" title="Linux nmcli 指令">Linux nmcli 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20route%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,route"
+           data-author="" >
+            <span class="post-title" title="Linux route 指令">Linux route 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20ss%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,ss"
+           data-author="" >
+            <span class="post-title" title="Linux ss 指令">Linux ss 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"
+           data-tag="linux,mount"
+           data-author="" >
+            <span class="post-title" title="Linux 挂载硬盘">Linux 挂载硬盘</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86/"
+           data-tag="linux,group"
+           data-author="" >
+            <span class="post-title" title="Linux 用户组管理">Linux 用户组管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"
+           data-tag="linux,user"
+           data-author="" >
+            <span class="post-title" title="Linux 用户管理">Linux 用户管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Markdown%E8%AF%AD%E6%B3%95/"
+           data-tag="markdown"
+           data-author="" >
+            <span class="post-title" title="Markdown 语法参考">Markdown 语法参考</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="Linux 系统管理">Linux 系统管理</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85/"
+           data-tag="linux,ubuntu18.04,docker"
+           data-author="" >
+            <span class="post-title" title="docker 安装">docker 安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%AE%89%E8%A3%85jellyfin/"
+           data-tag="docker,jellyfin"
+           data-author="" >
+            <span class="post-title" title="docker 安装jellyfin">docker 安装jellyfin</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%20%E9%85%8D%E7%BD%AEsamba%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,samba"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置samba">Ubuntu 18.04 配置samba</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E4%BD%BF%E7%94%A8netplan%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C/"
+           data-tag="linux,network,ubuntu18.04,netplan"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 使用netplan设置网络">ubuntu 18.04 使用netplan设置网络</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E8%AE%BE%E7%BD%AErc-local%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,system,rc-local"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 设置rc-local服务">ubuntu 18.04 设置rc-local服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C/"
+           data-tag="linux,network"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 1804 网络配置有关">Ubuntu 1804 网络配置有关</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AETFTP%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,TFTP"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 TFFP 服务器安装">ubuntu 18.04 TFFP 服务器安装</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-node%20hexo%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag="blog,node,hexo"
+           data-author="" >
+            <span class="post-title" title="搭建博客-node hexo环境配置">搭建博客-node hexo环境配置</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1/"
+           data-tag="linux,ubuntu18.04,nfs"
+           data-author="" >
+            <span class="post-title" title="ubuntu 18.04 配置nfs服务">ubuntu 18.04 配置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20netstat%E6%8C%87%E4%BB%A4/"
+           data-tag="linux,network,指令,netstat"
+           data-author="" >
+            <span class="post-title" title="Linux netstat 指令">Linux netstat 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E5%85%B3%E9%97%ADnetworkmanager/"
+           data-tag="linux,ubuntu18.04,networkmanager"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 关闭networkmanager">Ubuntu 18.04 关闭networkmanager</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/ubuntu-18-04-%E9%85%8D%E7%BD%AEnetwork/"
+           data-tag="linux,ubuntu18.04,network interface"
+           data-author="" >
+            <span class="post-title" title="Ubuntu 18.04 配置network的interface">Ubuntu 18.04 配置network的interface</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20systemctl%E4%BB%8B%E7%BB%8D/"
+           data-tag="linux,指令,system,systemctl"
+           data-author="" >
+            <span class="post-title" title="Linux systemctl 指令">Linux systemctl 指令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E5%AE%89%E8%A3%85OpenWRT%E5%81%9A%E6%97%81%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker安装OpenWRT做旁路由">Docker安装OpenWRT做旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-Docker%E8%BF%90%E8%A1%8COpenwrt%E5%B9%B6%E4%BD%9C%E4%B8%BA%E4%B8%BB%E8%B7%AF%E7%94%B1/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="Docker运行Openwrt并作为主路由">Docker运行Openwrt并作为主路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-docker%20%E8%BF%90%E8%A1%8C%20openwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 配置openwrt 单网卡 旁路由">docker 配置openwrt 单网卡 旁路由</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker-%E5%9C%A8docker%E9%87%8C%E8%BF%90%E8%A1%8Copenwrt/"
+           data-tag="docker,openwrt"
+           data-author="" >
+            <span class="post-title" title="docker 在docker里运行openwrt">docker 在docker里运行openwrt</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/C++%20c++%E6%8E%A5%E5%8F%A3%E7%B1%BB%E5%AE%9A%E4%B9%89/"
+           data-tag="c++,interface,接口"
+           data-author="" >
+            <span class="post-title" title="C++ 接口类">C++ 接口类</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/Linux%20%E8%AE%BE%E7%BD%AEnfs%E6%9C%8D%E5%8A%A1%E5%99%A8/"
+           data-tag="linux,nfs"
+           data-author="" >
+            <span class="post-title" title="Linux 设置nfs服务">Linux 设置nfs服务</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/04/01/docker%20%E5%91%BD%E4%BB%A4/"
+           data-tag="linux,docker"
+           data-author="" >
+            <span class="post-title" title="docker 命令">docker 命令</span>
+            <span class="post-date" title="2022-04-01 08:00:00">2022/04/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub/"
+           data-tag="blog,hexo"
+           data-author="" >
+            <span class="post-title" title="Build Blog with Hexo+Github">Build Blog with Hexo+Github</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <a  class="All "
+           href="/2022/01/01/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-%E9%85%8D%E7%BD%AEgithub%E5%88%86%E6%94%AF%E5%AD%98%E5%82%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置github分支存储">配置github分支存储</span>
+            <span class="post-date" title="2022-01-01 08:00:00">2022/01/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-配置 Bash配置" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Bash配置</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">linux</a>
+            
+            <a class="color5">bash</a>
+            
+            <a class="color4">mac</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-05-22 14:15:19'>2022-05-01 08:00</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-Bash-%E9%85%8D%E7%BD%AE"><span class="toc-text">Linux Bash 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BASH-PS1%E9%85%8D%E7%BD%AE"><span class="toc-text">BASH PS1配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%96%B0%E7%9A%84bash%E9%85%8D%E7%BD%AE"><span class="toc-text">启动新的bash配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample"><span class="toc-text">sample</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac-Bash%E9%85%8D%E7%BD%AE"><span class="toc-text">Mac Bash配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9bash%E9%85%8D%E7%BD%AE"><span class="toc-text">修改bash配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEvim"><span class="toc-text">配置vim</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bashrc-%E5%92%8C-bash-profile-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">.bashrc 和.bash_profile 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash-profile-%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">.bash_profile 的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bashrc-%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">.bashrc 的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#profile-%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">.profile 的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">优先级</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-Bash-配置"><a href="#Linux-Bash-配置" class="headerlink" title="Linux Bash 配置"></a>Linux Bash 配置</h1><h3 id="BASH-PS1配置"><a href="#BASH-PS1配置" class="headerlink" title="BASH PS1配置"></a>BASH PS1配置</h3><pre><code class="sh">   PS1=&#39;[\[\e[01;05;32m\]\u\[\e[00m\]@\[\e[01;33m\]\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]]\$ &#39;
+
+   PS1=&quot;Time:\[\033[1;35m\]\T     \[\033[0m\]User:\[\033[1;33m\]\u     \[\033[0m\]Dir:\[\033[1;32m\]\w\[\033[0m\]\n\$&quot;
+
+   颜色配置:
+   \[\033[1;31m\]
+   底线：ANSI 色彩控制语法。\033 声明了转义序列的开始，然后是 [ 开始定义颜色。
+   
+   第一组数字：亮度 (普通0, 高亮度1, 闪烁2)。
+   第二组数字：顏色代码。
+   颜色: 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+   
+   \[\033[0m\]
+   关闭 ANSI 色彩控制，通常置于尾端。
+
+   显示内容配置:
+
+   \a     ASCII响铃字符 (07)
+   \d     “周 月 日”格式的日期
+   \D&#123;format&#125;   参数format被传递给strftime(3)来构造自定格式的时间并插入提示符中；该参数为空时根据本地化设置自动生成格式。
+   \e     ASCII转义字符（ESC) (033)
+   \h     主机名在第一个点号前的内容
+   \H     完全主机名
+   \j     shell当前管理的任务数
+   \l     shell终端设备的基本名称
+   \n     新行
+   \r     回车
+   \s     shell的名称，$0的基本名称
+   \t     当前时间（24小时） HH:MM:SS
+   \T     当前时间（12小时） HH:MM:SS
+   \@     当前时间（12小时） am/pm
+   \A     当前时间（24小时） HH:MM
+   \u     当前用户名称
+   \v     bash版本(如&quot;2.00&quot;)
+   \V     bash版本+补丁号(如&quot;2.00.0&quot;)
+   \w     当前工作目录
+   \W     当前工作目录的基本名称
+   \!     该命令的历史数（在历史文件中的位置）
+   \#     该命令的命令数（当前shell中执行的序列位置）
+   \$     根用户为&quot;#&quot;，其它用户为&quot;$&quot;
+   \nnn   8进制数
+   \\     反斜杠
+   \[     表示跟在后面的是非打印字符，可用于shell的颜色控制
+   \]     表示非打印字符结束
+</code></pre>
+<hr>
+<h3 id="启动新的bash配置"><a href="#启动新的bash配置" class="headerlink" title="启动新的bash配置"></a>启动新的bash配置</h3><pre><code>  echo &quot;export PS1=&quot;Time:\[33[1;35m\]\T \[33[0m\]User:\[33[1;33m\]\u \[33[0m\]Dir:\[33[1;32m\]\w\[33[0m\]\n\$&quot; &quot; &gt;&gt; .bashrc
+
+  source .bashrc
+</code></pre>
+<hr>
+<h3 id="sample"><a href="#sample" class="headerlink" title="sample"></a>sample</h3><pre><code class="bash">   # print the git branch name if in a git project
+   parse_git_branch() &#123;
+      git branch 2&gt; /dev/null | sed -e &#39;/^[^*]/d&#39; -e &#39;s/* \(.*\)//&#39;
+   &#125;
+
+   # set  the input prompt symbol
+   ARROW=&quot;❯&quot;
+
+   # define text  formatting
+   PROMPT_BOLD=&quot;$(tput bold)&quot;
+   PROMPT_UNDERLINE=&quot;$(tput  smul)&quot;
+   PROMPT_FG_GREEN=&quot;$(tput setaf 2)&quot;
+   PROMPT_FG_CYAN=&quot;$(tput setaf  6)&quot;
+   PROMPT_FG_YELLOW=&quot;$(tput setaf 3)&quot;
+   PROMPT_FG_MAGENTA=&quot;$(tput setaf  5)&quot;
+   PROMPT_RESET=&quot;$(tput sgr0)&quot;
+
+   # save each section prompt section in  variable
+   PROMPT_SECTION_SHELL=&quot;\[$PROMPT_BOLD$PROMPT_FG_GREEN\]\s\[$PROMPT_RESET\]&quot;
+   PROMPT_SECTION_DIRECTORY=&quot;\[$PROMPT_UNDERLINE$PROMPT_FG_CYAN\]\W\[$PROMPT_RESET\]&quot;
+   PROMPT_SECTION_GIT_BRANCH=&quot;\[$PROMPT_FG_YELLOW\]\`parse_git_branch\`\[$PROMPT_RESET\]&quot;
+   PROMPT_SECTION_ARROW=&quot;\[$PROMPT_FG_MAGENTA\]$ARROW\[$PROMPT_RESET\]&quot;
+
+   #  set the prompt string using each section variable
+   PS1=&quot;🐂  $PROMPT_SECTION_SHELL 🍎  $PROMPT_SECTION_DIRECTORY 🌹  $PROMPT_SECTION_GIT_BRANCH 🌹$PROMPT_SECTION_ARROW &quot;
+</code></pre>
+<h1 id="Mac-Bash配置"><a href="#Mac-Bash配置" class="headerlink" title="Mac Bash配置"></a>Mac Bash配置</h1><h2 id="修改bash配置"><a href="#修改bash配置" class="headerlink" title="修改bash配置"></a>修改bash配置</h2><p>~/.bash_profile用户目录下的该文件纪录了bash的配置信息</p>
+<pre><code class="bash">#enables colorin the terminal bash shell export
+export CLICOLOR=1
+
+#setsup thecolor scheme for list export
+export LSCOLORS=gxfxcxdxbxegedabagacad
+ 
+#sets up theprompt color (currently a green similar to linux terminal)
+export PS1=&#39;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$  (设置几个空格，个人喜欢两个)&#39;
+#enables colorfor iTerm
+export TERM=xterm-256color
+</code></pre>
+<p>如果希望加入git的语法高亮，参考以下:</p>
+<pre><code class="bash">#Git branch status
+function git_status &#123;
+  local unknown untracked stash clean ahead behind staged dirty diverged
+  unknown=&#39;0;34&#39; # blue
+  untracked=&#39;0;32&#39; # green
+  stash=&#39;0;32&#39; # green
+  clean=&#39;0;32&#39; # green
+  ahead=&#39;0;33&#39; # yellow
+  behind=&#39;0;33&#39; # yellow
+  staged=&#39;0;96&#39; # cyan
+  dirty=&#39;0;31&#39; # red
+  diverged=&#39;0;31&#39; # red
+
+  if [[ $TERM = *256color ]]; then
+    unknown=&#39;38;5;20&#39; # dark blue
+    untracked=&#39;38;5;76&#39; # mid lime-green
+    stash=&#39;38;5;76&#39; # mid lime-green
+    clean=&#39;38;5;82&#39; # brighter green
+    ahead=&#39;38;5;226&#39; # bright yellow
+    behind=&#39;38;5;142&#39; # darker yellow-orange
+    staged=&#39;38;5;214&#39; # orangey yellow
+    dirty=&#39;38;5;202&#39; # orange
+    diverged=&#39;38;5;196&#39; # red
+  fi
+
+  branch=$(git rev-parse --abbrev-ref HEAD 2&gt;/dev/null)
+  if [[ -n &quot;$branch&quot; ]]; then
+    if [[ &quot;$branch&quot; == &#39;HEAD&#39; ]]; then
+       branch=$(git rev-parse --short HEAD 2&gt;/dev/null)
+    ## 建议修改
+    ## 第一次从github 克隆下来的仓库，执行git rev-parse --short HEAD 2&gt;/dev/null 为空，导致会显示 ()$现象
+       branch=master
+    fi
+    git_status=$(git status 2&gt; /dev/null)
+    # If nothing changes the color, we can spot unhandled cases.
+    color=$unknown
+    if [[ $git_status =~ &#39;Untracked files&#39; ]]; then
+      color=$untracked
+      branch=&quot;$&#123;branch&#125;+&quot;
+    fi
+    if git stash show &amp;&gt;/dev/null; then
+      color=$stash
+      branch=&quot;$&#123;branch&#125;*&quot;
+    fi
+    if [[ $git_status =~ &#39;working directory clean&#39; ]]; then
+      color=$clean
+    fi
+    if [[ $git_status =~ &#39;Your branch is ahead&#39; ]]; then
+      color=$ahead
+      branch=&quot;$&#123;branch&#125;&quot;
+    fi
+    if [[ $git_status =~ &#39;Your branch is behind&#39; ]]; then
+      color=$behind
+      branch=&quot;$&#123;branch&#125;&quot;
+    fi
+    if [[ $git_status =~ &#39;Changes to be committed&#39; ]]; then
+      color=$staged
+    fi
+    if [[ $git_status =~ &#39;Changed but not updated&#39; ||
+          $git_status =~ &#39;Changes not staged&#39;      ||
+          $git_status =~ &#39;Unmerged paths&#39; ]]; then
+      color=$dirty
+    fi
+    if [[ $git_status =~ &#39;Your branch&#39;.+diverged ]]; then
+      color=$diverged
+      branch=&quot;$&#123;branch&#125;!&quot;
+    fi
+    printf &quot;\033[%sm%s\033[0m&quot; &quot;$color&quot; &quot;($branch)&quot;
+  fi
+  return 0
+&#125;
+
+#bles colorin the terminal bash shell export
+export CLICOLOR=1
+
+#sets up thecolor scheme for list export
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
+#sets up theprompt color (currently a green similar to linux terminal)
+export PS1=&#39;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[01;31m\]$(git_status)\[\033[0m\]\$ &#39;
+## 建议修改
+## 小写的w 改成大写的W 是以为小写的w 显示的是当前文件夹的绝对路径，放到控制台里面贴着很长，大写的W则只会显示当前文件夹的名字
+export PS1=&#39;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[01;31m\]$(git_status)\[\033[0m\]\$ &#39;
+
+#enables colorfor iTerm
+export TERM=xterm-256color
+</code></pre>
+<p>保存即可生效。</p>
+<p>为了确保下次开机命令依然有效，执行如下命令：</p>
+<pre><code>  echo &quot;[ -r ~/.bashrc ] &amp;&amp; source ~/.bashrc&quot; &gt;&gt; .bash_profile
+</code></pre>
+<h3 id="配置vim"><a href="#配置vim" class="headerlink" title="配置vim"></a>配置vim</h3><p>编辑 vim .vimrc 开启配置项</p>
+<pre><code>  #代码高亮开启
+  syntax on
+
+  #文件内容行号
+  set nu
+</code></pre>
+<h1 id="bashrc-和-bash-profile-的区别"><a href="#bashrc-和-bash-profile-的区别" class="headerlink" title=".bashrc 和.bash_profile 的区别"></a>.bashrc 和.bash_profile 的区别</h1><p><a target="_blank" rel="noopener" href="https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_01_02.html">bash 详细介绍</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>当作为交互式登录shell调用时，Bash查找/etc/profile文件，如果文件存在，它将运行文件中列出的命令。 然后Bash按照列出的顺序搜索<del>/.bash_profile，</del>/.bash_login和~/.profile文件，并从找到的第一个可读文件中执行命令。</p>
+<p>当Bash作为交互式非登录shell程序调用时，它会从~/.bashrc中读取并执行命令（如果该文件存在并且可读）。</p>
+<p>当Bash作为交互式登录shell调用时，将读取并执行.bash_profile</p>
+<p>对于交互式非登录shell，则执行.bashrc。</p>
+<p>仅应运行一次的命令应该使用.bash_profile ，例如自定义$PATH 环境变量。</p>
+<p>将每次启动新Shell时应该运行的命令放在.bashrc文件中。 这包括您的别名和function，自定义提示，历史记录自定义等。</p>
+<p>通常，~/.bash_profile包含以下类似于.bashrc文件来源的行。 这意味着每次您登录到终端时，都会读取并执行两个文件。<br>if [ -f ~/.bashrc ]; then<br>    . ~/.bashrc<br>fi</p>
+<p>/etc/profile 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置。<br>/etc/bashrc 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。<br>~/.bash_profile 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次! 默认情况下,他设置一些环境变量,执行用户的.bashrc文件。<br>~/.bashrc 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。<br>~/.bash_logout 少见，但是意味着当每次退出系统(退出bash shell)时,执行该文件。</p>
+<p>另外/etc/profile 中设定的变量(全局)的可以作用于任何用户, 而~/.bashrc 等中设定的变量(局部)只能继承 /etc/profile 中的变量,他们是”父子”关系。</p>
+<p>profile用于登录式shell, 而bashrc用于每个交互式shell<br>~/.bash_profile 是交互式、login 方式进入 bash 运行的<br>~/.bashrc 是交互式 non-login 方式进入 bash 运行的<br>通常二者设置大致相同，所以通常前者会调用后者。<br>所以一般优先把变量设置在.bashrc里面。比如在crontab里面执行一个命令，.bashrc 设置的环境变量会生效，而 .bash_profile 不会。</p>
+<p>nteractive login shell 的形式调用，Files read/etc/profile<del>/.bash_profile, ~/.bash_login or ~/.profile        （first existing readable file is read）</del>/.bash_logout （upon logout）interactive non-login shell 的形式调用，Files read:<del>/.bashrc                  //该文件通常指向 ~/.bash_profilenon-interactively， 脚本文件通常用这种方式。Files read:defined by BASH_ENVInvoked remotely,Files read:</del>/.bashrc</p>
+<h3 id="bash-profile-的意义"><a href="#bash-profile-的意义" class="headerlink" title=".bash_profile 的意义"></a>.bash_profile 的意义</h3><p>.bash_profile文件包含用于设置环境变量的命令，因此shell将继承这些变量。</p>
+<p>在交互式登录shell中，bash首先查找 /etc/profile 文件。如果找到，bash将在当前shell中读取并执行它。结果是 /etc/profile为所有用户设置环境配置类似地，bash然后检查主目录(cd ~ 进入的目录为主目录)中是否存在 .bash_profile。</p>
+<p>如果存在，则bash在当前shell中执行 .bash_profile，Bash然后停止寻找其他文件，如 .bash_login 和 .profile。</p>
+<p>如果bash没有找到 .bash_profile，那么它将按照顺序查找 .bash_login 和 .profile，并只执行第一个可读的文件。</p>
+<p>让我们研究一个示例 .bash_profile文件。这里我们重新设置并导出PATH变量</p>
+<pre><code class="bash">echo &quot;Bash_profile execution starts..&quot;  
+PATH=$PATH:$HOME/bin; 
+export PATH; 
+echo &quot;Bash_profile execution stops..&quot;
+</code></pre>
+<p>在交互式登录shell的命令提示符之前，我们将看到下面的输出</p>
+<pre><code class="bash">Bash_profile execution starts.. 
+Bash_profile execution stops.. 
+[example@example ~]$
+</code></pre>
+<h3 id="bashrc-的意义"><a href="#bashrc-的意义" class="headerlink" title=".bashrc 的意义"></a>.bashrc 的意义</h3><p>.bashrc包含特定于bash shell的命令。</p>
+<p>每个交互式非登录shell首先读取 .bashrc，通常，.bashrc是添加别名和bash相关功能的最佳场所。</p>
+<p>bash shell在主目录中查找 .bashrc文件，并使用source在当前shell中执行它。<br>让我们通过样例认识 .bashrc文件</p>
+<pre><code class="bash">echo &quot;Bashrc execution starts..&quot; 
+alias elui=&#39;top -c -u $USER&#39; 
+alias ll=&#39;ls -lrt&#39; 
+echo &quot;Bashrc execution stops..&quot;
+</code></pre>
+<p>在交互式非登录shell的命令提示符之前，我们将看到下面的输出</p>
+<pre><code class="bash">[example@example ~]$ bash
+Bashrc execution starts.. 
+Bashrc execution stops.. 
+[example@example ~]$
+</code></pre>
+<h3 id="profile-的意义"><a href="#profile-的意义" class="headerlink" title=".profile 的意义"></a>.profile 的意义</h3><p>在交互式shell登录过程中，如果在主目录中不存在 .bash_profile，则bash寻找 .bash_login，如果发现.bash_login 则bash执行它。如果 .bash_login 不存在主目录中，则bash寻找 .profile 并执行它。</p>
+<p>.profile 可以保持与 .bash_profile 或 .bash_login 的配置。它控制着出现的提示，键盘声音，要打开的 shell 以及覆盖 /etc/profile文件中设置的变量的单个配置文件设置。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>在每次交互登录时，bash shell都会执行 .bash_profile。</p>
+<p>如果在主目录中找不到 .bash_profile，bash将执行从 .bash_login 和 .profile 中找到的第一个可读文件。</p>
+<p>但是，在每次交互式非登录shell启动时，bash都会 .bashrc。通常情况下，环境变量会被放入 .bash_profile。</p>
+<p>由于交互式登录shell是第一个shell，因此环境设置所需的所有默认设置都被放入.bash_profile。因此，它们只设置一次而且在所有子shell中继承。</p>
+<p>同样地，别名和函数也会被放入 .bashrc 确保每次从现有环境中启动shell时都加载这些然而，为了避免登录和非登录交互shell设置的差异。.bash_profile 调用 .bashrc。</p>
+<p>因此，我们将看到下面的代码片段被插入.bash_profile，以便在每个交互式登录shell上 .bashrc 也在同样shell执行：</p>
+<pre><code class="bash">if [ -f ~/.bashrc ];
+then 
+    .  ~/.bashrc; 
+fi 
+PATH=$PATH:$HOME/bin 
+export PATH
+</code></pre>
+<h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p>/etc/profile –&gt; /etc/profile.d/* –&gt;.bash_profile –&gt; ~/.bashrc –&gt; /etc/bashrc</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017 author
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Support</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/weixin.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
